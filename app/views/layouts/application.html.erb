@@ -16,28 +16,12 @@
     <ul class="nav navbar-nav">
       <li class="active"><%= link_to "Home", jobs_path %></li>
     </ul>
-    <p class="navbar-text pull-right">logged_in_user@email.com | <%= link_to "Log Out", destroy_user_session_path, :method => :delete %></p>
+    <ul class="nav navbar-nav">
+      <li class="inactive"><%= link_to "Add Job", new_job_path %></li>
+    </ul>
+    <p class="navbar-text pull-right"><%= "logged_in_user@email.com" %> | <%= link_to "Log Out", destroy_user_session_path, :method => :delete %></p>
   </div>
 </div>
-
-<header class='clearfix'>
-  <div class="left-nav">
-    <ul>
-      <li><%= link_to "Home", jobs_path %></li>
-      <div id="logout_link">
-        <% if signed_in? %>
-          <li><%#= logged_in_user_email %></li>
-          <%= link_to "Log Out", destroy_user_session_path, :method => :delete %>
-        <% end %>
-      </div>
-    </ul>
-  </div>
-  <div class="right-nav">
-    <ul>
-      <li><%= link_to "Add Job", new_job_path %></li>
-    </ul>
-  </div>
-</header>
 
 <div class='content'>
   <p class="notice"><%= notice %></p>
