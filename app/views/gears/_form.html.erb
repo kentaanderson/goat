@@ -1,0 +1,25 @@
+<%= form_for @gear do |f| %>
+  <div class="row">
+    <div class="col-md-2"><%= f.label :category_id %></div>
+    <div class="col-md-4"><%= f.collection_select(:category_id, Category.all, :id, :category_name) %></div>
+  </div>
+  <div class="row">
+    <div class="col-md-2"><%= f.label :name %></div>
+    <div class="col-md-4"><%= f.text_field :name %></div>
+  </div>
+  <div class="row">
+    <div class="col-md-2"><%= f.label :description %></div>
+    <div class="col-md-4"><%= f.text_area :description, size: '60x6' %></div>
+  </div>
+  <div class="row">
+    <div class="col-md-2"><%= f.label :weight_oz %></div>
+    <div class="col-md-4"><%= f.text_field :weight_oz %></div>
+  </div>
+  <div class="row">
+    <div class="col-md-2"><%= f.label :year_acquired %></div>
+    <div class="col-md-4"><%= f.text_field :year_acquired %></div>
+  </div>
+  <div class="col-md-2">
+    <%= f.submit %>
+  </div>
+<% end %>

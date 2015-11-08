@@ -1,0 +1,24 @@
+  <div class="row">
+    <div class="col-md-6"><h1>Gear list authorized</h1></div>
+    <div class="col-md-6">
+      <%= form_tag("/search", method: "get") do %>
+        <%= label_tag(:q, "Search for (inactive):") %>
+        <%= text_field_tag(:q) %>
+        <%= submit_tag("Search") %>
+      <% end %>
+    </div>
+
+<table class=ex1>
+	<th><%= link_to "Add", new_gear_path %></th>
+	<th align=left>Name</th>
+	<th align=left>Description</th>
+	<th align=left>Weight&nbsp;(oz)</th>
+<% @gears.each do |gear| %>
+  <tr>
+  	<td width="10%"></td>
+  	<td width="45%"><%= link_to gear.name, edit_gear_path(gear) %></td>
+  	<td width="45%"><%= gear.description %></td>
+  	<td width="45%"><%= gear.weight_oz %></td>
+  </tr>
+<% end %>
+</table>

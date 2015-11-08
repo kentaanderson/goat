@@ -11,7 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151105021855) do
+ActiveRecord::Schema.define(version: 20151107181450) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "category_name"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "gears", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "year_acquired"
+    t.decimal  "weight_oz"
+    t.decimal  "weight_grams"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "icon"
+    t.integer  "category_id"
+  end
 
   create_table "jobs", force: :cascade do |t|
     t.text     "title"

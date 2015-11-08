@@ -5,6 +5,7 @@
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 
@@ -21,6 +22,9 @@
     </ul>
     <ul class="nav navbar-nav">
       <li class="inactive"><%= link_to "Foo", foo_path %></li>
+    </ul>
+    <ul class="nav navbar-nav">
+      <li class="inactive"><%= link_to "Gear", gears_path %></li>
     </ul>
     <% if user_signed_in? %>
       <p class="navbar-text pull-right"> <%= link_to current_user.email, edit_user_registration_path %> | <%= link_to "Log Out", destroy_user_session_path, :method => :delete %></p>
