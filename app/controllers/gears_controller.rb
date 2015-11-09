@@ -29,7 +29,7 @@ end
 private
 
 def gear_params
-  params.require(:gear).permit(:name, :description, :weight_oz, :year_acquired, :category_id)
+  params.require(:gear).permit(:name, :description, :weight_oz, :year_acquired, :category_id, :manufacturer)
 end
 
 
