@@ -1,7 +1,9 @@
 class GearsController < ApplicationController
 	before_action :authenticate_user!
 	def index
-	  @gears = Gear.all
+		@gears = Gear.where("user_id" => current_user.id)
+		p @gears.to_sql
+	#  @gears = Gear.all
 	end
 	def new
 	  @gear = Gear.new
@@ -28,6 +30,9 @@ class GearsController < ApplicationController
 end
 private
 
+def user_params 
+  params.require()
+end
 def gear_params
   params.require(:gear).permit(:name, :description, :weight_oz, :year_acquired, :category_id, :manufacturer, :user_id)
 end
