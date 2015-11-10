@@ -12,7 +12,8 @@
       { category_name: 'Clothing' }, 
    	{ category_name: 'Cooking' }, 
    	{ category_name: 'Hiking' }, 
-   	{ category_name: 'Fishing' }, 
+      { category_name: 'Medical' }, 
+   	{ category_name: 'Sport' }, 
    	{ category_name: 'Amenities' }, 
    	{ category_name: 'Food' }, 
    	{ category_name: 'Miscellaneous' }
