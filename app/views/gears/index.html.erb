@@ -12,12 +12,9 @@
   </div>
 -->
 
-<table width="100%">
-  <tr>
-    <td align=left><h3>Gear list (authorized)</h3></td>
-    <td align=right><h1><%= link_to "Add Item", new_gear_path %></h1></td>
-  </tr>
-</table>
+<h3>Gear Inventory</h3>
+<%= link_to "<button>Add Gear to Inventory</button>".html_safe, new_gear_path, :id=>"add-gear-btn" %>
+
 
 <table class=ex1 width="100%">
 	<th align=left>Name</th>
@@ -26,7 +23,7 @@
 	<th align=left>Weight&nbsp;(oz)</th>
   <th align=left>Year&nbsp;Acquired</th>
 <% @gears.each do |gear| %>
-  <tr>
+  <tr onclick="window.location = '<%= edit_gear_path(gear) %>'">
   	<td width="30%"><%= link_to gear.name, edit_gear_path(gear) %></td>
     <td width="20%"><%= gear.manufacturer %></td>
   	<td width="30%"><%= gear.description %></td>
