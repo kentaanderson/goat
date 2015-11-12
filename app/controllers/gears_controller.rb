@@ -30,9 +30,6 @@ class GearsController < ApplicationController
 end
 private
 
-def user_params 
-  params.require()
-end
 def gear_params
   params.require(:gear).permit(:name, :description, :weight_oz, :year_acquired, :category_id, :manufacturer, :user_id)
 end
