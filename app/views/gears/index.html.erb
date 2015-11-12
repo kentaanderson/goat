@@ -5,16 +5,21 @@
         <%= submit_tag("Search") %>
       <% end %>
     </div>
-  <div class="row">
-    <div class="col-md-4"></div>
-    <div class="col-md-3">
-    </div>
-  </div>
 -->
 
-<h3>Gear Inventory</h3>
+<h3>My Gear Inventory</h3>
 <%= link_to "<button>Add Gear to Inventory</button>".html_safe, new_gear_path, :id=>"add-gear-btn" %>
 
+<%
+# Plans for Inventory:
+# 1 - sort/filter by category (as on POC) or by column?
+# 2 - alternate row colors: #FFF / #EEE
+# 3 - "delete" button or "X"
+# 4 - gear import module (flat file first)
+# 5 - gear import from other system (REI, Backcountry, Amazon, Google?) - need standard format, or just compatibility?
+# 6 - inventory export? look at REDCap for approach and usability
+# 7 - search for existing gear items?
+%>
 
 <table class=ex1 width="100%">
 	<th align=left>Name</th>
@@ -23,7 +28,7 @@
 	<th align=left>Weight&nbsp;(oz)</th>
   <th align=left>Year&nbsp;Acquired</th>
 <% @gears.each do |gear| %>
-  <tr onclick="window.location = '<%= edit_gear_path(gear) %>'">
+  <tr onclick="window.location = '<%= edit_gear_path(gear) %>'" >
   	<td width="30%"><%= link_to gear.name, edit_gear_path(gear) %></td>
     <td width="20%"><%= gear.manufacturer %></td>
   	<td width="30%"><%= gear.description %></td>
