@@ -11,12 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151110205852) do
+ActiveRecord::Schema.define(version: 20151113061235) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "category_name"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string   "title"
+    t.string   "map_url"
+    t.string   "description"
+    t.string   "comments"
+    t.string   "summary"
+    t.integer  "event_type_id"
+    t.string   "event_type_other"
+    t.integer  "sharing_status"
+    t.integer  "user_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.date     "start_date"
+    t.date     "return_date"
   end
 
   create_table "gears", force: :cascade do |t|
