@@ -5,13 +5,11 @@
   </div>
   <div class="row">
     <div class="col-md-2"><%= f.label :start_date  %></div>
-<!--    <input type="text" data-provide="datepicker" id=":start_date" name=":start_date"> -->
-    <div class="col-md-2"><%= f.text_field :start_date, :class => 'datepicker' %></div>
-
+    <div class="col-md-4"><%= f.text_field :start_date, :class => 'datepicker' %>&nbsp;<span class="glyphicon glyphicon-calendar"></span></div>
   </div>
   <div class="row">
     <div class="col-md-2"><%= f.label :return_date %></div>
-    <div class="col-md-4"><%= f.text_field :return_date, :class => 'datepicker' %></div>
+    <div class="col-md-4"><%= f.text_field :return_date, :class => 'datepicker' %>&nbsp;<span class="glyphicon glyphicon-calendar"></span></div>
   </div>
   <div class="row">
     <div class="col-md-2"><%= f.label :map_url %></div>

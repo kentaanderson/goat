@@ -1,3 +1,36 @@
 // Place all the styles related to the events controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+// I DON'T KNOW WHY, BUT THESE SEEM TO HAVE NO EFFECT
+
+.clearfix {
+  overflow: hidden;
+}
+table {
+    border-collapse: separate;
+    width: 100%;
+    border: 1px solid black;
+} 
+td {
+    border: 0x solid black;
+    padding: 5px;
+}
+
+a:link {
+  text-decoration: none;
+  color:black;
+}
+a:visited {
+  text-decoration: none;
+  color:black;
+}
+a:hover {
+  color: blue;
+  text-decoration: underline;
+}
+a:active {
+  color: #FF0000;
+  text-decoration: underline;
+}

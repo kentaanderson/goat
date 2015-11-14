@@ -1,22 +1,24 @@
 <h3>My Events</h3>
 <%= link_to "<button>Add Upcoming Event</button>".html_safe, new_event_path, :id=>"add-event-btn" %>
 
-<table class=ex1 width="100%">
+<table class=table>
+  <thead>
 	<th align=left>Title</th>
-    <th align=left>Date Range</th>
+  <th align=left>Date Range</th>
 	<th align=left>Description</th>
 	<th align=left>Comments</th>
 	<th align=left>Map</th>
-    <th align=left>Sharing?</th>
+  <th align=left>Sharing?</th>
+</thead>
 <% @events.each do |event| %>
-  <tr onclick="window.location = '<%= edit_event_path(event) %>'" >
-  	<td width="20%"><%= link_to event.title, edit_event_path(event) %></td>
-    <td width="20%"><%= event.start_date %> - <%= event.return_date %></td>
-  	<td width="20%"><%= event.description %></td>
-  	<td width="20%"><%= event.comments %></td>
-    <td width="10%"><%= event.map_url %></td>
-    <td width="10%"><%= if event.sharing_status == 1 then "Private" else "Public" end %></td>
+  <tr style="background-color:<%= cycle('#EEE', '#FFF') -%>" onclick="window.location = '<%= edit_event_path(event) %>'">
+    <td width="5%"><%= link_to image_tag("x_mark_red.png",size: "12x12"), event, method: :delete, data: { confirm: 'Are you sure you want to delete this event? This action cannot be undone.' }  %></td>
+  	<td width="20%" valign="top"><%= link_to event.title, edit_event_path(event) %></td>
+    <td width="15%" valign="top"><%= event.start_date %> - <%= event.return_date %></td>
+  	<td width="20%" valign="top"><%= event.description %></td>
+  	<td width="20%" valign="top"><%= event.comments %></td>
+    <td width="10%" valign="top"><%= event.map_url %></td>
+    <td width="10%" valign="top"><%= if event.sharing_status == 1 then "Private" else "Public" end %></td>
   </tr>
 <% end %>
 </table>
-

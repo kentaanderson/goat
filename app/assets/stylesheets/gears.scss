@@ -4,30 +4,23 @@
 table {
     border-collapse: separate;
     width: 100%;
-    border: 0px solid black;
+    border: 1px solid black;
 } 
 
-td {
-    border: 0px solid black;
-}
+td {border: 1px solid black;}
 
-table.ex1 {
-    table-layout: auto;
-}
+a.basic         {color:black;}
+a.basic:link    {text-decoration: none;color:black;}
+a.basic:visited {text-decoration: none;color:black;}
+a.basic:hover   {text-decoration: underline;color:blue;}
+a.basic:active  {text-decoration: underline;color:red;}
 
-a:link {
-  text-decoration: none;
-  color:black;
-}
-a:visited {
-  text-decoration: none;
-  color:black;
-}
-a:hover {
-  color: blue;
-  text-decoration: underline;
-}
-a:active {
-  color: #FF0000;
-  text-decoration: underline;
-}
+a.xdel          {color:red;} 
+a.xdel:link     {text-decoration: none;}
+a.xdel:visited  {text-decoration: none;color:red;}
+a.xdel:hover    {text-decoration: underline;color:red;}
+a.xdel:active   {text-decoration: underline;color:red;}
+
+
+
+

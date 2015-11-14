@@ -27,7 +27,20 @@ class EventsController < ApplicationController
 	private
 
 	def event_params
-	  params.require(:event).permit(:title, :start_date, :return_date, :map_url, :description, :comments, :summary, :event_type_id, :event_type_other, :sharing_status, :user_id)
+	  params.require(:event).permit(
+	  	:title, 
+#	  	Date.strptime(:start_date, '%Y-%m-%d'),
+		:start_date,
+	  	:return_date, 
+	  	:map_url,
+	  	:description, 
+	  	:comments, 
+	  	:summary, 
+	  	:event_type_id, 
+	  	:event_type_other, 
+	  	:sharing_status, 
+	  	:user_id
+	  	)
 	end
 
 end
