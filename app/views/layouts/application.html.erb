@@ -25,12 +25,7 @@
       <li class="<%= if current_page?(:controller => 'gears') then "active" else "inactive" end %>"><%= link_to "Virtual Pack", gears_path %></li>
     </ul>
 
- <!--   <ul class="nav navbar-nav">
-      MAKE THIS INTO A LINK FROM THE VIRTUAL PACK PAGE - LEAVING CODE HERE FOR REFERENCE
-      <li class="inactive"><%= link_to "unauth-list", foo_path %></li>
-    </ul>
- -->
-      <p class="navbar-text pull-right"> <%= link_to current_user.email, edit_user_registration_path %> | <%= link_to "Log Out", destroy_user_session_path, :method => :delete %></p>
+      <p class="navbar-text pull-right"> <%= current_user.email %> | <%= link_to "Account", edit_user_registration_path %> | <%= link_to "Log Out", destroy_user_session_path, :method => :delete %></p>
     <%else%>
       <p class="navbar-text pull-right"> <%= link_to "Log In", user_session_path %></p>
     <%end%>

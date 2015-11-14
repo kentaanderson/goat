@@ -6,8 +6,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'gears#index'
-   get 'foo' => 'foo#list'
+   root 'gears#index' # <=== CHANGE THIS WHEN A REAL HOME PAGE EXISTS!
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

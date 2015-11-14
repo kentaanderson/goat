@@ -56,3 +56,5 @@ gem 'quiet_assets'
 
 gem 'devise'
 
+gem 'bootstrap-datepicker-rails'
+
