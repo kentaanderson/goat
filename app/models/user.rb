@@ -3,6 +3,6 @@ class User < ActiveRecord::Base
   # :lockable, :confirmable, :timeoutable, and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable 
-  has_many :gears, dependent: :destroy # each gear item is owned by one user. deleting the user also deletes all their gear
-
+  has_many :gears, dependent: :destroy # each gear item is owned by only one user. deleting the user also deletes all their gear
+  has_many :events # events may be "owned" by many users
 end

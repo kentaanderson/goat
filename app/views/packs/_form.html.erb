@@ -1,0 +1,14 @@
+<%= form_for @pack do |f| %>
+  <div class="row">
+    <div class="col-md-2"><%= f.label :name %></div>
+    <div class="col-md-4"><%= f.text_field :name %></div>
+  </div>
+  <div class="row">
+    <div class="col-md-2"><%= f.label :summary %></div>
+    <div class="col-md-4"><%= f.text_area :summary, size: '60x4' %></div>
+  </div>
+  <div class="col-md-2">
+    <%= f.hidden_field(:user_id, :value => current_user.id) %>
+    <%= f.submit %>
+  </div>
+<% end %>
