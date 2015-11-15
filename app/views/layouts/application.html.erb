@@ -11,10 +11,8 @@
 <div class="navbar navbar-default">
   <div class="container">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Gear Goat</a>
+      <a class="navbar-brand" href="/home">Gear Goat</a>
     </div>
-    <% if user_signed_in? %>
-
     <ul class="nav navbar-nav">
       <li class="<%= if current_page?(:controller => 'gears') then "active" else "inactive" end %>"><%= link_to "Inventory", gears_path %></li>
     </ul>
@@ -28,7 +26,17 @@
       <li class="<%= if current_page?(:controller => 'jobs') then "active" else "inactive" end %>"><%= link_to "Virtual Pack", "#" %></li>
     </ul>
 
-      <p class="navbar-text pull-right"> <%= current_user.email %> | <%= link_to "Account", edit_user_registration_path %> | <%= link_to "Log Out", destroy_user_session_path, :method => :delete %></p>
+    <% if user_signed_in? %>
+      <p class="navbar-text pull-right">
+<!--
+        <%= form_tag("/search", method: "get") do%>
+        <%= text_field_tag(:q) %>
+        <%= submit_tag("Search") %>
+        <% end %> | 
+-->
+
+        <%= current_user.email %> | <%= link_to "Account", edit_user_registration_path %> | <%= link_to "Log Out", destroy_user_session_path, :method => :delete %>
+      </p>
     <%else%>
       <p class="navbar-text pull-right"> <%= link_to "Log In", user_session_path %></p>
     <%end%>
