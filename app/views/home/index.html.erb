@@ -1,8 +1,51 @@
-<h1>Gear goat home page</h1>
+<h1>Welcome to Gear Goat! <%= image_tag("goat.jpg", size: "80x80") %></h1>
 
 <table width="100%">
   <tr>
-    <td align=left><h3>Home page content</h3></td>
+    <td align=left>
+      <h3>Instructions for new Goaters:</h3>
+    </td>
+  </tr>
+  <tr>
+    <td align=left>
+      <ol>
+        <li>Add your gear to the <b><%= link_to "Gear Goat Inventory", gears_path %></b>. Be sure to <i>weigh</i> each item before entering your gear to receive the maximum benefit from this site.
+        <li>As you plan your next excursion, <b><%= link_to "create an event", events_path %></b> with which to associate your gear.
+        <li>Create a <b><%= link_to "Virtual Pack", packs_path %></b> to contain and organize your gear throughout the duration of your event. <b><%= link_to "Virtual Pack", packs_path %>s</b> are also excellent for tuning the gear you will take, and to print a checklist of gear to take along. 
+        <li>Finally, <b><%= link_to "compare your gear", "#" %></b> across your friend's Virtual Packs to coordinate items and to share ideas.
+      </ol>
+    </td>
+  </tr>
+  <tr>
+    <td align=left>
+      <h3>Featured Packs:</h3>
+    </td>
+  </tr>
+</table>
+
+<table class=table>
+  <tr>
+    <th>Gear Goat community open postings</th>
+    <th>Description</th>
+    <th>Location</th>
+  </tr>
+  <tr style="background-color:<%= cycle('#EEE', '#FFF') -%>">
+    <td align=left><li>Link to featured pack - author</td><td>Description of pack</td><td>Matterhorn</td>
+  </tr>
+  <tr style="background-color:<%= cycle('#EEE', '#FFF') -%>">
+    <td align=left><li>Link to featured pack - author</td><td>Description of pack</td><td>Swiss Alps</td>
+  </tr>
+    <tr style="background-color:<%= cycle('#EEE', '#FFF') -%>">
+    <td align=left><li>Link to featured pack - author</td><td>Description of pack</td><td>Southern Sierra Nevada</td>
+  </tr>
+    <tr style="background-color:<%= cycle('#EEE', '#FFF') -%>">
+    <td align=left><li>Link to featured pack - author</td><td>Description of pack</td><td>Glen Aulin, Yosemite</td>
+  </tr>
+    <tr style="background-color:<%= cycle('#EEE', '#FFF') -%>">
+    <td align=left><li>Link to featured pack - author</td><td>Description of pack</td><td>Sawtooth Mountains, ID</td>
+  </tr>
+    <tr style="background-color:<%= cycle('#EEE', '#FFF') -%>">
+    <td align=left><li>Link to featured pack - author</td><td>Description of pack</td><td>Ocean kayaking</td>
   </tr>
 </table>
 

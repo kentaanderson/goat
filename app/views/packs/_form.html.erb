@@ -3,6 +3,10 @@
     <div class="col-md-2"><%= f.label :name %></div>
     <div class="col-md-4"><%= f.text_field :name %></div>
   </div>
+   <div class="row">
+    <div class="col-md-2"><%= f.label "Event" %></div>
+    <div class="col-md-4"><%= f.collection_select(:event_id, Event.where("user_id" => current_user.id), :id, :title_dates, {prompt: "Select an event"}) %></div>
+  </div>
   <div class="row">
     <div class="col-md-2"><%= f.label :summary %></div>
     <div class="col-md-4"><%= f.text_area :summary, size: '60x4' %></div>

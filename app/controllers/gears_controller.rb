@@ -2,8 +2,6 @@ class GearsController < ApplicationController
 	before_action :authenticate_user!
 	def index
 		@gears = Gear.where("user_id" => current_user.id)
-		p @gears.to_sql
-	#  @gears = Gear.all
 	end
 	def new
 	  @gear = Gear.new

@@ -6,7 +6,6 @@ class PacksController < ApplicationController
 	end
 	def new
 	  @pack = Pack.new
-
 	end
 	def create
 	  pack = Pack.create(pack_params)
@@ -26,6 +25,7 @@ class PacksController < ApplicationController
 	  @pack.destroy
   	  redirect_to packs_path	
 	end
+
 
 end
 private
