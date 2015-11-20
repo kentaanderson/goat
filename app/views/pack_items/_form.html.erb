@@ -1,0 +1,14 @@
+<%= form_for @pack_item do |f| %>
+  <div class="row">
+    <div class="col-md-2"><%= f.label :name %></div>
+    <div class="col-md-4"><%= f.text_field :name %></div>
+  </div>
+  <div class="row">
+    <div class="col-md-2"><%= f.label :description %></div>
+    <div class="col-md-4"><%= f.text_area :description, size: '60x4' %></div>
+  </div>
+  <div class="col-md-2">
+    <%= f.hidden_field(:pack_id, :value => 1) %>
+    <%= f.submit %>
+  </div>
+<% end %>

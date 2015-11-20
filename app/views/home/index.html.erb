@@ -1,13 +1,23 @@
 <h1>Welcome to Gear Goat! <%= image_tag("goat.jpg", size: "80x80") %></h1>
 
+NEW PLAN! It's all about the Virtual Pack! It's <u>not</u> about the relational components that go into creating the Virtual Pack as a transaction - that's bad design. Only create the Virtual pack --> Add the Event along the way, and automatically add Virtual pack items to inventory for later use. Leave the forms where they are, but change the flow of the entry to <u>START</u> with the Virtual Pack page. Still not sure how to get multiple goats associated with shared events, but that will follow later - maybe add a social network gem (Facebook authentication?) to import existing associations? 
 <table width="100%">
   <tr>
     <td align=left>
-      <h3>Instructions for new Goaters:</h3>
+      <h3>Get Started!</h3>
     </td>
   </tr>
   <tr>
     <td align=left>
+      [new instructions]
+      <ol>
+        <li>Create a <b><%= link_to "Virtual Pack", packs_path %></b> to contain and organize your gear throughout the duration of your event. 
+        <li>Streamline the gear in your Virtual Pack to ensure the optimal weight/utlity ratio for your trip. 
+        <li><b><%= link_to "Compare your gear", "#" %></b> across your companion's Virtual Packs to coordinate shared items and to identify complementary gear.
+        <li>Finally, print a checklist of gear to ensure you pack everything. 
+      </ol>
+
+      [old instructions]
       <ol>
         <li>Add your gear to the <b><%= link_to "Gear Goat Inventory", gears_path %></b>. Be sure to <i>weigh</i> each item before entering your gear to receive the maximum benefit from this site.
         <li>As you plan your next excursion, <b><%= link_to "create an event", events_path %></b> with which to associate your gear.
