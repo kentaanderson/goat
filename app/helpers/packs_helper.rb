@@ -8,4 +8,9 @@ module PacksHelper
       "no associated event"
     end
   end
+
+  def pack_items_by_category(category_id)
+  	@pack_items = PackItem.where("pack_id" => @pack.id, "category_id" => category_id)
+  end
+
 end

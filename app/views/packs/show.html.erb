@@ -38,29 +38,28 @@
 
 <div class="bs-example">
     <div class="panel-group" id="accordion">
+    	<% @categories.each do |category| %>
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Shelter</a>
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= category.id %>"><%= category.category_name %></a>
                 </h4>
             </div>
-            <div id="collapseOne" class="panel-collapse collapse in">
+            <div id="collapse<%= category.id %>" class="panel-collapse collapse in">
                 <div class="panel-body">
-                    <table class=table>
-						<th>Item</th>
-						<th>Description</th>
-						<th>Weight&nbsp;(oz)</th>
-						<% @pack_items.each do |item| %>
-						  <tr style="background-color:<%= cycle('#EEE', '#FFF') -%>">
+                    <table class="table-striped">
+						<% pack_items_by_category(category.id).each do |item| %>
+						  <tr>
 						   	<td><%= item.name %></td>
 						  	<td><%= item.description %></td>
-						  	<td><%= item.weight_oz %></td>
+						  	<td><%= item.weight_oz %> oz</td>
 						  </tr>
-		              <% end %>
+		              	<% end %>
 					</table>
                 </div>
             </div>
         </div>
+        <% end %>
    </div>
 </div>
 </body>
