@@ -3,18 +3,16 @@
 	  <% @categories.each do |category| %>
 	    <div class="panel panel-default">
 
-		      <div class="panel-heading">
+		  <div class="panel-heading" data-toggle="collapse" href="#collapse<%= category.id %>">
 	        <table border=0>
 	          <tr>
 	            <td>
-	              <h4 class="panel-title">
-	                <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= category.id %>"><%= category.category_name %></a>
+	              <h4 class="panel-default">
+	              	<%= category.category_name %>
 	              </h4>
 	            </td>
 	            <td align=right>
-	              <h4 class="panel-default">
-	                <%= link_to "<button>Add Items</button>".html_safe, new_pack_item_path %>
-	              </h4>
+	            	&nbsp;
 	            </td>
 	          </tr>
 	        </table>
@@ -23,6 +21,14 @@
 	      <div id="collapse<%= category.id %>" class="panel-collapse collapse in">
 	        <div class="panel-body">
 	          <table class="table-striped">
+				<% if pack_items_by_category(category.id).length > 0 then%>
+					<th>&nbsp;</th>
+					<th>Name</th>
+					<th>Description</th>
+					<th>Manufacturer</th>
+					<th>Year&nbsp;Acquired</th>
+					<th>Weight&nbsp;(oz)</th>
+				<% end %>
 				<% pack_items_by_category(category.id).each do |item| %>
 				  <tr>
 	                <td width="10%">
@@ -30,10 +36,19 @@
 	                    &nbsp;<%= link_to image_tag("edit_icon.png",size: "14x14"), edit_pack_item_path(item.id) %>
 	                </td>
 				   	<td width="25%"><%= item.name %></td>
-				  	<td width="40%"><%= item.description %></td>
-				  	<td width="25%"><%= item.weight_oz %> oz</td>
+				  	<td width="25%"><%= item.description %></td>
+				  	<td width="15%"><%= item.manufacturer %></td>
+				  	<td width="15%"><%= item.year_acquired %></td>
+				  	<td width="10%"><%= item.weight_oz %></td>
 				  </tr>
 	          	<% end %>
+	          	<tr style="background-color:white">
+	          		<td class="body-default" colspan=5>
+	          			<%= link_to "Add New Item", new_pack_item_path %>&nbsp;|&nbsp;
+	          			<%= link_to "Add Items From Inventory", "javascript:alert('Open Inventory');".html_safe %>&nbsp;|&nbsp;
+	          			<%= link_to "Add Items From Another Pack", "javascript:alert('Open Pack Select List');".html_safe %>
+	          		</td>
+	          	</tr>
 			  </table>
 	        </div>
 	      </div>

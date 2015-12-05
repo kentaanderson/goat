@@ -1,4 +1,5 @@
-<h1>Virtual Pack</h1>
+<h1>Virtual Pack</h1> 
+<span class="label label-warning">Need to make this part of the page dynamic</span>
 <table class=table>
   <thead>
   <th align=left>Name</th>
@@ -6,6 +7,7 @@
   <th align=left>Date range</th>
   <th align=left>Summary</th>
   </thead>
+
   <tr>
     <td width="25%"><%= @pack.name%></td>
     <td width="25%"><%= pack_event(@pack.event_id) %></td>
@@ -13,6 +15,8 @@
     <td width="25%"><%= @pack.summary %></td>
   </tr>
 </table>
+
+<span class="label label-warning">Need to make this part of the page dynamic, too</span>
 <table class=table>
   <thead>
   <th align=left>Weight</th>
@@ -40,5 +44,5 @@
   </tr>
 </table>
 
-<h1>Pack Contents</h1>
+<h3>Pack Contents</h3>
 <%= render "/pack_items/items" %>

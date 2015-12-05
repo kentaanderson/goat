@@ -1,15 +1,13 @@
 class PackItemsController < ApplicationController
 	before_action :authenticate_user!
 	def index
-		@pack_items = PackItem.where("pack_id" => 1)  	# pack_id is not accessible
 	end
 	def new
 	  @pack_item = PackItem.new
-	  @pack_id = 1 										# pack_id is not accessible, need to pass this through dynamically
 	end
 	def create
 	  pack_item = PackItem.create(pack_item_params)
-  	  redirect_to pack_path(1) 							# pack_id is not accessible
+  	  redirect_to pack_path(session[:current_pack_id]) 							# pack_id in session
 	end
 	def edit
 	  @pack_item = PackItem.find(params[:id])
@@ -20,15 +18,13 @@ class PackItemsController < ApplicationController
 	def update
  	  @pack_item = PackItem.find(params[:id])
  	  @pack_item.update_attributes(pack_item_params)
-  	  redirect_to pack_path(1) 							# pack_id is not accessible
+  	  redirect_to pack_path(session[:current_pack_id]) 							# pack_id in session
 	end
 	def destroy
 	  @pack_item = PackItem.find(params[:id])
 	  @pack_item.destroy
-  	  redirect_to pack_path(1)	 						# pack_id is not accessible
+  	  redirect_to pack_path(session[:current_pack_id])	 						# pack_id in session
 	end
-
-
 end
 private
 
