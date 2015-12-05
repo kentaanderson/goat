@@ -13,4 +13,9 @@ module PacksHelper
   	@pack_items = PackItem.where("pack_id" => @pack.id, "category_id" => category_id)
   end
 
+  def pack_id
+    1
+  end
+
+
 end

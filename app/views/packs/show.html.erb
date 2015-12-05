@@ -18,49 +18,27 @@
   <th align=left>Weight</th>
   <th align=left>details</th>
   <th align=left>here</th>
+  <th align=left>Target weight</th>
   </thead>
   <tr>
     <td width="25%">total pack weight</td>
     <td width="25%">5780 grams</td>
     <td width="25%">40.0 lbs</td>
+    <td width="25%">35.0 lbs</td>
   </tr>
   <tr>
     <td width="25%">worn weight</td>
     <td width="25%">780 grams</td>
+    <td width="25%">4.0 lbs</td>
     <td width="25%">4.0 lbs</td>
   </tr>
   <tr>
     <td width="25%">delivery weight</td>
     <td width="25%">0 grams</td>
     <td width="25%">0 lbs</td>
+    <td width="25%">4.0 lbs</td>
   </tr>
 </table>
 
-<div class="bs-example">
-    <div class="panel-group" id="accordion">
-    	<% @categories.each do |category| %>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= category.id %>"><%= category.category_name %></a>
-                </h4>
-            </div>
-            <div id="collapse<%= category.id %>" class="panel-collapse collapse in">
-                <div class="panel-body">
-                    <table class="table-striped">
-						<% pack_items_by_category(category.id).each do |item| %>
-						  <tr>
-						   	<td><%= item.name %></td>
-						  	<td><%= item.description %></td>
-						  	<td><%= item.weight_oz %> oz</td>
-						  </tr>
-		              	<% end %>
-					</table>
-                </div>
-            </div>
-        </div>
-        <% end %>
-   </div>
-</div>
-</body>
-
+<h1>Pack Contents</h1>
+<%= render "/pack_items/items" %>

@@ -15,7 +15,6 @@ class PacksController < ApplicationController
 	end
 	def show
 	  @pack = Pack.find(params[:id])
-	#  @pack_items = PackItem.where("pack_id" => @pack.id, "category_id" => 2) #need to iterate through gear categories here
 	  @categories = Category.all
 	end
 	def update
