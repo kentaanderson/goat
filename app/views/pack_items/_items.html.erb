@@ -4,30 +4,24 @@
 	    <div class="panel panel-default">
 
 		  <div class="panel-heading" data-toggle="collapse" href="#collapse<%= category.id %>">
-	        <table border=0>
-	          <tr>
-	            <td>
-	              <h4 class="panel-default">
-	              	<%= category.category_name %>
-	              </h4>
-	            </td>
-	            <td align=right>
-	            	&nbsp;
-	            </td>
-	          </tr>
-	        </table>
+		  	<table>
+		  	  <tr>
+		  	  	<td><h4 class="panel-default"><%= category.category_name %></h4></td>
+		  	  	<td align=right><h4><%= pack_weight_by_category(category.id) %></h4></td>
+		  	  </tr>
+		  	</table>
 	      </div>
 
 	      <div id="collapse<%= category.id %>" class="panel-collapse collapse in">
 	        <div class="panel-body">
 	          <table class="table-striped">
 				<% if pack_items_by_category(category.id).length > 0 then%>
-					<th>&nbsp;</th>
-					<th>Name</th>
-					<th>Description</th>
-					<th>Manufacturer</th>
-					<th>Year&nbsp;Acquired</th>
-					<th>Weight&nbsp;(oz)</th>
+					<th style="background-color:white">&nbsp;</th>
+					<th style="background-color:white">Name</th>
+					<th style="background-color:white">Description</th>
+					<th style="background-color:white">Manufacturer</th>
+					<th style="background-color:white">Year&nbsp;Acquired</th>
+					<th style="background-color:white">Weight&nbsp;(oz)</th>
 				<% end %>
 				<% pack_items_by_category(category.id).each do |item| %>
 				  <tr>
@@ -43,7 +37,7 @@
 				  </tr>
 	          	<% end %>
 	          	<tr style="background-color:white">
-	          		<td class="body-default" colspan=5>
+	          		<td colspan=6>
 	          			<%= link_to "Add New Item", new_pack_item_path %>&nbsp;|&nbsp;
 	          			<%= link_to "Add Items From Inventory", "javascript:alert('Open Inventory');".html_safe %>&nbsp;|&nbsp;
 	          			<%= link_to "Add Items From Another Pack", "javascript:alert('Open Pack Select List');".html_safe %>

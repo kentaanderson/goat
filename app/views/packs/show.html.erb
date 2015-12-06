@@ -1,46 +1,33 @@
 <h1>Virtual Pack</h1> 
-<span class="label label-warning">Need to make this part of the page dynamic</span>
 <table class=table>
   <thead>
-  <th align=left>Name</th>
+  <th align=left>Pack name</th>
   <th align=left>Event</th>
   <th align=left>Date range</th>
-  <th align=left>Summary</th>
+  <th align=left>Event summary</th>
   </thead>
 
   <tr>
-    <td width="25%"><%= @pack.name%></td>
+    <td width="25%"><%= @pack.name %></td>
     <td width="25%"><%= pack_event(@pack.event_id) %></td>
-    <td width="25%">8/12/2016 - 8/15/2016</td>
-    <td width="25%"><%= @pack.summary %></td>
+    <td width="25%"><%= pack_event_range(@pack.event_id) %></td>
+    <td width="25%"><%= pack_event_summary(@pack.event_id) %></td>
   </tr>
 </table>
 
 <span class="label label-warning">Need to make this part of the page dynamic, too</span>
 <table class=table>
   <thead>
-  <th align=left>Weight</th>
-  <th align=left>details</th>
-  <th align=left>here</th>
-  <th align=left>Target weight</th>
+  <th align=left>Total pack weight</th>
+  <th align=left>Target pack weight</th>
+  <th align=left>Total worn weight</th>
+  <th align=left>Total delivery weight</th>
   </thead>
   <tr>
-    <td width="25%">total pack weight</td>
-    <td width="25%">5780 grams</td>
-    <td width="25%">40.0 lbs</td>
-    <td width="25%">35.0 lbs</td>
-  </tr>
-  <tr>
-    <td width="25%">worn weight</td>
-    <td width="25%">780 grams</td>
-    <td width="25%">4.0 lbs</td>
-    <td width="25%">4.0 lbs</td>
-  </tr>
-  <tr>
-    <td width="25%">delivery weight</td>
-    <td width="25%">0 grams</td>
-    <td width="25%">0 lbs</td>
-    <td width="25%">4.0 lbs</td>
+    <td width="25%"><%=  %></td>
+    <td width="25%">Get this from Pack details?</td>
+    <td width="25%">~5.0 lbs</td>
+    <td width="25%">0.0 lbs</td>
   </tr>
 </table>
 

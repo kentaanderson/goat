@@ -1,3 +1,14 @@
+table {
+    border-collapse: separate;
+    width: 100%;
+    border: 0px solid black;
+} 
+
+th, td {
+    border: 0px solid black;
+    padding: 15px; //this is not working
+}
+
 body {
   margin: 0;
 }
