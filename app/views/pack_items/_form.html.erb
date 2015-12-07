@@ -23,6 +23,18 @@
     <div class="col-md-2"><%= f.label :year_acquired %></div>
     <div class="col-md-4"><%= f.text_field :year_acquired %></div>
   </div>
+  <div class="row">
+    <div class="col-md-2"><%= f.label :wearing %></div>
+    <div class="col-md-4"><%= f.check_box :wearing %></div>
+  </div>
+  <div class="row">
+    <div class="col-md-2"><%= f.label :delivery %></div>
+    <div class="col-md-4"><%= f.check_box :delivery %></div>
+  </div>
+  <div class="row">
+    <div class="col-md-2"><%= f.label :highlight %></div>
+    <div class="col-md-4"><%= f.color_field :highlight %></div>
+  </div>
   <div class="col-md-2">
     <%= f.hidden_field(:pack_id, :value => session[:current_pack_id]) %>
     <%= f.submit %>

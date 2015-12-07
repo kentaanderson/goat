@@ -24,7 +24,11 @@
 					<th style="background-color:white">Weight&nbsp;(oz)</th>
 				<% end %>
 				<% pack_items_by_category(category.id).each do |item| %>
-				  <tr>
+				  <% if item.highlight then %>
+				 	<tr style="background-color:<%= item.highlight %>;">
+				  <% else %>
+	  			    <tr>
+	  			  <% end %>
 	                <td width="10%">
 	                    <%= link_to image_tag("x_mark_red.png",size: "12x12"), item, method: :delete, data: { confirm: 'Are you sure you want to delete this item? This action cannot be undone.' }  %>
 	                    &nbsp;<%= link_to image_tag("edit_icon.png",size: "14x14"), edit_pack_item_path(item.id) %>

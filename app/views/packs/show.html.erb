@@ -1,21 +1,40 @@
-<h1>Virtual Pack</h1> 
+<table>
+  <tr>
+    <td><h1><%= @pack.name %></h1> </td>
+    <td align=right>
+      <button onclick="javascript:alert('Choose Facebook/Twitter/Gear Goat (or enter emails) to share with friends/accomplices.')">Share Pack</button>
+      <button onclick="javascript:alert('Choose Gear Goat friends/events to compare packs (including self/previous packs)')">Compare</button>
+      <button onclick="javascript:alert('Print picklist')">Print Picklist</button>
+      <button onclick="javascript:alert('Add items from another pack')">Add Items From Another Pack</button>
+    </td>
+  </tr>
+</table>
+<table>
+  <tr>
+    <td><h3>Event information</h3></td>
+    <td align=right><%= link_to "Edit", edit_event_path(@pack.event_id) %></td>
+  </tr>
+</table>
 <table class=table>
   <thead>
-  <th align=left>Pack name</th>
   <th align=left>Event</th>
   <th align=left>Date range</th>
   <th align=left>Event summary</th>
   </thead>
-
   <tr>
-    <td width="25%"><%= @pack.name %></td>
-    <td width="25%"><%= pack_event(@pack.event_id) %></td>
-    <td width="25%"><%= pack_event_range(@pack.event_id) %></td>
-    <td width="25%"><%= pack_event_summary(@pack.event_id) %></td>
+    <td width="30%"><%= pack_event_title(@pack.event_id) %></td>
+    <td width="30%"><%= pack_event_range %></td>
+    <td width="40%"><%= pack_event_summary %></td>
   </tr>
 </table>
 
-<span class="label label-warning">Need to make this part of the page dynamic, too</span>
+<table>
+  <tr>
+    <td><h3>Pack details</h3></td>
+    <td align=right><%= link_to "Edit", edit_pack_path(@pack) %></td>
+  </tr>
+</table>
+
 <table class=table>
   <thead>
   <th align=left>Total pack weight</th>
@@ -24,12 +43,12 @@
   <th align=left>Total delivery weight</th>
   </thead>
   <tr>
-    <td width="25%"><%=  %></td>
+    <td width="25%"><span style="color:red;font-weight:bold"><%= total_pack_weight %></span></td>
     <td width="25%">Get this from Pack details?</td>
     <td width="25%">~5.0 lbs</td>
     <td width="25%">0.0 lbs</td>
   </tr>
 </table>
 
-<h3>Pack Contents</h3>
+<h3>Pack contents</h3>
 <%= render "/pack_items/items" %>
