@@ -31,12 +31,14 @@
     <div class="col-md-2"><%= f.label :delivery %></div>
     <div class="col-md-4"><%= f.check_box :delivery %></div>
   </div>
+  <% if 1 == 2 then %>
   <div class="row">
     <div class="col-md-2"><%= f.label :highlight %></div>
     <div class="col-md-4"><%= f.color_field :highlight %></div>
   </div>
+<% end %>
   <div class="col-md-2">
     <%= f.hidden_field(:pack_id, :value => session[:current_pack_id]) %>
-    <%= f.submit %>
+    <%= f.submit %>&nbsp;<%= button_to "Cancel", :back %>
   </div>
 <% end %>

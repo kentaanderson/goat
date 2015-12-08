@@ -43,6 +43,7 @@ module PacksHelper
   def pack_items_by_category(category_id)
   	@pack_items = PackItem.where("pack_id" => @pack.id, "category_id" => category_id)
   end
+
   def pack_weight_by_category(category_id)
     @pack_items = PackItem.where("pack_id" => @pack.id, "category_id" => category_id)
     @category_weight = 0
@@ -53,8 +54,50 @@ module PacksHelper
       @category_weight = @category_weight.to_s + " oz"
     end
   end
+  def wearing_weight_by_category(category_id)
+    @pack_items = PackItem.where("pack_id" => @pack.id, "category_id" => category_id, "wearing" => 1)
+    @category_weight = 0
+    if @pack_items.length > 0 then
+      @pack_items.each do |item|
+        @category_weight += item.weight_oz.to_f
+      end
+      @category_weight = @category_weight.to_s + " oz"
+    end
+  end
+  def delivery_weight_by_category(category_id)
+    @pack_items = PackItem.where("pack_id" => @pack.id, "category_id" => category_id, "delivery" => 1)
+    @category_weight = 0
+    if @pack_items.length > 0 then
+      @pack_items.each do |item|
+        @category_weight += item.weight_oz.to_f
+      end
+      @category_weight = @category_weight.to_s + " oz"
+    end
+  end
   def total_pack_weight
-    @pack_items = PackItem.where("pack_id" => @pack.id)
+    @pack_items = PackItem.where("pack_id = ? AND (wearing is null or wearing != ?) AND (delivery is null or delivery != ?)", @pack.id, 1, 1)
+    @total_weight = 0
+
+    if @pack_items.length > 0 then
+      @pack_items.each do |item|
+        @total_weight += item.weight_oz.to_f
+      end
+      ounces_to_lbs(@total_weight)
+    end
+  end 
+  def total_wearing_weight
+    @pack_items = PackItem.where("pack_id" => @pack.id, "wearing" => 1)
+    @total_weight = 0
+
+    if @pack_items.length > 0 then
+      @pack_items.each do |item|
+        @total_weight += item.weight_oz.to_f
+      end
+      ounces_to_lbs(@total_weight)
+    end
+  end 
+  def total_delivery_weight
+    @pack_items = PackItem.where("pack_id" => @pack.id, "delivery" => 1)
     @total_weight = 0
 
     if @pack_items.length > 0 then
