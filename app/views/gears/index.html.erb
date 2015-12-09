@@ -2,14 +2,13 @@
 <h3><%= image_tag("gears.png", size: "40x40")%> My Gear Inventory</h3>
 <%= link_to "<button>Add Gear to Inventory</button>".html_safe, new_gear_path, :id=>"add-gear-btn" %>
 
-<%
-# Plans for Inventory:
-# 1 - sort/filter by category (as on POC) or by column?
-# 4 - gear import module (flat file first)
-# 5 - gear import from other system (REI, Backcountry, Amazon, Google?) - need standard format, or just compatibility?
-# 6 - inventory export? look at REDCap for approach and usability
-# 7 - search for existing gear items?
-%>
+<br>
+<br> <p class="label label-warning">Adding items through Virtual Pack adds to Gear Inventory (need to manage duplicates well) - option to bulk add to inventory?</p>
+<br> <p class="label label-warning">sort/filter by category (as on POC) or by column?</p>
+<br> <p class="label label-warning">Gear import module (flat file first)</p>
+<br> <p class="label label-warning">gear import from other system (REI, Backcountry, Amazon, Google?) - need standard format, or just compatibility?</p>
+<br> <p class="label label-warning">inventory export? look at REDCap for approach and usability</p>
+<br> <p class="label label-warning">search for existing gear items?</p>
 
 <table class=table>
   <thead>

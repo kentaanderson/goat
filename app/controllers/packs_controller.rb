@@ -36,5 +36,5 @@ end
 private
 
 def pack_params
-  params.require(:pack).permit(:name, :summary, :event_id, :gear_id, :user_id)
+  params.require(:pack).permit(:name, :summary, :event_id, :gear_id, :user_id, :target_weight)
 end

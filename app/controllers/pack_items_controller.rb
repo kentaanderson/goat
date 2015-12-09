@@ -29,6 +29,6 @@ end
 private
 
 def pack_item_params
-  params.require(:pack_item).permit(:name, :description, :post_summary, :weight_oz, :event_id, :gear_id, :user_id, :wearing, :delivery, :category_id, :highlight, :manufacturer, :year_acquired, :pack_id)
+  params.require(:pack_item).permit(:name, :description, :post_summary, :weight_oz, :event_id, :gear_id, :user_id, :wearing, :delivery, :category_id, :highlight, :manufacturer, :year_acquired, :pack_id, :item_count)
 end
 

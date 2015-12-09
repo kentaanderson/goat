@@ -31,10 +31,10 @@ module PacksHelper
     end
   end
 
-  def pack_event_summary                                    # returns event summary, if it exists 
+  def pack_event_description                                    # returns event summary, if it exists 
     if Event.exists?(@pack.event_id)
       @event = Event.find(@pack.event_id)
-      @event.summary
+      @event.description
     else
       "n/a"
     end
@@ -75,6 +75,7 @@ module PacksHelper
     end
   end
   def total_pack_weight
+    # bacuase apparently you can't retrieve NULL values without explicitly asking for them
     @pack_items = PackItem.where("pack_id = ? AND (wearing is null or wearing != ?) AND (delivery is null or delivery != ?)", @pack.id, 1, 1)
     @total_weight = 0
 
@@ -83,6 +84,8 @@ module PacksHelper
         @total_weight += item.weight_oz.to_f
       end
       ounces_to_lbs(@total_weight)
+    else
+      "n/a"
     end
   end 
   def total_wearing_weight
@@ -94,6 +97,8 @@ module PacksHelper
         @total_weight += item.weight_oz.to_f
       end
       ounces_to_lbs(@total_weight)
+    else
+      "n/a"
     end
   end 
   def total_delivery_weight
@@ -105,11 +110,20 @@ module PacksHelper
         @total_weight += item.weight_oz.to_f
       end
       ounces_to_lbs(@total_weight)
+    else
+      "n/a"
+    end
+  end 
+  def target_weight
+    if @pack.target_weight.to_s.length > 0 then
+      @pack.target_weight.to_s + " lbs"
+    else
+      "n/a"
     end
   end 
 
 private
-  def ounces_to_lbs(total_oz)                   # this doesn't really need to be private, but I need to test out some Ruby/Rails features
+  def ounces_to_lbs(total_oz)                                        # this doesn't really need to be private, but I need to test out some Ruby/Rails features
       @ounces_weight = total_oz % 16                                 # get ounces as decimal
       @pounds_weight = ( total_oz - @ounces_weight ) / 16            # get pounds
       @total_weight = @pounds_weight.to_i.to_s + " lbs, " + @ounces_weight.to_i.to_s + " oz"

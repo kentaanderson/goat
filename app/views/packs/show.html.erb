@@ -19,12 +19,12 @@
   <thead>
   <th align=left>Event</th>
   <th align=left>Date range</th>
-  <th align=left>Event summary</th>
+  <th align=left>Event description</th>
   </thead>
   <tr>
     <td width="30%"><%= pack_event_title(@pack.event_id) %></td>
     <td width="30%"><%= pack_event_range %></td>
-    <td width="40%"><%= pack_event_summary %></td>
+    <td width="40%"><%= pack_event_description %></td>
   </tr>
 </table>
 
@@ -44,7 +44,7 @@
   </thead>
   <tr>
     <td width="25%"><span style="color:red;font-weight:bold"><%= total_pack_weight %></span></td>
-    <td width="25%">Get this from Pack details?</td>
+    <td width="25%"><%= target_weight %></td>
     <td width="25%"><%= total_wearing_weight %></td>
     <td width="25%"><%= total_delivery_weight %></td>
   </tr>
