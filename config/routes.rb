@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'home#index' 
 
+#  get "events/new_release" => 'events#new_release', :as => :new_release
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
