@@ -1,6 +1,6 @@
 <table>
   <tr>
-    <td><h1><%= @pack.name %></h1> </td>
+    <td><h1><%= @event.title %></h1> </td>
     <td align=right>
       <button onclick="javascript:alert('Choose Facebook/Twitter/Gear Goat (or enter emails) to share with friends/accomplices.')">Share Pack</button>
       <button onclick="javascript:alert('Choose Gear Goat friends/events to compare packs (including self/previous packs)')">Compare</button>
@@ -12,7 +12,7 @@
 <table>
   <tr>
     <td><h3>Event information</h3></td>
-    <td align=right><%= link_to "Edit", edit_event_path(@pack.event_id) %></td>
+    <td align=right><%= link_to "Edit", edit_event_path(@event.id) %></td>
   </tr>
 </table>
 <table class=table>
@@ -22,16 +22,20 @@
   <th align=left>Event description</th>
   </thead>
   <tr>
-    <td width="30%"><%= pack_event_title(@pack.event_id) %></td>
+    <td width="30%"><%= pack_event_title(@event.id) %></td>
     <td width="30%"><%= pack_event_range %></td>
     <td width="40%"><%= pack_event_description %></td>
   </tr>
 </table>
 
+<br> <p class="label label-warning">Need to find a home for 'target_weight'</p>
+<br> <p class="label label-warning">Sub-component "pack" as a container</p>
+<br> <p class="label label-warning">Create a food grid</p>
+
 <table>
   <tr>
     <td><h3>Pack details</h3></td>
-    <td align=right><%= link_to "Edit", edit_pack_path(@pack) %></td>
+    <td align=right><%#= link_to "Edit", edit_pack_path(@pack) %></td>
   </tr>
 </table>
 

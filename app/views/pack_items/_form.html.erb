@@ -42,7 +42,7 @@
   </div>
 <% end %>
   <div class="col-md-2">
-    <%= f.hidden_field(:pack_id, :value => session[:current_pack_id]) %>
+    <%= f.hidden_field(:event_id, :value => session[:current_event_id]) %>
     <%= f.submit %>&nbsp;<%= button_to "Cancel", :back %>
   </div>
 <% end %>

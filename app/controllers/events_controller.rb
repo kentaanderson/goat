@@ -1,28 +1,35 @@
 class EventsController < ApplicationController
 	def index
-		
 		@events = Event.where("user_id" => current_user.id)
+		  session[:current_event_id] = 0
 	end
 	def new
 	  @event = Event.new
 	end
 	def create
 	  event = Event.create(event_params)
+	  if session[:current_event_id] > 0 then
+		  redirect_to pack_path(session[:current_event_id])	
+	  else
 		  redirect_to events_path
+	  end
 	end
 	def edit
 	  @event = Event.find(params[:id])
-
 	end
 	def update
-		  @event = Event.find(params[:id])
-		  @event.update_attributes(event_params)
-		  redirect_to events_path	
+	  @event = Event.find(params[:id])
+	  @event.update_attributes(event_params)
+	  if session[:current_event_id] > 0 then
+		  redirect_to pack_path(session[:current_event_id])	
+	  else
+		  redirect_to events_path
+	  end
 	end
 	def destroy
 	  @event = Event.find(params[:id])
 	  @event.destroy
-		  redirect_to events_path	
+	  redirect_to events_path	
 	end
 
 	private
@@ -30,7 +37,6 @@ class EventsController < ApplicationController
 	def event_params
 	  params.require(:event).permit(
 	  	:title, 
-#	  	Date.strptime(:start_date, '%Y-%m-%d'),
 		:start_date,
 	  	:return_date, 
 	  	:map_url,

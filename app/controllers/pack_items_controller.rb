@@ -7,23 +7,25 @@ class PackItemsController < ApplicationController
 	end
 	def create
 	  pack_item = PackItem.create(pack_item_params)
-  	  redirect_to pack_path(session[:current_pack_id]) 							# pack_id in session
+  	  redirect_to pack_path(session[:current_event_id]) 							# event_id in session
 	end
 	def edit
 	  @pack_item = PackItem.find(params[:id])
 	end
 	def show
 	  @pack_item = PackItem.find(params[:id])
+	  @categories = Category.all
+
 	end
 	def update
  	  @pack_item = PackItem.find(params[:id])
  	  @pack_item.update_attributes(pack_item_params)
-  	  redirect_to pack_path(session[:current_pack_id]) 							# pack_id in session
+  	  redirect_to pack_path(session[:current_event_id]) 							# event_id in session
 	end
 	def destroy
 	  @pack_item = PackItem.find(params[:id])
 	  @pack_item.destroy
-  	  redirect_to pack_path(session[:current_pack_id])	 						# pack_id in session
+  	  redirect_to pack_path(session[:current_event_id])	 							# event_id in session 
 	end
 end
 private
