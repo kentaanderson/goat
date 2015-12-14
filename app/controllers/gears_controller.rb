@@ -19,6 +19,7 @@ class GearsController < ApplicationController
   	  @gear.update_attributes(gear_params)
   	  redirect_to gears_path	
 	end
+
 	def destroy
 	  @gear = Gear.find(params[:id])
 	  @gear.destroy

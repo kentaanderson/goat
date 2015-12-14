@@ -32,6 +32,7 @@ class PacksController < ApplicationController
       #session[:current_event_id] = nil						# this may not be necessary - just making sure it's really dead
    	  #redirect_to packs_path	
 	end
+
 end
 private
 

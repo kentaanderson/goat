@@ -1,37 +1,35 @@
+<%= render "modals" %>
+
 <table>
   <tr>
     <td><h1><%= @event.title %></h1> </td>
     <td align=right>
-      <button onclick="javascript:alert('Choose Facebook/Twitter/Gear Goat (or enter emails) to share with friends/accomplices.')">Share Pack</button>
-      <button onclick="javascript:alert('Choose Gear Goat friends/events to compare packs (including self/previous packs)')">Compare</button>
-      <button onclick="javascript:alert('Print picklist')">Print Picklist</button>
+      <button class="btn btn-primary" onclick="javascript:alert('Choose Facebook/Twitter/Gear Goat (or enter emails) to share with friends/accomplices.')">Share Pack</button>
+      <button class="btn btn-primary" onclick="javascript:alert('Choose Gear Goat friends/events to compare packs (including self/previous packs)')">Compare</button>
+      <button class="btn btn-primary" onclick="javascript:alert('Print picklist')">Print Picklist</button>
     </td>
   </tr>
 </table>
+<button class="btn btn-warning" data-toggle="modal" data-target="#packItem">Item Details</button>
+
 <table>
   <tr>
     <td><h3>Event information</h3></td>
-    <td align=right><%= link_to "Edit", edit_event_path(@event.id) %></td>
+    <td align=right><button class="btn btn-default" data-toggle="modal" data-target="#packEvent">Event Details</button>
+      <%= link_to "<button class='btn btn-default'>Edit</button>".html_safe, edit_event_path(@event.id) %></td>
   </tr>
 </table>
 <table class=table>
-  <thead>
-  <th align=left>Event</th>
-  <th align=left>Date range</th>
-  <th align=left>Event description</th>
-  </thead>
   <tr>
-    <td width="30%"><%= pack_event_title(@event.id) %></td>
+    <td align=left>Date range</td>
     <td width="30%"><%= pack_event_range %></td>
-    <td width="40%"><%= pack_event_description %></td>
   </tr>
 </table>
-
+<br> <p class="label label-primary">Add items from inventory</p>
 <br> <p class="label label-warning">Bootstrap ajax modal</p>
 <br> <p class="label label-warning">Add target_weight as a bootstrap ajax modal</p>
 <br> <p class="label label-warning">Sub-component "pack" as a container</p>
 <br> <p class="label label-warning">Add items from another pack</p>
-<br> <p class="label label-warning">Add items from inventory</p>
 <br> <p class="label label-warning">Create a food grid</p>
 <br> <p class="label label-warning">Share pack</p>
 <br> <p class="label label-warning">Compare packs</p>

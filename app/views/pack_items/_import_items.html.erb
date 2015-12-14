@@ -1,0 +1,27 @@
+<br> <p class="label label-warning">add an "import" model to transact-ify imports (and allow undo)</p>
+
+  <table class="table table-striped">
+	<th style="background-color:white">&nbsp;</th>
+	<th style="background-color:white">Name</th>
+	<th style="background-color:white">Manufacturer</th>
+	<th style="background-color:white">Description</th>
+	<th style="background-color:white">Year&nbsp;Acquired</th>
+	<th style="background-color:white">Weight&nbsp;(oz)</th>
+
+	<% @gears.each do |gear| %>
+	  <tr style="background-color:<%= cycle('#EEE', '#FFF') -%>">
+		<td width="5%"><input type=checkbox /></td>
+	  	<td width="25%"><%= link_to gear.name, edit_gear_path(gear) %></td>
+	    <td width="20%"><%= gear.manufacturer %></td>
+	  	<td width="30%"><%= gear.description %></td>
+	  	<td width="10%"><%= gear.weight_oz %></td>
+	    <td width="10%"><%= gear.year_acquired %></td>
+	  </tr>
+	<% end %>
+
+	<tr style="background-color:white">
+		<td colspan=5>
+		  <%= link_to "<button class='btn btn-danger'>Cancel</button>".html_safe, pack_path(session[:current_event_id]) %>
+		</td>
+	</tr>
+  </table>

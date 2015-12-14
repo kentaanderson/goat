@@ -104,7 +104,7 @@ module PacksHelper
     #if @pack.target_weight.to_s.length > 0 then
     #  @pack.target_weight.to_s + " lbs"
     #else
-      "n/a - need to find a home for 'target_weight'"
+      "<button class='btn btn-primary' data-toggle='modal' data-target='#packTargetWeight'>Target Weight</button>".html_safe
     #end
   end 
 

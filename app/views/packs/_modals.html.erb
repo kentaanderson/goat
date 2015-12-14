@@ -1,0 +1,72 @@
+<% # prbably a better, DRYer way of doing this, but this is quik and dirty %> 
+  <!-- START packTargetWeight Modal -->
+  <div class="modal fade" id="packTargetWeight" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Pack Target Weight</h4>
+        </div>
+        <div class="modal-body">
+          <p>Pack Weight modal form goes here</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      <!-- end modal content -->
+      </div>
+    </div>
+  </div>
+  <!-- END packTargetWeight Modal-->
+  <!-- START packEvent Modal -->
+  <div class="modal fade" id="packEvent" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Pack Event</h4>
+        </div>
+        <div class="modal-body">
+          <table class=table>
+            <tr>
+            <td align=left>Event</td>
+            <td align=left>Date range</td>
+            <th align=left>Event description</td>
+            </thead>
+            <tr>
+              <td width="30%"><%= pack_event_title(@event.id) %></td>
+              <td width="30%"><%= pack_event_range %></td>
+              <td width="40%"><%= pack_event_description %></td>
+            </tr>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      <!-- end modal content -->
+      </div>
+    </div>
+  </div>
+  <!-- END packEvent Modal-->
+  <!-- START packItem Modal -->
+  <div class="modal fade" id="packItem" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Pack Item</h4>
+        </div>
+        <div class="modal-body">
+          <p>Pack Item modal form goes here</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      <!-- end modal content -->
+      </div>
+    </div>
+  </div>
+  <!-- END packItem Modal-->

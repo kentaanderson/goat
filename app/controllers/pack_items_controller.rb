@@ -12,6 +12,9 @@ class PackItemsController < ApplicationController
 	def edit
 	  @pack_item = PackItem.find(params[:id])
 	end
+	def import	
+		@gears = Gear.where("user_id" => current_user.id) 
+	end
 	def show
 	  @pack_item = PackItem.find(params[:id])
 	  @categories = Category.all
@@ -22,6 +25,7 @@ class PackItemsController < ApplicationController
  	  @pack_item.update_attributes(pack_item_params)
   	  redirect_to pack_path(session[:current_event_id]) 							# event_id in session
 	end
+
 	def destroy
 	  @pack_item = PackItem.find(params[:id])
 	  @pack_item.destroy

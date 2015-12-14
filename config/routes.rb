@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
   devise_for :views
   devise_for :users
+
+# need to make an "import" model and set resources for it
+  get 'pack_items/import' => 'pack_items#import'
   resources :gears, :events, :packs, :pack_items
+
+
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -9,6 +16,8 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'home#index' 
 
+
+#  get "events/form" => 'events#form', :as => :form
 #  get "events/new_release" => 'events#new_release', :as => :new_release
 
   # Example of regular route:
