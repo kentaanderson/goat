@@ -35,6 +35,7 @@
   <div class="row">&nbsp;</div>
   <div class="col-md-2">
     <%= f.hidden_field(:user_id, :value => current_user.id) %>
-    <%= f.submit %>
+        <%= f.submit "Submit", :class => "btn btn-default" %>
+        &nbsp;<%= link_to "<button class='btn btn-danger'>Cancel</button>".html_safe, :back %>
   </div>
 <% end %>

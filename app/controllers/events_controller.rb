@@ -18,8 +18,11 @@ class EventsController < ApplicationController
 	  @event = Event.find(params[:id])
 	end
 	def update
+	#	if 			# params.includes?, gear_id, then do bulk upload? @gearid.each: add to @pack_items
 	  @event = Event.find(params[:id])
 	  @event.update_attributes(event_params)
+	
+
 	  if session[:current_event_id] > 0 then
 		  redirect_to pack_path(session[:current_event_id])	
 	  else

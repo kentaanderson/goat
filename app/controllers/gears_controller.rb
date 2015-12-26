@@ -7,7 +7,8 @@ class GearsController < ApplicationController
 	  @gear = Gear.new
 	end
 	def create
-	  gear = Gear.create(gear_params)
+#		p gear_params
+	  @gear = Gear.create(gear_params)
   	  redirect_to gears_path
 	end
 	def edit

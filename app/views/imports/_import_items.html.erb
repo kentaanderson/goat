@@ -1,4 +1,4 @@
-<br> <p class="label label-warning">add an "import" model to transact-ify imports (and allow undo)</p>
+<%= form_for @import do |f| %>
 
   <table class="table table-striped">
 	<th style="background-color:white">&nbsp;</th>
@@ -10,7 +10,8 @@
 
 	<% @gears.each do |gear| %>
 	  <tr style="background-color:<%= cycle('#EEE', '#FFF') -%>">
-		<td width="5%"><input type=checkbox /></td>
+		<td width="5%"><%= check_box_tag "gear_id[]", gear.id %>
+			<!--<input type=checkbox name="gear_id[]" value=<%= gear.id %> />--></td>
 	  	<td width="25%"><%= link_to gear.name, edit_gear_path(gear) %></td>
 	    <td width="20%"><%= gear.manufacturer %></td>
 	  	<td width="30%"><%= gear.description %></td>
@@ -20,8 +21,12 @@
 	<% end %>
 
 	<tr style="background-color:white">
-		<td colspan=5>
-		  <%= link_to "<button class='btn btn-danger'>Cancel</button>".html_safe, pack_path(session[:current_event_id]) %>
+		<td colspan=6>
+			<%= f.hidden_field(:user_id, :value => current_user.id) %>
+	      <%= f.submit "Add Items", :class => "btn btn-default" %>
+	      &nbsp;<%= link_to "<button class='btn btn-danger'>Cancel</button>".html_safe, :back %>
+   		  <%#= link_to "<button class='btn btn-danger'>Cancel</button>".html_safe, pack_path(session[:current_event_id]) %>
 		</td>
 	</tr>
   </table>
+<% end %>

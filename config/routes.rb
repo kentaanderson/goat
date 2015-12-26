@@ -3,12 +3,8 @@ Rails.application.routes.draw do
   devise_for :users
 
 # need to make an "import" model and set resources for it
-  get 'pack_items/import' => 'pack_items#import'
-  resources :gears, :events, :packs, :pack_items
-
-
-
-
+  get 'imports/import' => 'imports#import'
+  resources :gears, :events, :packs, :pack_items, :imports #, :collection => { :update_multiple => :post }
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

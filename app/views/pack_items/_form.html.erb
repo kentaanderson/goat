@@ -5,19 +5,19 @@
   </div>
   <div class="row">
     <div class="col-md-2"><%= f.label :name %></div>
-    <div class="col-md-4"><%= f.text_field :name %></div>
+    <div class="col-md-4"><%= f.text_field :name,  autocomplete: 'on' %></div>
   </div>
   <div class="row">
     <div class="col-md-2"><%= f.label :description %></div>
-    <div class="col-md-4"><%= f.text_area :description, size: '60x4' %></div>
+    <div class="col-md-4"><%= f.text_area :description, size: '60x4',  autocomplete: 'on' %></div>
   </div>
   <div class="row">
     <div class="col-md-2"><%= f.label :weight_oz %></div>
-    <div class="col-md-4"><%= f.text_field :weight_oz %></div>
+    <div class="col-md-4"><%= f.text_field :weight_oz,  autocomplete: 'off' %></div>
   </div>
   <div class="row">
     <div class="col-md-2"><%= f.label :manufacturer %> (combo list later)</div>
-    <div class="col-md-4"><%= f.text_field :manufacturer %></div>
+    <div class="col-md-4"><%= f.text_field :manufacturer,  autocomplete: 'on' %></div>
   </div>
   <div class="row">
     <div class="col-md-2"><%= f.label :year_acquired %></div>
@@ -41,8 +41,14 @@
     <div class="col-md-4"><%= f.color_field :highlight %></div>
   </div>
 <% end %>
+  <div class="row">
+    <div class="col-md-2">&nbsp;</div>
+    <div class="col-md-4"><%= f.check_box :inventory %> Add to Inventory?</div>
+  </div>
   <div class="col-md-2">
+    <%= f.hidden_field(:gear_id) %>
     <%= f.hidden_field(:event_id, :value => session[:current_event_id]) %>
-    <%= f.submit %>&nbsp;<%= button_to "Cancel", :back %>
+            <%= f.submit "Submit", :class => "btn btn-default" %>
+            &nbsp;<%= link_to "<button class='btn btn-danger'>Cancel</button>".html_safe, :back %>
   </div>
 <% end %>
