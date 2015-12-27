@@ -4,6 +4,7 @@ class PackItemsController < ApplicationController
 	end
 	def new
 	  @pack_item = PackItem.new
+	  @category_id = params[:category_id]
 	end
 	def create
 	  pack_item = PackItem.create(pack_item_params)
@@ -11,6 +12,7 @@ class PackItemsController < ApplicationController
 	end
 	def edit
 	  @pack_item = PackItem.find(params[:id])
+	  @category_id = @pack_item.category_id
 	end
 	def import
 		@gears = Gear.where("user_id" => current_user.id) 
@@ -22,23 +24,36 @@ class PackItemsController < ApplicationController
 	  @categories = Category.all
 	end
 
-	def update
-	  if pack_item_params[:gear_id].to_i > 0 then
-	  	gear_id = pack_item_params[:gear_id].to_i									# if this has been saved to inventory before, grab gear_id
-	  else
-		  p pack_item_params[:gear_id].to_i											# if new, decide whether to save it to inventory
-		  if pack_item_params[:inventory] == "1" then								# if saving checked, do save and grab gear_id
-			gear_params = {name: pack_item_params[:name], description: pack_item_params[:description], weight_oz: pack_item_params[:weight_oz], year_acquired: pack_item_params[:year_acquired], category_id: pack_item_params[:category_id], manufacturer: pack_item_params[:manufacturer], user_id: current_user.id}
-			@gear = Gear.create(gear_params)										
+	def update 																		# update pack_item
+	  # THIS can probably be optimized with model associations and a :through reference, but the blunt-force method works, too
+	  gear_id = 0																	# might need to review this line
+	  																				# set gear_params to the relevant form fields
+      gear_params = {name: pack_item_params[:name], description: pack_item_params[:description], weight_oz: pack_item_params[:weight_oz], year_acquired: pack_item_params[:year_acquired], category_id: pack_item_params[:category_id], manufacturer: pack_item_params[:manufacturer], user_id: current_user.id}
+
+      # SAVE TO INVENTORY?
+	  if pack_item_params[:inventory] == "1" then									# if saving checked, do save and grab gear_id
+      	# EXISTING ITEM?
+	  	if pack_item_params[:gear_id].to_i > 0 then									# if this has been saved to inventory before...			
+      		# A - UPDATE TO GEAR
+		  	gear_id = pack_item_params[:gear_id].to_i								# gear_id exists, so grab gear_id from params
+		 	@gear = Gear.find(gear_id)												# get the gear object
+		 	@gear.update_attributes(gear_params)									# update the gear inventory record
+      	else
+      		# B - CREATE TO GEAR
+	  		@gear = Gear.create(gear_params)										
 		  	gear_id = @gear.id 														
-		  else
-																					# don't save, and ignore gear_id
-		  end
+		end
 	  end
- 	  @pack_item = PackItem.find(params[:id])
- 	  @pack_item.update_attributes(pack_item_params)								# update the pack_item record
+
+      # NO MATTER WHAT: UPDATE PACK_ITEM
+ 	  @pack_item = PackItem.find(params[:id])										# get the pack_item record to be updated
+ 	  @pack_item.update_attributes(pack_item_params)								# update the pack_item record with the form data elements
+ 	  p "=========="
+ 	  p pack_item_params[:event_id]		# WHERE IS THIS?
+ 	  p "=========="
  	  @pack_item.update_attribute(:gear_id, gear_id)								# update the gear_id field separately (can't seem to update the params list)
   	  redirect_to pack_path(session[:current_event_id]) 							# event_id in session
+  	  flash[:notice] = "Item added to pack!"
 	end
 
 	def destroy

@@ -4,6 +4,7 @@ class ImportsController < ApplicationController
 		# need gear_category
 		@import = Import.new
 		@gears = Gear.where("user_id" => current_user.id)
+		@categories = Category.all
 	end
 	def create
 		event_id = session[:current_event_id]									# need event_id
@@ -11,9 +12,9 @@ class ImportsController < ApplicationController
 		if params["gear_id"] != nil then
 			gear_id = params["gear_id"]
 			gear_id.each do |gear_id|
-			# step 1 - create import record
+			# step 1 - create import records
 		 	  	@import = Import.new
-				@import.update_attributes(import_params) 							# do we need this, after all?
+				@import.update_attributes(import_params) 						# do we need this, after all?
 				@import.update_attribute(:gear_id, gear_id.to_i)	
 			# step 2 - move gear into pack_items
 	 			@gear = Gear.find(gear_id.to_i)
@@ -23,7 +24,7 @@ class ImportsController < ApplicationController
 
 	  		 flash[:notice] = "Updated items from inventory!"
 	  	end
-  	  	redirect_to pack_path(session[:current_event_id])						# event_id in session
+  	  	redirect_to pack_path(event_id)											# event_id in session
 	end
 
 end

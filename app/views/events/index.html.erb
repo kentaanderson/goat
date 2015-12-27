@@ -1,10 +1,9 @@
+<%= render "modals" %>
+
 <h3><%= image_tag("event_calendar.jpg", size: "40x40")%> My Event Calendar</h3>
-<%= link_to "<button>Add Upcoming Event</button>".html_safe, new_event_path, :id=>"add-event-btn" %>
+<%= link_to "<button class='btn btn-primary'>Add Upcoming Event</button>".html_safe, new_event_path, :id=>"add-event-btn" %>
+<button class="btn btn-warning" data-toggle="modal" data-target="#eventModal">Development tasks</button>
 <br>
-<br> <p class="label label-warning">Adding Events through Virtual Pack adds to Event calendar</p>
-<br> <p class="label label-warning">Calendar grid view option?</p>
-
-
 <table class=table>
   <thead>
   <th align=left></th>

@@ -1,32 +1,55 @@
 <%= form_for @import do |f| %>
 
-  <table class="table table-striped">
-	<th style="background-color:white">&nbsp;</th>
-	<th style="background-color:white">Name</th>
-	<th style="background-color:white">Manufacturer</th>
-	<th style="background-color:white">Description</th>
-	<th style="background-color:white">Year&nbsp;Acquired</th>
-	<th style="background-color:white">Weight&nbsp;(oz)</th>
+<%= f.hidden_field(:user_id, :value => current_user.id) %>
+<%= f.submit "Add selected items", :class => "btn btn-default" %>
+&nbsp;<%= link_to "<button class='btn btn-danger'>Cancel</button>".html_safe, :back %>
 
-	<% @gears.each do |gear| %>
-	  <tr style="background-color:<%= cycle('#EEE', '#FFF') -%>">
-		<td width="5%"><%= check_box_tag "gear_id[]", gear.id %>
-			<!--<input type=checkbox name="gear_id[]" value=<%= gear.id %> />--></td>
-	  	<td width="25%"><%= link_to gear.name, edit_gear_path(gear) %></td>
-	    <td width="20%"><%= gear.manufacturer %></td>
-	  	<td width="30%"><%= gear.description %></td>
-	  	<td width="10%"><%= gear.weight_oz %></td>
-	    <td width="10%"><%= gear.year_acquired %></td>
-	  </tr>
-	<% end %>
+<div class="bs-example">
+  <div class="panel-group" id="accordion">
+    <% @categories.each do |category| %>
+      <div class="panel panel-default">
+	      <div class="panel-heading" data-toggle="collapse" href="#collapse<%= category.id %>">
+	        <table>
+	          <tr>
+	            <td><h4 class="panel-default"><%= category.category_name %></h4></td>
+	            <!-- add "select all" link here? -->
+	          </tr>
+	        </table>
+	      </div>
+	      <div id="collapse<%= category.id %>" class="panel-collapse collapse in">
+	        <div class="panel-body"> <!-- originally "panel-body" -->
+	          <table class="table table-striped">
+		      <% if gear_by_category(category.id).length > 0 then%>
+				<th style="background-color:white">Select</th>
+				<th style="background-color:white">Name</th>
+				<th style="background-color:white">Manufacturer</th>
+				<th style="background-color:white">Description</th>
+				<th style="background-color:white">Year&nbsp;Acquired</th>
+				<th style="background-color:white">Weight&nbsp;(oz)</th>
+		        <% reset_cycle %>
+		      <% else %>
+					<tr><td width="100%">No <%= category.category_name %> items found in inventory</td></tr>
+		      <% end %>
+		      <% gear_by_category(category.id).each do |gear| %>
+		        <tr style="background-color:<%= cycle('#EEE', '#FFF') -%>">           
+					<td width="5%"><%= check_box_tag "gear_id[]", gear.id %></td>
+				  	<td width="25%"><%= gear.name %></td>
+				    <td width="20%"><%= gear.manufacturer %></td>
+				  	<td width="30%"><%= gear.description %></td>
+				  	<td width="10%"><%= gear.weight_oz %></td>
+				    <td width="10%"><%= gear.year_acquired %></td>
+		        </tr>
+		      <% end %>
+		      </table>
+			</div>
+	      </div>
+      </div>
+    <% end %>
+  </div>
+	<%= f.hidden_field(:user_id, :value => current_user.id) %>
+    <%= f.submit "Add selected items", :class => "btn btn-default" %>
+    &nbsp;<%= link_to "<button class='btn btn-danger'>Cancel</button>".html_safe, :back %>
+</div>
 
-	<tr style="background-color:white">
-		<td colspan=6>
-			<%= f.hidden_field(:user_id, :value => current_user.id) %>
-	      <%= f.submit "Add Items", :class => "btn btn-default" %>
-	      &nbsp;<%= link_to "<button class='btn btn-danger'>Cancel</button>".html_safe, :back %>
-   		  <%#= link_to "<button class='btn btn-danger'>Cancel</button>".html_safe, pack_path(session[:current_event_id]) %>
-		</td>
-	</tr>
-  </table>
+
 <% end %>

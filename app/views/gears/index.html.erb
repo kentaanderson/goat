@@ -1,14 +1,10 @@
+<%= render "modals" %>
 
 <h3><%= image_tag("gears.png", size: "40x40")%> My Gear Inventory</h3>
-<%= link_to "<button>Add Gear to Inventory</button>".html_safe, new_gear_path, :id=>"add-gear-btn" %>
+<%= link_to "<button class='btn btn-primary'>Add Gear to Inventory</button>".html_safe, new_gear_path, :id=>"add-gear-btn" %>
+<button class="btn btn-warning" data-toggle="modal" data-target="#gearModal">Development tasks</button>
 
 <br>
-<br> <p class="label label-warning">sort/filter by category (as on POC) or by column?</p>
-<br> <p class="label label-warning">Gear import module (flat file first)</p>
-<br> <p class="label label-warning">gear import from other system (REI, Backcountry, Amazon, Google?) - need standard format, or just compatibility?</p>
-<br> <p class="label label-warning">inventory export? look at REDCap for approach and usability</p>
-<br> <p class="label label-warning">search for existing gear items?</p>
-
 <table class=table>
   <thead>
 	<th align=left></th>

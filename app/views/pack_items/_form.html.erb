@@ -1,7 +1,7 @@
 <%= form_for @pack_item do |f| %>
   <div class="row">
     <div class="col-md-2"><%= f.label :category_id %></div>
-    <div class="col-md-4"><%= f.collection_select(:category_id, Category.all, :id, :category_name, include_blank: 'Select a category') %></div>
+    <div class="col-md-4"><%= f.collection_select(:category_id, Category.all, :id, :category_name,  {:selected => @category_id}, include_blank: 'Select a category') %></div>
   </div>
   <div class="row">
     <div class="col-md-2"><%= f.label :name %></div>
@@ -43,10 +43,11 @@
 <% end %>
   <div class="row">
     <div class="col-md-2">&nbsp;</div>
-    <div class="col-md-4"><%= f.check_box :inventory %> Add to Inventory?</div>
+    <div class="col-md-4"><%= f.check_box :inventory %> Save as new gear item in inventory?</div>
   </div>
   <div class="col-md-2">
     <%= f.hidden_field(:gear_id) %>
+    <%= f.hidden_field(:user_id, :value => current_user.id) %>
     <%= f.hidden_field(:event_id, :value => session[:current_event_id]) %>
             <%= f.submit "Submit", :class => "btn btn-default" %>
             &nbsp;<%= link_to "<button class='btn btn-danger'>Cancel</button>".html_safe, :back %>
