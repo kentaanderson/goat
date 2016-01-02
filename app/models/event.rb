@@ -1,8 +1,5 @@
 class Event < ActiveRecord::Base
-  belongs_to :user
-  has_many :packs, foreign_key: "event_id"
+  has_many :event_attendees, :foreign_key => :event_id
+  has_many :users, through: :event_attendees, :class_name => "User"
 
-  def title_dates
-  	  "#{title} (#{start_date})"
-  end
 end

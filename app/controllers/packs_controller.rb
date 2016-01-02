@@ -1,8 +1,8 @@
 class PacksController < ApplicationController
 	before_action :authenticate_user!
 	def index
-		@events = Event.where("user_id" => current_user.id)
-#	    session[:current_event_id] = nil						# this may not be necessary
+		@events = current_user.events.all
+#		@events = Event.where("user_id" => current_user.id)
 	end
 	def new
 #	  @pack = Pack.new

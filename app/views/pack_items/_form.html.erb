@@ -43,13 +43,14 @@
 <% end %>
   <div class="row">
     <div class="col-md-2">&nbsp;</div>
-    <div class="col-md-4"><%= f.check_box :inventory %> Save as new gear item in inventory?</div>
+    <div class="col-md-4"><%= f.check_box :inventory %> Save item in inventory?</div>
   </div>
   <div class="col-md-2">
     <%= f.hidden_field(:gear_id) %>
     <%= f.hidden_field(:user_id, :value => current_user.id) %>
     <%= f.hidden_field(:event_id, :value => session[:current_event_id]) %>
-            <%= f.submit "Submit", :class => "btn btn-default" %>
-            &nbsp;<%= link_to "<button class='btn btn-danger'>Cancel</button>".html_safe, :back %>
+    <%= f.submit "Submit", :class => "btn btn-primary" %>&nbsp;
+    <%= link_to "Cancel".html_safe, :back %>
+    <%#= link_to "<button class='btn btn-danger'>Cancel</button>".html_safe, :back %>
   </div>
 <% end %>

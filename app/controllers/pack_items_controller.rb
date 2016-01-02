@@ -17,7 +17,6 @@ class PackItemsController < ApplicationController
 	def import
 		@gears = Gear.where("user_id" => current_user.id) 
 	  	@pack_item = PackItem.find(params[:id])
-#		@event = Event.find(params[:id])											# this is sketchy here
 	end
 	def show
 	  @pack_item = PackItem.find(params[:id])
@@ -29,28 +28,20 @@ class PackItemsController < ApplicationController
 	  gear_id = 0																	# might need to review this line
 	  																				# set gear_params to the relevant form fields
       gear_params = {name: pack_item_params[:name], description: pack_item_params[:description], weight_oz: pack_item_params[:weight_oz], year_acquired: pack_item_params[:year_acquired], category_id: pack_item_params[:category_id], manufacturer: pack_item_params[:manufacturer], user_id: current_user.id}
-
-      # SAVE TO INVENTORY?
 	  if pack_item_params[:inventory] == "1" then									# if saving checked, do save and grab gear_id
-      	# EXISTING ITEM?
-	  	if pack_item_params[:gear_id].to_i > 0 then									# if this has been saved to inventory before...			
-      		# A - UPDATE TO GEAR
+		if Gear.exists?(pack_item_params[:gear_id].to_i) then						# if this has been saved to inventory before...			
 		  	gear_id = pack_item_params[:gear_id].to_i								# gear_id exists, so grab gear_id from params
 		 	@gear = Gear.find(gear_id)												# get the gear object
 		 	@gear.update_attributes(gear_params)									# update the gear inventory record
       	else
-      		# B - CREATE TO GEAR
-	  		@gear = Gear.create(gear_params)										
-		  	gear_id = @gear.id 														
+	  		@gear = Gear.create(gear_params)										# create a gear record
+		  	gear_id = @gear.id 														# grab the new gear_id
 		end
 	  end
 
       # NO MATTER WHAT: UPDATE PACK_ITEM
  	  @pack_item = PackItem.find(params[:id])										# get the pack_item record to be updated
  	  @pack_item.update_attributes(pack_item_params)								# update the pack_item record with the form data elements
- 	  p "=========="
- 	  p pack_item_params[:event_id]		# WHERE IS THIS?
- 	  p "=========="
  	  @pack_item.update_attribute(:gear_id, gear_id)								# update the gear_id field separately (can't seem to update the params list)
   	  redirect_to pack_path(session[:current_event_id]) 							# event_id in session
   	  flash[:notice] = "Item added to pack!"

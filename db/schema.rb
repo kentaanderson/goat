@@ -11,12 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151226040211) do
+ActiveRecord::Schema.define(version: 20151227062454) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "category_name"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+  end
+
+  create_table "event_attendees", force: :cascade do |t|
+    t.integer  "event_id",   null: false
+    t.integer  "user_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "events", force: :cascade do |t|
@@ -38,7 +45,6 @@ ActiveRecord::Schema.define(version: 20151226040211) do
   create_table "gears", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
-    t.integer  "year_acquired"
     t.decimal  "weight_oz"
     t.decimal  "weight_grams"
     t.datetime "created_at",    null: false
@@ -47,22 +53,16 @@ ActiveRecord::Schema.define(version: 20151226040211) do
     t.integer  "category_id"
     t.string   "manufacturer"
     t.integer  "user_id"
+    t.string   "year_acquired"
   end
 
   create_table "imports", force: :cascade do |t|
     t.string   "name"
-    t.string   "description"
-    t.integer  "year_acquired"
-    t.decimal  "weight_oz"
-    t.decimal  "weight_grams"
-    t.string   "icon"
-    t.integer  "category_id"
-    t.string   "manufacturer"
     t.integer  "user_id"
     t.integer  "event_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
     t.integer  "gear_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "pack_items", force: :cascade do |t|
@@ -76,7 +76,6 @@ ActiveRecord::Schema.define(version: 20151226040211) do
     t.decimal  "weight_oz"
     t.integer  "weight_grams"
     t.string   "manufacturer"
-    t.string   "year_acquired"
     t.integer  "item_count"
     t.integer  "event_id"
     t.string   "icon"
@@ -85,6 +84,7 @@ ActiveRecord::Schema.define(version: 20151226040211) do
     t.integer  "wearing",       default: 0, null: false
     t.integer  "delivery",      default: 0, null: false
     t.integer  "inventory",     default: 0, null: false
+    t.string   "year_acquired"
   end
 
   create_table "packs", force: :cascade do |t|

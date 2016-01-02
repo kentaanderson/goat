@@ -9,7 +9,7 @@
       <button class="btn btn-primary" onclick="javascript:alert('Choose Facebook/Twitter/Gear Goat (or enter emails) to share with friends/accomplices.')">Share Pack</button>
       <button class="btn btn-primary" onclick="javascript:alert('Choose Gear Goat friends/events to compare packs (including self/previous packs)')">Compare</button>
       <button class="btn btn-primary" onclick="javascript:alert('Print picklist')">Print Picklist</button>
-<button class="btn btn-warning" data-toggle="modal" data-target="#packItem">Development tasks</button>
+      <button class="btn btn-warning" data-toggle="modal" data-target="#packItem">Development tasks</button>
     </td>
   </tr>
 </table>
@@ -59,7 +59,7 @@
           <th style="background-color:white">Manufacturer</th>
           <th style="background-color:white">Weight&nbsp;(oz)</th>
           <th style="background-color:white">Count</th>
-            <% reset_cycle %>
+          <% reset_cycle %>
         <% end %>
         <% pack_items_by_category(category.id).each do |item| %>
           <%# if item.highlight then                    # come back to this once you figure out how to stripe rows regardless of highlight color %>
@@ -67,13 +67,11 @@
           <%# else                              # probably do the highlight by grabbing the row ID and setting it with JS after it has been striped %>
           <tr style="background-color:<%= cycle('#EEE', '#FFF') -%>">           
           <%# end %>
-                  <td width="10%">
-                   <%= link_to image_tag("x_mark_red.png",size: "12x12"), item, method: :delete, data: { confirm: 'Are you sure you want to delete this item? This action cannot be undone.' }  %>&nbsp;|&nbsp;
-                   <%= link_to image_tag("edit_icon.png",size: "14x14"), edit_pack_item_path(item.id) %>
-                   <%#= link_to "<button class='btn btn-danger'>Delete</button>".html_safe, item, method: :delete, data: { confirm: 'Are you sure you want to delete this item? This action cannot be undone.' }  %>&nbsp;
-                   <%#= link_to "<button class='btn btn-default'>Edit</button>".html_safe, edit_pack_item_path(item.id) %>
-                  </td>
-            <td width="20%"><%= item.name %></td>
+            <td width="10%">
+             <%= link_to image_tag("x_mark_red.png",size: "12x12"), item, method: :delete, data: { confirm: 'Are you sure you want to delete this item? This action cannot be undone.' }  %>
+             <%#= link_to image_tag("edit_icon.png",size: "14x14"), edit_pack_item_path(item.id) %>
+            </td>
+            <td width="20%"><%= link_to item.name, edit_pack_item_path(item.id) %></td>
             <td width="20%"><%= item.description %></td>
             <td width="15%"><%= item.manufacturer %></td>
             <td width="10%"><%= item.weight_oz %></td>

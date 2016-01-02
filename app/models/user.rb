@@ -5,5 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable 
   has_many :gears, dependent: :destroy # each gear item is owned by only one user. deleting the user also deletes all their gear
   has_many :packs, dependent: :destroy
-  has_many :events
+
+  has_many :event_attendees, :foreign_key => :user_id, dependent: :destroy
+  has_many :events, through: :event_attendees, :class_name => "Event"
 end
