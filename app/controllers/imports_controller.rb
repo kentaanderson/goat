@@ -14,12 +14,7 @@ class ImportsController < ApplicationController
 			gear_id.each do |gear_id|
 			# step 1 - create import records
 		 	  	@import = Import.new
-p "**********"
-p import_params
-p "**********"
 				@import.update_attributes({"user_id" => current_user.id, "gear_id" => gear_id.to_i, "event_id" => event_id}) 						
-#				@import.update_attribute(:gear_id, gear_id.to_i)	
-#				@import.update_attribute(:event_id, event_id)	
 			# step 2 - move gear into pack_items
 	 			@gear = Gear.find(gear_id.to_i)
 	    		@pack_item = PackItem.new

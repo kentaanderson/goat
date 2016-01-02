@@ -1,10 +1,7 @@
 class EventsController < ApplicationController
 	def index
 		session[:current_event_id] = 0														# kill the session variable for events
-		# Need to join EventAttendees here via model associations
-		# and however this is done, do that same for Virtual Pack event selection screen
-		@events = current_user.events.all						# where("user_id" => current_user.id)
-	#	@events = Event.where("user_id" => current_user.id) 								# current method
+		@events = current_user.events.all													# where("user_id" => current_user.id)
 	end
 	def new
 	  @event = Event.new
@@ -13,7 +10,7 @@ class EventsController < ApplicationController
 	  p "---------- entered create"
 	  @event = Event.create(event_params)
 	  EventAttendee.create("user_id" => current_user.id, "event_id" => @event.id)			# create the first, uneditable, association
-	  if session[:current_event_id] > 0 then
+	  if session[:current_event_id] > 0 then												# if sending page is ... return to that page
 		  redirect_to pack_path(session[:current_event_id])
 	  else
 		  redirect_to events_path

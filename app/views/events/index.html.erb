@@ -10,9 +10,9 @@
 	<th align=left>Title</th>
   <th align=left>Date Range</th>
 	<th align=left>Description</th>
-	<th align=left>Comments</th>
 	<th align=left>Map</th>
   <th align=left>Sharing?</th>
+  <th align=left>Attendees</th>
 </thead>
 <% @events.each do |event| %>
   <tr style="background-color:<%= cycle('#EEE', '#FFF') -%>"> 
@@ -22,9 +22,16 @@
   	<td width="20%" valign="top"><%= link_to event.title, edit_event_path(event.id) %></td>
     <td width="15%" valign="top"><%= event.start_date %> - <%= event.return_date %></td>
   	<td width="20%" valign="top"><%= event.description %></td>
-  	<td width="20%" valign="top"><%= event.comments %></td>
     <td width="10%" valign="top"><%= event.map_url %></td>
     <td width="10%" valign="top"><%= if event.sharing_status == 1 then "Private" else "Public" end %></td>
+    <td width="20%" valign="top">
+      <ul>
+        <% event.users.each do |friend| %>
+          <li><%= friend.last_name %> </li>
+        <% end %>
+      </ul>
+      <%= link_to "Invite friends", edit_event_attendee_path(event.id) %>
+    </td>
   </tr>
 <% end %>
 </table>

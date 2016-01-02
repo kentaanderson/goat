@@ -1,0 +1,25 @@
+<h2><%= @event.title %>, <%= @event.start_date %> - <%= @event.return_date %></h2>
+<%= form_for @event_attendee do |f| %>
+	
+	<%= f.hidden_field(:user_id, :value => current_user.id) %>
+    <% # loop through available users (friend list) with a checkbox to select for the event %>
+    <table class="table " >
+    	<th>select</th>
+    	<th>First name</th>
+    	<th>Last name</th>
+
+	    <% @users.each do |user| %>
+  			<tr style="background-color:<%= cycle('#EEE', '#FFF') -%>"> 
+	    		<td width=10><input type=checkbox value=<%=user.id%> name="friend_ids[]"></td>
+	    		<td width=40><%= user.first_name %></td>
+	    		<td width=40><%= user.last_name %></td>
+	    	</tr>
+	    <% end %>
+		<tr>
+			<td colspan=3>
+				<%= f.submit "Add selected users", :class => "btn btn-default" %>&nbsp;
+	    		<%= link_to "Cancel", :back %>
+	    	</td>
+	    </tr>
+	</table>
+<% end %>
