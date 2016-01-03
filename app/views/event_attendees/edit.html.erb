@@ -1,24 +1,51 @@
 <h2><%= @event.title %>, <%= @event.start_date %> - <%= @event.return_date %></h2>
 <%= form_for @event_attendee do |f| %>
-	
 	<%= f.hidden_field(:user_id, :value => current_user.id) %>
     <% # loop through available users (friend list) with a checkbox to select for the event %>
-    <table class="table " >
-    	<th>select</th>
-    	<th>First name</th>
-    	<th>Last name</th>
-
-	    <% @users.each do |user| %>
-  			<tr style="background-color:<%= cycle('#EEE', '#FFF') -%>"> 
-	    		<td width=10><input type=checkbox value=<%=user.id%> name="friend_ids[]"></td>
-	    		<td width=40><%= user.first_name %></td>
-	    		<td width=40><%= user.last_name %></td>
-	    	</tr>
-	    <% end %>
+    <table class="table">
 		<tr>
-			<td colspan=3>
-				<%= f.submit "Add selected users", :class => "btn btn-default" %>&nbsp;
-	    		<%= link_to "Cancel", :back %>
+			<td><h3>Add friends</h3></td>
+			<td><h3>Remove attendees</h3></td>
+	    </tr>
+	    <tr>
+			<td valign=top width="50%">
+			    <table class="table">
+			    	<th>select</th>
+			    	<th>First name</th>
+			    	<th>Last name</th>
+				    <% @users.each do |user| %>
+				    	<% if user.id != current_user.id then %>
+				    	<tr style="background-color:<%= cycle('#EEE', '#FFF') -%>"> 
+				    		<td width=10><input type=checkbox value=<%=user.id%> name="friend_ids[]"></td>
+				    		<td width=40><%= user.first_name %></td>
+				    		<td width=40><%= user.last_name %></td>
+				    	</tr>
+					    <% end %>
+				    <% end %>
+				</table>
+			</td>
+			<td valign=top width="50%">
+			    <table class="table " >
+			    	<th>select</th>
+			    	<th>First name</th>
+			    	<th>Last name</th>
+			    	<% reset_cycle %>
+				    <% @attendees.each do |attendee| %>
+			  			<tr style="background-color:<%= cycle('#EEE', '#FFF') -%>"> 
+				    		<td width=10>
+				    			<% if attendee.id != current_user.id then %><input type=checkbox value=<%=attendee.id%> name="attendee_ids[]"><% else %>[you]<% end %></td>
+				    		<td width=40><%= attendee.first_name %></td>
+				    		<td width=40><%= attendee.last_name %></td>
+				    	</tr>
+				    <% end %>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<%= f.submit "Add/remove selected friends", :class => "btn btn-default" %>&nbsp;&nbsp;
+	    		<%= link_to "Cancel", :back %>&nbsp;&nbsp;|&nbsp;
+	    		<%= link_to "Done", "/events" %>
 	    	</td>
 	    </tr>
 	</table>

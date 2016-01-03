@@ -1,8 +1,15 @@
 <%= render "modals" %>
 
-<h3><%= image_tag("event_calendar.jpg", size: "40x40")%> My Event Calendar</h3>
-<%= link_to "<button class='btn btn-primary'>Add Upcoming Event</button>".html_safe, new_event_path, :id=>"add-event-btn" %>
-<button class="btn btn-warning" data-toggle="modal" data-target="#eventModal">Development tasks</button>
+<table>
+  <tr>
+    <td><h3><%= image_tag("event_calendar.jpg", size: "40x40")%> My Event Calendar</h3></td>
+    <td align=right>
+      <%= link_to "<button class='btn btn-primary'>Add Upcoming Event</button>".html_safe, new_event_path, :id=>"add-event-btn" %>
+      <% if current_user.id == 1 then %><button class="btn btn-warning" data-toggle="modal" data-target="#eventModal">Development tasks</button><% end %>
+    </td>
+  </tr>
+</table>
+
 <br>
 <table class=table>
   <thead>
@@ -30,7 +37,9 @@
           <li><%= friend.last_name %> </li>
         <% end %>
       </ul>
-      <%= link_to "Invite friends", edit_event_attendee_path(event.id) %>
+      <% if event.user_id == current_user.id then %>
+        <%= link_to "Edit attendees", edit_event_attendee_path(event.id) %>
+      <% end %>
     </td>
   </tr>
 <% end %>
