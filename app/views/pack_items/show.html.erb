@@ -3,7 +3,6 @@
 <table>
   <tr>
     <td><h1><%= @event.title %></h1> </td>
-    <td><h2><%= pack_event_range(@event.start_date,@event.return_date) %></h2></td>
     <td align=right>
       <button class="btn btn-primary" data-toggle="modal" data-target="#packEvent">Event Details</button>
       <button class="btn btn-primary" onclick="javascript:alert('Choose Facebook/Twitter/Gear Goat (or enter emails) to share with friends/accomplices.')">Share Pack</button>
@@ -15,25 +14,23 @@
 </table>
 <table>
   <tr>
-    <td><h3>Pack details</h3></td>
+    <td><h3><%= pack_name %> pack details</h3></td>
   </tr>
 </table>
 
 <table class=table>
-  <thead>
-  <th align=left>Total pack weight</th>
-  <th align=left>Total worn weight</th>
-  <th align=left>Total delivery weight</th>
-  <th align=left>Pack name</th>
-  <th align=left>Target pack weight</th>
-  <th align=left></th>
-  </thead>
   <tr>
-    <td width="15%"><span style="color:red;font-weight:bold"><%= total_pack_weight %></span></td>
-    <td width="15%"><%= total_wearing_weight %></td>
-    <td width="15%"><%= total_delivery_weight %></td>
-    <td width="15%"><%= pack_name %></td>
-    <td width="15%"><%= target_weight %></td>
+    <td align=center><b>Total pack weight</b></td>
+    <td align=center><b>Target pack weight</b></td>
+    <td align=center><b>Total worn weight</b></td>
+    <td align=center><b>Total delivery weight</b></td>
+    <td align=left></td>
+  </tr>
+  <tr>
+    <td width="15%" align=center><span style="color:red; font-weight:bold; font-size:16pt"><%= total_pack_weight %></span></td>
+    <td width="15%" align=center><%= open_pack_target_weight(@pack) %></td>
+    <td width="15%" align=center><%= total_wearing_weight %></td>
+    <td width="15%" align=center><%= total_delivery_weight %></td>
     <td width="10%"><%= link_to "<button class='btn btn-primary'>Edit pack details</button>".html_safe, edit_pack_path(@pack.first.id) %></td>
   </tr>
 </table>

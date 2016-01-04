@@ -8,7 +8,7 @@ class PackItemsController < ApplicationController
 	end
 	def create
 	  pack_item = PackItem.create(pack_item_params)
-  	  redirect_to pack_path(session[:current_event_id]) 							# event_id in session
+  	  redirect_to pack_item_path(session[:current_event_id])						# event_id in session
 	end
 	def edit
 	  @pack_item = PackItem.find(params[:id])
