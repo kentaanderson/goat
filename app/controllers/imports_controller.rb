@@ -23,7 +23,8 @@ class ImportsController < ApplicationController
 
 	  		 flash[:notice] = "Updated items from inventory!"
 	  	end
-  	  	redirect_to pack_path(event_id)											# event_id in session
+	#  	  redirect_to pack_path(session[:current_event_id])	 							# event_id in session 
+	  	  redirect_to pack_item_path(event_id)	 					# event_id in session 
 	end
 
 end

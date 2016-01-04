@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+	before_action :authenticate_user!
 	def index
 		session[:current_event_id] = 0														# kill the session variable for events
 		@events = current_user.events.all													# where("user_id" => current_user.id)
@@ -7,31 +8,28 @@ class EventsController < ApplicationController
 	  @event = Event.new
 	end
 	def create
-	  p "---------- entered create"
 	  @event = Event.create(event_params)
 	  EventAttendee.create("user_id" => current_user.id, "event_id" => @event.id)			# create the first, uneditable, association
 	  if session[:current_event_id] > 0 then												# if sending page is ... return to that page
-		  redirect_to pack_path(session[:current_event_id])
+	  	  redirect_to pack_item_path(session[:current_event_id])	 						# event_id in session 
 	  else
 		  redirect_to events_path
 	  end
 	end
 	def edit
-	  p "---------- entered edit"
 	  @event = Event.find(params[:id])
 	end
 	def update
-	  p "---------- entered update"
 	  @event = Event.find(params[:id])
 	  @event.update_attributes(event_params)
 	  if session[:current_event_id] > 0 then
-		  redirect_to pack_path(session[:current_event_id])	
+	#  	  redirect_to pack_path(session[:current_event_id])	 								# event_id in session 
+	  	  redirect_to pack_item_path(session[:current_event_id])	 						# event_id in session 
 	  else
 		  redirect_to events_path
 	  end
 	end
 	def destroy
-	  p "---------- entered destroy"
 	  @event = Event.find(params[:id])
 	  @event.destroy
 	  redirect_to events_path	

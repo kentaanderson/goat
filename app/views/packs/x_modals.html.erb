@@ -36,9 +36,9 @@
             <th align=left>Event description</td>
             </thead>
             <tr>
-              <td width="30%"><%= pack_event_title(@event.id) %></td>
+              <td width="30%"><%= Event.find(@event.id).title %></td>
               <td width="30%"><%= pack_event_range %></td>
-              <td width="40%"><%= pack_event_description %></td>
+              <td width="40%"><%= @event.description %></td>
             </tr>
           </table>
         </div>

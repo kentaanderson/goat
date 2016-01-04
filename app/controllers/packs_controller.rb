@@ -1,41 +1,34 @@
 class PacksController < ApplicationController
 	before_action :authenticate_user!
 	def index
-		@events = current_user.events.all
-#		@events = Event.where("user_id" => current_user.id)
+	  @events = current_user.events.all
 	end
+
+	# 1:1 relationship with event_id / user_id, so create or edit = same thing
 	def new
-#	  @pack = Pack.new
-#      session[:current_event_id] = nil
+	  @pack = Pack.new
 	end
 	def create
-	  #pack = Pack.create(pack_params)
-#      session[:current_pack_id] = nil
-  	  #redirect_to packs_path
+	  pack = Pack.create(pack_params)
+  	  redirect_to pack_item_path(session[:current_event_id])
 	end
 	def edit
-	  #@pack = Pack.find(params[:id])
-	end
-	def show
-	  @event = Event.find(params[:id])
-	  @categories = Category.all
-	  session[:current_event_id] = @event.id
+	  @pack = Pack.find(params[:id])
 	end
 	def update
-  	  #@pack = Pack.find(params[:id])
-  	  #@pack.update_attributes(pack_params)
-  	  #redirect_to packs_path	
+  	  @pack = Pack.find(params[:id])
+  	  @pack.update_attributes(pack_params)
+  	  redirect_to pack_item_path(session[:current_event_id])
 	end
 	def destroy
-	  #@pack = Pack.find(params[:id])
-	  #@pack.destroy
-      #session[:current_event_id] = nil						# this may not be necessary - just making sure it's really dead
-   	  #redirect_to packs_path	
+	  @pack = Pack.find(params[:id])
+	  @pack.destroy
+  	  redirect_to pack_item_path(session[:current_event_id])
 	end
 
 end
 private
 
 def pack_params
-#  params.require(:pack).permit(:name, :summary, :event_id, :gear_id, :user_id, :target_weight)
+  params.require(:pack).permit(:name, :summary, :event_id, :gear_id, :user_id, :target_weight)
 end

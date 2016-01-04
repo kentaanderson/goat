@@ -19,8 +19,17 @@ class PackItemsController < ApplicationController
 	  	@pack_item = PackItem.find(params[:id])
 	end
 	def show
-	  @pack_item = PackItem.find(params[:id])
+	  @event = Event.find(params[:id])
 	  @categories = Category.all
+	  session[:current_event_id] = @event.id
+		# if it doesn't yet exist, create Pack 										# This is where the @pack is created/accessed
+	  if Pack.where("event_id" => @event.id, "user_id" => current_user.id).exists? then
+	  	@pack = Pack.where("event_id" => @event.id, "user_id" => current_user.id)
+	  else
+	  	@pack = Pack.create("event_id" => @event.id, "user_id" => current_user.id)
+
+	  end
+
 	end
 
 	def update 																		# update pack_item
@@ -43,14 +52,14 @@ class PackItemsController < ApplicationController
  	  @pack_item = PackItem.find(params[:id])										# get the pack_item record to be updated
  	  @pack_item.update_attributes(pack_item_params)								# update the pack_item record with the form data elements
  	  @pack_item.update_attribute(:gear_id, gear_id)								# update the gear_id field separately (can't seem to update the params list)
-  	  redirect_to pack_path(session[:current_event_id]) 							# event_id in session
+  	  redirect_to pack_item_path(session[:current_event_id])	 					# event_id in session 
   	  flash[:notice] = "Item added to pack!"
 	end
 
 	def destroy
 	  @pack_item = PackItem.find(params[:id])
 	  @pack_item.destroy
-  	  redirect_to pack_path(session[:current_event_id])	 							# event_id in session 
+  	  redirect_to pack_item_path(session[:current_event_id])	 					# event_id in session 
 	end
 end
 private

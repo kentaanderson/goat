@@ -1,4 +1,5 @@
 class EventAttendeesController < ApplicationController
+	before_action :authenticate_user!
 	def index
 #		@events = current_user.events.all 											# list available events to select for adding
 #		session[:current_event_id] = nil											# kill event_id in session
