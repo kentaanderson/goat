@@ -5,7 +5,8 @@
     <td><h1><%= @event.title %></h1> </td>
     <td align=right>
       <button class="btn btn-primary" data-toggle="modal" data-target="#packEvent">Event Details</button>
-      <button class="btn btn-primary" onclick="javascript:alert('Choose Facebook/Twitter/Gear Goat (or enter emails) to share with friends/accomplices.')">Share Pack</button>
+      <!--<button class="btn btn-primary" onclick="javascript:alert('Choose Facebook/Twitter/Gear Goat (or enter emails) to share with friends/accomplices.')">Share Pack</button>-->
+      <%= link_to "<button class='btn btn-primary'>Share Pack</button>".html_safe, virtual_pack_path + "?id=" + @event.id.to_s + "&u=" + current_user.id.to_s %>
       <button class="btn btn-primary" onclick="javascript:alert('Choose Gear Goat friends/events to compare packs (including self/previous packs)')">Compare</button>
       <button class="btn btn-primary" onclick="javascript:alert('Print picklist')">Print Picklist</button>
       <% if current_user.id == 1 then %><button class="btn btn-warning" data-toggle="modal" data-target="#packItem">Development tasks</button><% end %>

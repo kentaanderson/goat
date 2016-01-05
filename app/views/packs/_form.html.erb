@@ -17,10 +17,10 @@
     <div class="col-md-2">What is your "target" carrying pack weight for this trip?</div>
     <div class="col-md-4"><%= f.text_field :target_weight, :size=>"10" %> lbs</div>
   </div>
-  <div class="col-md-2">
+  <div class="col-md-4">
     <%= f.hidden_field(:user_id, :value => current_user.id) %>
     <%= f.hidden_field(:event_id, :value => session[:current_event_id]) %>
-        <%= f.submit "Add details to pack", :class => "btn btn-default" %>&nbsp;
+        <%= f.submit "Add details to pack", :class => "btn btn-primary" %>&nbsp;
         <%= link_to "Cancel", :back %>
   </div>
 <% end %>

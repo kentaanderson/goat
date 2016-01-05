@@ -6,6 +6,8 @@ class EventsController < ApplicationController
 	end
 	def new
 	  @event = Event.new
+	session[:current_event_id] = 0														# kill the session variable for events
+
 	end
 	def create
 	  @event = Event.create(event_params)
