@@ -1,7 +1,6 @@
 class GearsController < ApplicationController
 	before_action :authenticate_user!
 	def index
-#		@gears = Gear.where("user_id" => current_user.id)
 		@categories = Category.all
 	end
 	def new

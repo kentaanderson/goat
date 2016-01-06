@@ -1,7 +1,7 @@
 class PacksController < ApplicationController
 	before_action :authenticate_user!
 	def index
-	  @events = current_user.events.all
+	  @events = current_user.events.all.order(start_date: :desc)
 	end
 
 	# 1:1 relationship with event_id / user_id, so create or edit = same thing

@@ -14,10 +14,10 @@ class VirtualPacksController < ApplicationController
 	@categories = Category.all
 
 	if Pack.where("event_id" => event_id, "user_id" => user_id).exists? then
-		@pack = Pack.where("event_id" => event_id, "user_id" => user_id)			
+		@pack = Pack.where("event_id" => event_id, "user_id" => user_id).order("upper(name)")			
 	else
 		Pack.create("event_id" => event_id, "user_id" => user_id)					
-		@pack = Pack.where("event_id" => event_id, "user_id" => user_id)			
+		@pack = Pack.where("event_id" => event_id, "user_id" => user_id).order("upper(name)")	
 	end
   end
 

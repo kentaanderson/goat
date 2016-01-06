@@ -3,7 +3,7 @@ class ImportsController < ApplicationController
 	def import
 		# need gear_category
 		@import = Import.new
-		@gears = Gear.where("user_id" => current_user.id)
+		@gears = Gear.where("user_id" => current_user.id).order("upper(name)")
 		@categories = Category.all
 	end
 	def create

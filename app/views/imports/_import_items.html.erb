@@ -19,7 +19,7 @@
 	      <div id="collapse<%= category.id %>" class="panel-collapse collapse in">
 	        <div class="panel-body"> <!-- originally "panel-body" -->
 	          <table class="table table-striped">
-		      <% if gear_by_category(category.id).length > 0 then%>
+		      <% if gears_by_category(category.id).length > 0 then%>
 				<th style="background-color:white">Select</th>
 				<th style="background-color:white">Name</th>
 				<th style="background-color:white">Manufacturer</th>
@@ -30,7 +30,7 @@
 		      <% else %>
 					<tr><td width="100%">No <%= category.category_name %> items found in inventory</td></tr>
 		      <% end %>
-		      <% gear_by_category(category.id).each do |gear| %>
+		      <% gears_by_category(category.id).each do |gear| %>
 		        <tr style="background-color:<%= cycle('#EEE', '#FFF') -%>">           
 					<td width="5%"><%= check_box_tag "gear_id[]", gear.id %></td>
 				  	<td width="25%"><%= gear.name %></td>
@@ -49,7 +49,6 @@
 	<%= f.hidden_field(:user_id, :value => current_user.id) %>
     <%= f.submit "Add selected items", :class => "btn btn-default" %>&nbsp;
     <%= link_to "Cancel".html_safe, :back %>
-    <%#= link_to "<button class='btn btn-danger'>Cancel</button>".html_safe, :back %>
 </div>
 
 

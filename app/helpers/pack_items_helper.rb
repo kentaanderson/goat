@@ -1,6 +1,6 @@
 module PackItemsHelper
 
- def pack_event_range(event_start_date,event_return_date)                                     # returns a formatted string of the date range for an event_id 
+ def pack_event_range(event_start_date,event_return_date)  # returns a formatted string of the date range for an event_id 
 
       if event_start_date.is_a?(Date) then                 # If start_date is legit, then parse it
         event_start_date = event_start_date.strftime("%m/%d/%Y").to_s + " - "
@@ -83,7 +83,6 @@ module PackItemsHelper
       @pack.first.target_weight.to_s + " lbs"
     else
       "n/a"
-      #"<button class='btn btn-primary' data-toggle='modal' data-target='#packTargetWeight'>Target Weight</button>".html_safe
     end
   end 
 
@@ -92,7 +91,7 @@ module PackItemsHelper
   end
 
   def pack_items_by_category(category_id)
-    @pack_items = PackItem.where("event_id" => @event.id, "category_id" => category_id)
+      @pack_items = PackItem.where("event_id" => @event.id, "category_id" => category_id).order("upper(name)")
   end
 
   def pack_weight_by_category(category_id)
@@ -113,6 +112,4 @@ private
       @total_weight = @pounds_weight.to_i.to_s + " lbs, " + @ounces_weight.to_i.to_s + " oz"
 
   end
-
-
 end

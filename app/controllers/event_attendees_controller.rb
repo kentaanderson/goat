@@ -15,27 +15,28 @@ class EventAttendeesController < ApplicationController
 			attendees << user.id
 		end
 		@users = User.all.where('id NOT IN (?)',attendees) 	# for adding			# where not in @attendees, list available users
-
 	end
 
 	def create 
 
 		friend_ids = params["friend_ids"]
-		friend_ids.each do |friend_id|
-			dup = EventAttendee.exists?(user_id: friend_id, event_id: session[:current_event_id])
-			if not dup then															# if no duplicates, then add the ids
-				EventAttendee.create("user_id" => friend_id, "event_id" => session[:current_event_id])			
+		if friend_ids then
+			friend_ids.each do |friend_id|
+				dup = EventAttendee.exists?(user_id: friend_id, event_id: session[:current_event_id])
+				if not dup then															# if no duplicates, then add the ids
+					EventAttendee.create("user_id" => friend_id, "event_id" => session[:current_event_id])			
+				end
 			end
 		end
-
 		attendee_ids = params["attendee_ids"]										# remove selected attendees
-		attendee_ids.each do |attendee_id|
-			if EventAttendee.exists?(user_id: attendee_id, event_id: session[:current_event_id]) then
-				@event_attendee = EventAttendee.where("user_id" => attendee_id, "event_id" => session[:current_event_id])			
-				@event_attendee.delete(@event_attendee.first.id)
+		if attendee_ids then
+			attendee_ids.each do |attendee_id|
+				if EventAttendee.exists?(user_id: attendee_id, event_id: session[:current_event_id]) then
+					@event_attendee = EventAttendee.where("user_id" => attendee_id, "event_id" => session[:current_event_id])			
+					@event_attendee.delete(@event_attendee.first.id)
+				end
 			end
 		end
-
 		redirect_to edit_event_attendee_path(session[:current_event_id])	# return to this page to check results
 	end
 
