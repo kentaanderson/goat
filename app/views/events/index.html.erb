@@ -1,4 +1,5 @@
 <%= render "modals" %>
+
 <table>
   <tr>
     <td><h3><%= image_tag("event_calendar.jpg", size: "40x40")%> My Event Calendar</h3></td>
@@ -22,16 +23,14 @@
 </thead>
 <% @events.each do |event| %>
   <tr style="background-color:<%= cycle('#EEE', '#FFF') -%>"> 
-    <td width="5%"><% if event.user_id == current_user.id then %><%= link_to image_tag("x_mark_red.png",size: "12x12"), event, method: :delete, data: { confirm: 'Are you sure you want to delete this event? This action cannot be undone.' } %><% end %></td>
+
+    <td width="5%"><%= link_to image_tag("x_mark_red.png",size: "12x12"), event, method: :delete, data: { confirm: 'Are you sure you want to delete this event? This action cannot be undone.' } %></td>
+
   	<td width="20%" valign="top"><%= link_to event.title, edit_event_path(event.id) %></td>
     <td width="15%" valign="top"><%= pack_event_range(event.start_date,event.return_date) %></td>
-  	<td width="30%" valign="top"><%= event.description %></td>
-    <td width="5%" valign="top">
-      <% if event.map_url.length > 0 then %>
-        <a href="javascript:window.open('<%= event.map_url %>')">Map</a>
-      <% end %>
-    </td>
-    <td width="5%" valign="top"><%= if event.sharing_status == 1 then "Private" else "Public" end %></td>
+  	<td width="20%" valign="top"><%= event.description %></td>
+    <td width="10%" valign="top"><%= event.map_url %></td>
+    <td width="10%" valign="top"><%= if event.sharing_status == 1 then "Private" else "Public" end %></td>
     <td width="20%" valign="top">
       <ul>
         <% event.users.each do |friend| %>
