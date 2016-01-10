@@ -28,13 +28,13 @@
 
   	<td width="20%" valign="top"><%= link_to event.title, edit_event_path(event.id) %></td>
     <td width="15%" valign="top"><%= pack_event_range(event.start_date,event.return_date) %></td>
-  	<td width="20%" valign="top"><%= event.description %></td>
-    <td width="10%" valign="top">
-      <% if event.map_url then %>
+  	<td width="30%" valign="top"><%= event.description %></td>
+    <td width="5%" valign="top">
+      <% if event.map_url.length > 3 then %>
         <a href="javascript:window.open('<%= event.map_url %>')">Map</a>
       <% end %>
     </td>
-    <td width="10%" valign="top"><%= if event.sharing_status == 1 then "Private" else "Public" end %></td>
+    <td width="5%" valign="top"><%= if event.sharing_status == 1 then "Private" else "Public" end %></td>
     <td width="20%" valign="top">
       <ul>
         <% event.users.each do |friend| %>

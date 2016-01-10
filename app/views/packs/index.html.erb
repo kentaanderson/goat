@@ -16,8 +16,7 @@
 <% @events.each do |event| %>
   <tr style="background-color:<%= cycle('#EEE', '#FFF') -%>">
     <td width="10%">
-      <%= link_to image_tag("x_mark_red.png",size: "12x12"), event, method: :delete, data: { confirm: 'Are you sure you want to delete this event? This action cannot be undone.' }  %>
-      &nbsp;<%= link_to image_tag("edit_icon.png",size: "14x14"), edit_event_path(event.id) %>
+      <% if event.user_id == current_user.id then %><%= link_to image_tag("x_mark_red.png",size: "12x12"), event, method: :delete, data: { confirm: 'Are you sure you want to delete this event? This action cannot be undone.' } %>&nbsp;<%= link_to image_tag("edit_icon.png",size: "14x14"), edit_event_path(event.id) %><% end %>
     </td>
 
 <!--  	<td width="30%"><%#= link_to event.title, pack_path(event.id) %></td>-->
