@@ -73,8 +73,8 @@ module PackItemsHelper
       @pack_items = PackItem.where("event_id" => @event.id, "category_id" => category_id, "user_id" => user_id).order("upper(name)") 
   end
 
-  def pack_weight_by_category(category_id)
-    @pack_items = PackItem.where("event_id" => @event.id, "category_id" => category_id, "user_id" => current_user.id)   # are we missing the user_id filter here, though?
+  def pack_weight_by_category(category_id, user_id)
+    @pack_items = PackItem.where("event_id" => @event.id, "category_id" => category_id, "user_id" => user_id)   # are we missing the user_id filter here, though?
     @category_weight = 0
     if @pack_items.length > 0 then
       @pack_items.each do |item|

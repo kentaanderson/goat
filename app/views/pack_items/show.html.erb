@@ -47,7 +47,7 @@
         <table>
           <tr>
             <td><h4 class="panel-default"><%= category.category_name %></h4></td>
-            <td align=right><h4><%= pack_weight_by_category(category.id) %></h4></td>
+            <td align=right><h4><%= pack_weight_by_category(category.id, current_user.id) %></h4></td>
           </tr>
         </table>
         </div>

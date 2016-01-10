@@ -15,12 +15,13 @@
     <% end %>
   </tr>
   <% @categories.each do |category|%>
-    <tr>
-      <td colspan=<%= dbags %> class="td btn-primary"><span style="font-weight:bold"><%= category.category_name %></span></td>
+    <tr class="tr btn-primary">
+      <td colspan=<%= dbags %>><span style="font-weight:bold"><%= category.category_name %></span></td>
     </tr>
     <tr>
       <% @event_attendees.each do |attendee| %>
-      <td>
+      <td align=center>
+          <b><%= pack_weight_by_category(category.id, attendee.user.id) %></b>
          <table class="table">
           <% reset_cycle %>
           <% pack_items_by_category(category.id, attendee.user.id).each do |item| %>
