@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151227062454) do
+ActiveRecord::Schema.define(version: 20160109222803) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "category_name"
@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 20151227062454) do
     t.integer  "delivery",      default: 0, null: false
     t.integer  "inventory",     default: 0, null: false
     t.string   "year_acquired"
+    t.integer  "pack_id"
   end
 
   create_table "packs", force: :cascade do |t|
@@ -115,9 +116,6 @@ ActiveRecord::Schema.define(version: 20151227062454) do
     t.string   "first_name"
     t.string   "last_name"
   end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
   create_table "views", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

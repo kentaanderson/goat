@@ -3,6 +3,7 @@
     <div class="col-md-2">Name this pack:</div>
     <div class="col-md-4"><%= f.text_field :name %></div>
   </div>
+<br>
 <!--
    <div class="row">
     <div class="col-md-2"><%#= f.label "Event" %></div>
@@ -13,10 +14,12 @@
     <div class="col-md-2">How would you summarize this pack?</div>
     <div class="col-md-4"><%= f.text_area :summary, size: '60x4' %></div>
   </div>
+<br>
   <div class="row">
     <div class="col-md-2">What is your "target" carrying pack weight for this trip?</div>
     <div class="col-md-4"><%= f.text_field :target_weight, :size=>"10" %> lbs</div>
   </div>
+<br>
   <div class="col-md-4">
     <%= f.hidden_field(:user_id, :value => current_user.id) %>
     <%= f.hidden_field(:event_id, :value => session[:current_event_id]) %>

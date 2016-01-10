@@ -5,7 +5,7 @@ class PackItemsController < ApplicationController
 	def new
 	  @pack_item = PackItem.new
 	  @category_id = params[:category_id]
-	end
+	end	
 	def create
 	  pack_item = PackItem.create(pack_item_params)
   	  redirect_to pack_item_path(session[:current_event_id])						# event_id in session
@@ -19,15 +19,16 @@ class PackItemsController < ApplicationController
 	  	@pack_item = PackItem.find(params[:id])
 	end
 	def show
+
 	  @event = Event.find(params[:id])
 	  @categories = Category.all
-	  session[:current_event_id] = @event.id
-		# if it doesn't yet exist, create Pack 										# This is where the @pack is created/accessed
-	  if Pack.where("event_id" => @event.id, "user_id" => current_user.id).exists? then
-	  	@pack = Pack.where("event_id" => @event.id, "user_id" => current_user.id)
-	  else
-	  	@pack = Pack.create("event_id" => @event.id, "user_id" => current_user.id)
+	  session[:current_event_id] = @event.id 										# MIGHT NOT NEED THIS IF PACK_ID APPROACH PANS OUT
+	  pack_where = Pack.where("event_id" => @event.id, "user_id" => current_user.id)# lookup pack_id 
 
+	  if pack_where.exists? then													# This is where the @pack is created/accessed
+	  	@pack = Pack.find(pack_where.first.id)
+	  else
+	  	@pack = Pack.create("event_id" => @event.id, "user_id" => current_user.id, "name" => "")	# create new pack, then get newly created pack_id
 	  end
 
 	end
@@ -54,6 +55,17 @@ class PackItemsController < ApplicationController
  	  @pack_item.update_attribute(:gear_id, gear_id)								# update the gear_id field separately (can't seem to update the params list)
   	  redirect_to pack_item_path(session[:current_event_id])	 					# event_id in session 
   	  flash[:notice] = "Item added to pack!"
+	end
+
+	def compare
+		@event = Event.find(session[:current_event_id])
+#  	  event_id = Event.find(params[:id]).id											# get the event_id for the event to compare
+ 	  # no security here other than this. Is this enough?
+# 	  	if EventAttendee.where("event_id" => event_id, "user_id" => current_user.id).exists? then
+ 	  	@event_attendees = EventAttendee.where("event_id" => @event.id)
+#	 	else
+	 		# you do not have permission to view this event.
+#	 	end
 	end
 
 	def destroy
