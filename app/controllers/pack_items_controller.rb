@@ -16,7 +16,7 @@ class PackItemsController < ApplicationController
 	end
 	def import
 		@gears = Gear.where("user_id" => current_user.id) 
-	  	@pack_item = PackItem.find(params[:id])
+	  	@pack_item = PackItem.find(params[:id])										# not sure what this is for, anymore
 	end
 	def show
 
@@ -59,10 +59,11 @@ class PackItemsController < ApplicationController
 
 	def compare
 		@event = Event.find(session[:current_event_id])
+ 	  	@event_attendees = EventAttendee.where("event_id" => @event.id)
+	  	@categories = Category.all
 #  	  event_id = Event.find(params[:id]).id											# get the event_id for the event to compare
  	  # no security here other than this. Is this enough?
 # 	  	if EventAttendee.where("event_id" => event_id, "user_id" => current_user.id).exists? then
- 	  	@event_attendees = EventAttendee.where("event_id" => @event.id)
 #	 	else
 	 		# you do not have permission to view this event.
 #	 	end

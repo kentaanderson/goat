@@ -25,9 +25,10 @@ module PackItemsHelper
       @category_weight = @category_weight.to_s + " oz"
     end
   end
-  def total_pack_weight
-    # because apparently you can't retrieve NULL values without explicitly asking for them
-    @pack_items = PackItem.where("event_id = ? AND (wearing != 1) AND (delivery != 1) AND user_id = ?", @event.id, current_user.id)
+  def total_pack_weight(user_id)
+    # this requires event_id and user_id because I can't figure out how to use pack_id in this instance. It's not adequately tied back to pack_items yet
+    # used this query format because apparently you can't retrieve NULL values without explicitly asking for them
+    @pack_items = PackItem.where("event_id = ? AND (wearing != 1) AND (delivery != 1) AND user_id = ?", @event.id, user_id)
     @total_weight = 0
 
     if @pack_items.length > 0 then
@@ -68,8 +69,8 @@ module PackItemsHelper
     end
   end 
 
-  def pack_items_by_category(category_id)
-      @pack_items = PackItem.where("event_id" => @event.id, "category_id" => category_id, "user_id" => current_user.id).order("upper(name)")   # are we missing the user_id filter here, though?
+  def pack_items_by_category(category_id, user_id)
+      @pack_items = PackItem.where("event_id" => @event.id, "category_id" => category_id, "user_id" => user_id).order("upper(name)") 
   end
 
   def pack_weight_by_category(category_id)

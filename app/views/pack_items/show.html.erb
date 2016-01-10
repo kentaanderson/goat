@@ -8,7 +8,7 @@
       <!--<button class="btn btn-primary" onclick="javascript:alert('Choose Facebook/Twitter/Gear Goat (or enter emails) to share with friends/accomplices.')">Share Pack</button>-->
       <%#= link_to "<button class='btn btn-primary'>Share Pack</button>".html_safe, virtual_pack_path + "?id=" + @event.id.to_s + "&u=" + current_user.id.to_s %>
       <%= link_to "<button class='btn btn-primary'>Share Pack</button>".html_safe, virtual_pack_path + "?vp=" + @pack.id.to_s %>
-      <button class="btn btn-primary" onclick="javascript:window.open('compare.html.erb')">Compare</button>
+      <%= link_to "<button class='btn btn-primary'>Compare</button>".html_safe, compare_path %>
       <button class="btn btn-primary" onclick="javascript:alert('Print picklist')">Print Picklist</button>
       <% if current_user.id == 1 then %><button class="btn btn-warning" data-toggle="modal" data-target="#packItem">Development tasks</button><% end %>
     </td>
@@ -29,7 +29,7 @@
     <td align=left></td>
   </tr>
   <tr>
-    <td width="15%" align=center><span style="color:red; font-weight:bold; font-size:16pt"><%= total_pack_weight %></span></td>
+    <td width="15%" align=center><span style="color:red; font-weight:bold; font-size:16pt"><%= total_pack_weight(current_user.id) %></span></td>
     <td width="15%" align=center><%= target_weight(@pack.id) %></td>
     <td width="15%" align=center><%= total_wearing_weight %></td>
     <td width="15%" align=center><%= total_delivery_weight %></td>
@@ -54,7 +54,7 @@
         <div id="collapse<%= category.id %>" class="panel-collapse collapse in">
           <div class="panel-body">
             <table class="table table-striped">
-        <% if pack_items_by_category(category.id).length > 0 then%>
+        <% if pack_items_by_category(category.id, current_user.id).length > 0 then%>
           <th style="background-color:white">&nbsp;</th>
           <th style="background-color:white">Name</th>
           <th style="background-color:white">Description</th>
@@ -63,7 +63,7 @@
           <th style="background-color:white">Count</th>
           <% reset_cycle %>
         <% end %>
-        <% pack_items_by_category(category.id).each do |item| %>
+        <% pack_items_by_category(category.id, current_user.id).each do |item| %>
           <%# if item.highlight then                    # come back to this once you figure out how to stripe rows regardless of highlight color %>
           <!-- <tr style="background-color:<%= item.highlight %>;"> -->
           <%# else                              # probably do the highlight by grabbing the row ID and setting it with JS after it has been striped %>
