@@ -6,14 +6,13 @@ class VirtualPacksController < ApplicationController
   def show
 
 	pack_id = params[:vp]
-
 	@pack = Pack.find(pack_id)
+	@user_id = @pack.user_id
 	# make this automatic with model associations then you can call "@pack.event..."
 	@event = Event.find(@pack.event_id)
 	@categories = Category.all
 
   end
 
-# other view to compare VPs?
 # print picklist
 end

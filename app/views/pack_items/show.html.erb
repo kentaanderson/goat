@@ -31,8 +31,8 @@
   <tr>
     <td width="15%" align=center><span style="color:red; font-weight:bold; font-size:16pt"><%= total_pack_weight(current_user.id) %></span></td>
     <td width="15%" align=center><%= target_weight(@pack.id) %></td>
-    <td width="15%" align=center><%= total_wearing_weight %></td>
-    <td width="15%" align=center><%= total_delivery_weight %></td>
+    <td width="15%" align=center><%= total_wearing_weight(current_user.id) %></td>
+    <td width="15%" align=center><%= total_delivery_weight(current_user.id) %></td>
     <td width="10%"><%= link_to "<button class='btn btn-primary'>Edit pack details</button>".html_safe, edit_pack_path(@pack.id) %></td>
   </tr>
 </table>

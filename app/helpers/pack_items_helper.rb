@@ -41,8 +41,8 @@ module PackItemsHelper
     end
   end 
   
-  def total_wearing_weight
-    @pack_items = PackItem.where("event_id" => @event.id, "wearing" => 1, "user_id" => current_user.id)
+  def total_wearing_weight(user_id)
+    @pack_items = PackItem.where("event_id" => @event.id, "wearing" => 1, "user_id" => user_id)
     @total_weight = 0
 
     if @pack_items.length > 0 then
@@ -55,8 +55,8 @@ module PackItemsHelper
     end
   end 
 
-  def total_delivery_weight
-    @pack_items = PackItem.where("event_id" => @event.id, "delivery" => 1, "user_id" => current_user.id)    # WHERE IS THE FILTER FOR USER_ID? and why does this seem to work without it?
+  def total_delivery_weight(user_id)
+    @pack_items = PackItem.where("event_id" => @event.id, "delivery" => 1, "user_id" => user_id)    
     @total_weight = 0
 
     if @pack_items.length > 0 then
