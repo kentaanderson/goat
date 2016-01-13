@@ -6,17 +6,12 @@ class EventsController < ApplicationController
 	end
 	def new
 	  @event = Event.new
-	session[:current_event_id] = 0															# kill the session variable for events
-
+	  session[:current_event_id] = 0  															# kill the session variable for events
 	end
 	def create
 	  @event = Event.create(event_params)
 	  EventAttendee.create("user_id" => current_user.id, "event_id" => @event.id)			# create the first, uneditable, association
-	  if session[:current_event_id] > 0 then												# if sending page is ... return to that page
-	  	  redirect_to pack_item_path(session[:current_event_id])	 						# event_id in session 
-	  else
-		  redirect_to events_path
-	  end
+	  redirect_to packs_path
 	end
 	def edit
 	  @event = Event.find(params[:id])
@@ -24,18 +19,13 @@ class EventsController < ApplicationController
 	def update
 	  @event = Event.find(params[:id])
 	  @event.update_attributes(event_params)
-	  if session[:current_event_id] > 0 then
-	  	  redirect_to pack_item_path(session[:current_event_id])	 						# event_id in session 
-	  else
-		  redirect_to events_path
-	  end
+	  redirect_to packs_path
 	end
 	def destroy
 	  @event = Event.find(params[:id])
 	  @event.destroy
-	  redirect_to events_path	
+	  redirect_to packs_path	
 	end
-
 	private
 
 	def event_params

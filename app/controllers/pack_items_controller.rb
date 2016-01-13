@@ -9,6 +9,7 @@ class PackItemsController < ApplicationController
 	def create
 	  pack_item = PackItem.create(pack_item_params)
   	  redirect_to pack_item_path(session[:current_event_id])						# event_id in session
+  	  flash[:notice] = "Item created!"
 	end
 	def edit
 	  @pack_item = PackItem.find(params[:id])
@@ -17,6 +18,8 @@ class PackItemsController < ApplicationController
 	def import
 		@gears = Gear.where("user_id" => current_user.id) 
 	  	@pack_item = PackItem.find(params[:id])										# not sure what this is for, anymore
+    	flash[:notice] = "Selected item(s) imported!"
+
 	end
 	def show
 
@@ -54,19 +57,13 @@ class PackItemsController < ApplicationController
  	  @pack_item.update_attributes(pack_item_params)								# update the pack_item record with the form data elements
  	  @pack_item.update_attribute(:gear_id, gear_id)								# update the gear_id field separately (can't seem to update the params list)
   	  redirect_to pack_item_path(session[:current_event_id])	 					# event_id in session 
-  	  flash[:notice] = "Item added to pack!"
+  	  flash[:notice] = "Item updated!"
 	end
 
 	def compare
 		@event = Event.find(session[:current_event_id])
  	  	@event_attendees = EventAttendee.where("event_id" => @event.id)
 	  	@categories = Category.all
-#  	  event_id = Event.find(params[:id]).id											# get the event_id for the event to compare
- 	  # no security here other than this. Is this enough?
-# 	  	if EventAttendee.where("event_id" => event_id, "user_id" => current_user.id).exists? then
-#	 	else
-	 		# you do not have permission to view this event.
-#	 	end
 	end
 
 	def destroy

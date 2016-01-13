@@ -1,31 +1,55 @@
-<h2><%= image_tag("backpack1.png", size: "40x40")%> My Virtual Pack</h2>
-  <p>
-    Packs organize your gear into structured units for portability. The intended use determines the type of pack you design. For instance, a pack designed for backcountry travel is typically oriented toward carrying many items with as little added weight as possible, while car travel has fewer weight considerations. Packs intended for air travel should conform to airline carry-on size and baggage check weight limitations to avoid additional fees. Let Gear Goat help you plan your travel appropriately. Packs are designed for outdoor use, and can be tailored for specific events and difficulty
-  </p>
-    <p><h3>Get started</h3>
-      <%= link_to "<button class='btn btn-primary'>Add a new event</button>".html_safe, new_event_path, :id=>"add-pack-btn" %> 
-      Or select an event below to get started.
-    </p>
+
+<!-- EVENTS INDEX BEGIN -->
+<table>
+  <tr>
+    <td width="70%"><h3><%= image_tag("event_calendar.jpg", size: "40x40")%> My Event Calendar</h3>
+     <!-- <p>Packs organize your gear into structured units for portability. The intended use determines the type of pack you design. For instance, a pack designed for backcountry travel is typically oriented toward carrying many items with as little added weight as possible, while car travel has fewer weight considerations. Packs intended for air travel should conform to airline carry-on size and baggage check weight limitations to avoid additional fees. Let Gear Goat help you plan your travel appropriately. Packs are designed for outdoor use, and can be tailored for specific events and difficulty.</p> -->
+     <br><h4>Get started! </h4>
+      <p>Select an event below to manage the gear in your pack</p>
+    </td>
+    <td align=right valign=middle>
+      <%= link_to "<button class='btn btn-primary'>Add Upcoming Event</button>".html_safe, new_event_path, :id=>"add-event-btn" %>
+      <% if current_user.id == 1 then %><button class="btn btn-warning" data-toggle="modal" data-target="#eventModal">Development tasks</button><% end %>
+    </td>
+  </tr>
+</table>
+
+<br>
 <table class=table>
   <thead>
-	<th align=left></th>
-  <th align=left>Event title</th>
+  <th align=left></th>
+  <th align=left>Title</th>
+  <th align=left>Date Range</th>
   <th align=left>Description</th>
-  <th align=left>Summary</th>
-  </thead>
+  <th align=left>Map</th>
+  <th align=left>Sharing?</th>
+  <th align=left>Attendees</th>
+</thead>
 <% @events.each do |event| %>
-  <tr style="background-color:<%= cycle('#EEE', '#FFF') -%>">
-    <td width="10%">
-      <% if event.user_id == current_user.id then %><%= link_to image_tag("x_mark_red.png",size: "12x12"), event, method: :delete, data: { confirm: 'Are you sure you want to delete this event? This action cannot be undone.' } %>&nbsp;<%= link_to image_tag("edit_icon.png",size: "14x14"), edit_event_path(event.id) %><% end %>
+  <tr style="background-color:<%= cycle('#EEE', '#FFF') -%>"> 
+    <td width="5%"><% if event.user_id == current_user.id then %><%= link_to image_tag("x_mark_red.png",size: "18x18"), event, method: :delete, alt: "DELETE", data: { confirm: 'Are you sure you want to delete this event? This action cannot be undone.' } %>&nbsp;<%= link_to image_tag("edit_icon.png",size: "20x20"), edit_event_path(event.id) %><% end %></td>
+    <td width="20%" valign="top">
+      <%= link_to event.title, pack_item_path(event.id) %>
     </td>
-
-<!--  	<td width="30%"><%#= link_to event.title, pack_path(event.id) %></td>-->
-    <td width="30%"><%= link_to event.title, pack_item_path(event.id) %></td>
-
-    <td width="30%"><%= event.description %></td>
-    <td width="30%"><%= event.summary %></td>
+    <td width="15%" valign="top"><%= pack_event_range(event.start_date,event.return_date) %></td>
+    <td width="35%" valign="top"><%= event.description %></td>
+    <td width="5%" valign="top">
+      <% if event.map_url then %>
+        <a href="javascript:window.open('<%= event.map_url %>')">Map</a>
+      <% end %>
+    </td>
+    <td width="5%" valign="top"><%= if event.sharing_status == 1 then "Private" else "Public" end %></td>
+    <td width="15%" valign="top">
+      <ul>
+        <% event.users.each do |friend| %>
+          <li><%= friend.last_name %> </li>
+        <% end %>
+      </ul>
+      <% if event.user_id == current_user.id then %>
+        <%= link_to "Edit attendees", edit_event_attendee_path(event.id) %>
+      <% end %>
+    </td>
   </tr>
 <% end %>
-
-
 </table>
+<!-- EVENTS INDEX END -->
