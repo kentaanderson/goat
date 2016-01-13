@@ -2,11 +2,11 @@ class EventsController < ApplicationController
 	before_action :authenticate_user!
 	def index
 		session[:current_event_id] = 0														# kill the session variable for events
-		@events = current_user.events.all.order(start_date: :desc)								# where("user_id" => current_user.id)
+		@events = current_user.events.all.order(start_date: :desc)							# equivalent to 'where("user_id" => current_user.id)'
 	end
 	def new
 	  @event = Event.new
-	  session[:current_event_id] = 0  															# kill the session variable for events
+	  session[:current_event_id] = 0  														# kill the session variable for events
 	end
 	def create
 	  @event = Event.create(event_params)
