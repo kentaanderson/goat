@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
 # need to make an "import" model and set resources for it
   get 'imports/import' => 'imports#import'
-  resources :gears, :events, :packs, :pack_items, :imports, :event_attendees
+  resources :gears, :events, :packs, :pack_items, :imports, :event_attendees, :wishlists
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

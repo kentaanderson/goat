@@ -1,0 +1,33 @@
+<%= form_for @wishlist do |f| %>
+  <div class="row">
+    <div class="col-md-2"><%= f.label :category_id %></div>
+    <div class="col-md-4"><%= f.collection_select(:category_id, Category.all, :id, :category_name, include_blank: 'Select a category') %></div>
+  </div>
+  <div class="row">
+    <div class="col-md-2"><%= f.label :name %></div>
+    <div class="col-md-4"><%= f.text_field :name %></div>
+  </div>
+  <div class="row">
+    <div class="col-md-2"><%= f.label :description %></div>
+    <div class="col-md-4"><%= f.text_area :description, size: '60x4' %></div>
+  </div>
+  <div class="row">
+    <div class="col-md-2"><%= f.label :weight_oz %></div>
+    <div class="col-md-4"><%= f.text_field :weight_oz %></div>
+  </div>
+  <div class="row">
+    <div class="col-md-2"><%= f.label :manufacturer %>(combo list later)</div>
+    <div class="col-md-4"><%= f.text_field :manufacturer %></div>
+  </div>
+  <div class="row">
+    <div class="col-md-2"><%= f.label :link %></div>
+    <div class="col-md-4"><%= f.text_field :link %></div>
+  </div>
+  <div class="col-md-2">
+    <%= f.hidden_field(:user_id, :value => current_user.id) %>
+        <%= f.submit "Submit", :class => "btn btn-default" %>&nbsp;
+        <%= link_to "Cancel".html_safe, :back %>
+
+        <%#= link_to "<button class='btn btn-danger'>Cancel</button>".html_safe, :back %>
+  </div>
+<% end %>
