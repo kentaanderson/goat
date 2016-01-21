@@ -1,6 +1,4 @@
 class Pack < ActiveRecord::Base
-  # this could likely be deleted soon
-  belongs_to :user
-  belongs_to :event
-
+  belongs_to :user, :class_name => "Pack" 
+  belongs_to :event, :class_name => "Pack" 
 end
