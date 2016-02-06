@@ -9,7 +9,7 @@ class WishlistsController < ApplicationController
 	def create
 #		p gear_params
 	  @wishlist = Wishlist.create(wishlist_params)
-  	  redirect_to gears_path
+  	  redirect_to wishlists_path
 	end
 	def edit
 	  @wishlist = Wishlist.find(params[:id])
@@ -18,13 +18,13 @@ class WishlistsController < ApplicationController
 	def update
   	  @wishlist = Wishlist.find(params[:id])
   	  @wishlist.update_attributes(wishlist_params)
-  	  redirect_to gears_path	
+  	  redirect_to wishlists_path	
 	end
 
 	def destroy
 	  @wishlist = Wishlist.find(params[:id])
 	  @wishlist.destroy
-  	  redirect_to gears_path	
+  	  redirect_to wishlists_path	
 	end
 
 end
