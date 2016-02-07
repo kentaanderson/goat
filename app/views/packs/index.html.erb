@@ -18,9 +18,10 @@
 <table class=table>
   <thead>
   <th align=left></th>
-  <th align=left>Title</th>
+  <th align=left>Event Title</th>
   <th align=left>Date Range</th>
   <th align=left>Description</th>
+  <th align=left>Pack Name</th>
   <th align=left>Map</th>
   <th align=left>Sharing?</th>
   <th align=left>Attendees</th>
@@ -32,7 +33,8 @@
       <%= link_to event.title, pack_item_path(event.id) %>
     </td>
     <td width="15%" valign="top"><%= pack_event_range(event.start_date,event.return_date) %></td>
-    <td width="35%" valign="top"><%= event.description %></td>
+    <td width="25%" valign="top"><%= event.description %></td>
+    <td width="15%" valign="top"><%= pack_name_event(event.id) %></td>
     <td width="5%" valign="top">
       <% if event.map_url then %>
         <a href="javascript:window.open('<%= event.map_url %>')">Map</a>

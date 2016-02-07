@@ -18,6 +18,7 @@
   <th align=left>Date Range</th>
 	<th align=left>Description</th>
 	<th align=left>Map</th>
+  <th align=left>Pack Name</th>
   <th align=left>Sharing?</th>
   <th align=left>Attendees</th>
 </thead>
@@ -40,6 +41,7 @@
         <a href="javascript:window.open('<%= event.map_url %>')">Map</a>
       <% end %>
     </td>
+    <td width="5%" valign="top"><%= event.pack.name %></td>
     <td width="5%" valign="top"><%= if event.sharing_status == 1 then "Private" else "Public" end %></td>
     <td width="20%" valign="top">
       <ul>
