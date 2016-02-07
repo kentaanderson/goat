@@ -4,7 +4,13 @@ class ImportsController < ApplicationController
 		# need gear_category
 		@import = Import.new
 		@gears = Gear.where("user_id" => current_user.id).order("upper(name)")
-		@categories = Category.all
+		@category = Category.find(params[:category_id])
+	end
+	def import_pack
+		# need gear_category
+		@import = Import.new
+		@gears = Gear.where("user_id" => current_user.id).order("upper(name)")
+		@category = Category.find(params[:category_id])
 	end
 	def create
 		event_id = session[:current_event_id]									# need event_id

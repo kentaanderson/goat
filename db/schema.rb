@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160115213851) do
+ActiveRecord::Schema.define(version: 20160207194626) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "category_name"
@@ -94,9 +94,10 @@ ActiveRecord::Schema.define(version: 20160115213851) do
     t.integer  "event_id"
     t.string   "name"
     t.string   "summary"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.decimal  "target_weight"
+    t.integer  "sharing_status", default: 2, null: false
   end
 
   create_table "users", force: :cascade do |t|

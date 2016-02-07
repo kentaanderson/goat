@@ -20,6 +20,11 @@
     <div class="col-md-4"><%= f.text_field :target_weight, :size=>"10" %> lbs</div>
   </div>
 <br>
+  <div class="row">
+    <div class="col-md-2">Would you like to share the contents of this pack?</div>
+    <div class="col-md-4"><%= f.select(:sharing_status, {"Private" => 1, "Public" => 2}) %></div>
+  </div>
+<br>
   <div class="col-md-4">
     <%= f.hidden_field(:user_id, :value => current_user.id) %>
     <%= f.hidden_field(:event_id, :value => session[:current_event_id]) %>

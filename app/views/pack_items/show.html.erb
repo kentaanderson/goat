@@ -81,8 +81,8 @@
               <tr style="background-color:white">
                 <td colspan=6>
                   <%= link_to "Add New Item", new_pack_item_path(category_id: category.id) %>&nbsp;|&nbsp;
-                  <%= link_to "Add Items From Inventory", imports_import_path %>&nbsp;|&nbsp;
-                  <%= link_to "Add Items From Another Pack", "javascript:alert('Open Pack Select List');".html_safe %>
+                  <%= link_to "Add " + category.category_name + " Items From Inventory", imports_import_path(category_id: category.id) %>&nbsp;|&nbsp;
+                  <%= link_to "Add " + category.category_name + " Items From Another Pack", imports_import_pack_path(category_id: category.id) %>
                 </td>
               </tr>
         </table>
