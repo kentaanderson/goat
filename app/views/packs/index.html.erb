@@ -44,7 +44,7 @@
     <td width="15%" valign="top">
       <ul>
         <% event.users.each do |friend| %>
-          <li><%= friend.last_name %> </li>
+          <li><%= friend.first_name.first %>. <%= friend.last_name %> </li>
         <% end %>
       </ul>
       <% if event.user_id == current_user.id then %>
