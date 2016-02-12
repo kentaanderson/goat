@@ -43,7 +43,6 @@
     <td width="5%" valign="top"><%= if event.sharing_status == 1 then "Private" else "Public" end %></td>
     <td width="15%" valign="top">
       <ul>
-        <%# event.users.sort_by{|e| e[:last_name]}%>
         <% event.users.sort_by{|e| e[:last_name]}.each do |friend| %>
           <li><%= friend.first_name.first %>. <%= friend.last_name %> </li>
         <% end %>

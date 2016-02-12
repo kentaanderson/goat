@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :views
-  devise_for :users
+#  devise_for :views
+  devise_for :users, :views, controllers: { registrations: "users/registrations" }
 
 # need to make an "import" model and set resources for it
   get 'imports/import' => 'imports#import'
