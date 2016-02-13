@@ -1,5 +1,6 @@
 class GearsController < ApplicationController
 	before_action :authenticate_user!
+	before_action :check_category
 	def index
 		@categories = Category.all
 	end
@@ -34,4 +35,8 @@ def gear_params
   params.require(:gear).permit(:name, :description, :weight_oz, :year_acquired, :category_id, :manufacturer, :user_id)
 end
 
-
+def check_category
+  if params[:category_id] then		# if category_id is not nil, then put it in the session variable 
+  	session[:current_category_id] = params[:category_id]
+  end
+end

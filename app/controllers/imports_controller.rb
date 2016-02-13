@@ -1,5 +1,7 @@
 class ImportsController < ApplicationController
 	before_action :authenticate_user!
+	before_action :check_category
+
 	def import
 		# need gear_category
 		@import = Import.new
@@ -39,4 +41,10 @@ private
 
 def import_params
   params.require(:import).permit(:user_id, :event_id, gear_id: [])
+end
+
+def check_category
+  if params[:category_id] then		# if category_id is not nil, then put it in the session variable 
+  	session[:current_category_id] = params[:category_id]
+  end
 end

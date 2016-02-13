@@ -1,5 +1,7 @@
 class PackItemsController < ApplicationController
 	before_action :authenticate_user!
+	before_action :check_category
+
 	def index
 	end
 	def new
@@ -27,6 +29,10 @@ class PackItemsController < ApplicationController
 	  @categories = Category.all
 	  session[:current_event_id] = @event.id 										# MIGHT NOT NEED THIS IF PACK_ID APPROACH PANS OUT
 	  pack_where = Pack.where("event_id" => @event.id, "user_id" => current_user.id)# lookup pack_id 
+
+	  if params[:c] then		# if category_id is not nil, then put it in the session variable 
+	  	session[:current_category_id] = params[:c]
+	  end
 
 	  if pack_where.exists? then													# This is where the @pack is created/accessed
 	  	@pack = Pack.find(pack_where.first.id)
@@ -78,3 +84,8 @@ def pack_item_params
   params.require(:pack_item).permit(:name, :description, :weight_oz, :year_acquired, :category_id, :manufacturer, :user_id, :event_id, :gear_id, :post_summary, :highlight, :wearing, :delivery, :pack_id, :item_count, :inventory)
 end
 
+def check_category
+  if params[:category_id] then		# if category_id is not nil, then put it in the session variable 
+  	session[:current_category_id] = params[:category_id]
+  end
+end
