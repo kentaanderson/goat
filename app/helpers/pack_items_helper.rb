@@ -9,7 +9,7 @@ module PackItemsHelper
     @category_weight = 0
     if @pack_items.length > 0 then
       @pack_items.each do |item|
-        @category_weight += item.weight_oz.to_fs
+        @category_weight += item.weight_oz.to_d
       end
       @category_weight = @category_weight.to_s + " oz"
     end
@@ -20,7 +20,7 @@ module PackItemsHelper
     @category_weight = 0
     if @pack_items.length > 0 then
       @pack_items.each do |item|
-        @category_weight += item.weight_oz.to_f
+        @category_weight += item.weight_oz.to_d
       end
       @category_weight = @category_weight.to_s + " oz"
     end
@@ -33,7 +33,7 @@ module PackItemsHelper
 
     if @pack_items.length > 0 then
       @pack_items.each do |item|
-        @total_weight += item.weight_oz.to_f
+        @total_weight += item.weight_oz.to_d
       end
       ounces_to_lbs(@total_weight)
     else
@@ -47,7 +47,7 @@ module PackItemsHelper
 
     if @pack_items.length > 0 then
       @pack_items.each do |item|
-        @total_weight += item.weight_oz.to_f
+        @total_weight += item.weight_oz.to_d
       end
       ounces_to_lbs(@total_weight)
     else
@@ -61,7 +61,7 @@ module PackItemsHelper
 
     if @pack_items.length > 0 then
       @pack_items.each do |item|
-        @total_weight += item.weight_oz.to_f
+        @total_weight += item.weight_oz.to_d
       end
       ounces_to_lbs(@total_weight)
     else
