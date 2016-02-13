@@ -78,7 +78,7 @@ module PackItemsHelper
     @category_weight = 0
     if @pack_items.length > 0 then
       @pack_items.each do |item|
-        @category_weight += item.weight_oz.to_f
+        @category_weight += item.weight_oz.to_d
       end
       @category_weight = @category_weight.to_s + " oz"
     end
