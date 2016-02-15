@@ -56,3 +56,4 @@ gem 'quiet_assets'
 
 gem 'devise'
 
+# gem 'mail'
