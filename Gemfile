@@ -56,4 +56,6 @@ gem 'quiet_assets'
 
 gem 'devise'
 
-# gem 'mail'
+# gem 'omniauth-facebook'
+
+gem 'figaro'

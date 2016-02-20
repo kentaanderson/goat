@@ -20,13 +20,17 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000}
 
+  config.action_mailer.delivery_method = :smtp
+  
+  # this method requires "Access for less secure apps" to be turned on for Google account
+  # https://www.google.com/settings/security/lesssecureapps
   config.action_mailer.smtp_settings = {
-   :address              => "smtp.gmail.com",
+   :address              => 'smtp.gmail.com',
    :port                 => 587,
    :domain               => 'gmail.com',
-   :user_name            => 'gear.goat.email@gmail.com',
-   :password             => 'sp!cYmonak!ta',
-   :authentication       => :login, # :plain
+   :user_name            => ENV['gmail_username'],
+   :password             => ENV['gmail_password'],
+   :authentication       => 'plain', # :plain OR # :login
    :enable_starttls_auto => true  }
 
   # Print deprecation notices to the Rails logger.
