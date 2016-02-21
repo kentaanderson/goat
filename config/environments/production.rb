@@ -77,10 +77,10 @@ config.action_mailer.smtp_settings = {
   domain: "mighty-everglades-9687.herokuapp.com",
   authentication: "plain",
   enable_starttls_auto: true,
-   :user_name            => ENV['gmail_username'],
-   :password             => ENV['gmail_password']
-#  user_name: ENV["GMAIL_USERNAME"],  # currently set in heroku ENVT as "gear.goat.email@gmail.com"
-#  password: ENV["GMAIL_PASSWORD"]    # not set in heroku
+#   :user_name            => ENV['gmail_username'],
+#   :password             => ENV['gmail_password']
+  user_name: ENV["GMAIL_USERNAME"],  # currently set in heroku ENVT as "gear.goat.email@gmail.com"
+  password: ENV["GMAIL_PASSWORD"]    # not set in heroku
 }
   
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
