@@ -1,28 +1,16 @@
-
 <table width="100%">
   <tr>
-    <td valign=top align=left width="40%">
-      <h1>Welcome to Gear Goat! <%= image_tag("goat.jpg", size: "80x80") %></h1>      
-    </td>
-    <td valign=top align=left>
-      <h3>Get Started!</h3>
-        <table class=table width="100%">
+    <td valign=top align=left colspan=2>
+      <h3>Get started with Gear Goat!</h3>
+        <table class=table width="90%">
           <tr>
-            <td width="25%"><b><%= link_to "Inventory", gears_path %></b><br>How much gear do you really have? How much is it weighing you down? How old is it? Target new gear with wishlists.</td>
-            <td width="25%"><b><%= link_to "Plan", packs_path %></b><br>Organize your gear in a Virtual Pack while you plan your trip. Streamline for optimal weight/utlity ratio.</td>
-            <td width="25%"><b><%= link_to "Coordinate", "#" %></b><br>What's in your companion's Virtual Pack? Coordinate shared items and identify complementary gear.</td>
-            <td width="25%"><b><%= link_to "Pack", "#" %></b><br>Finally, print a checklist of gear to ensure you pack everything. </td>
+            <td width="12%" valign=top><%= image_tag("goat.jpg", size: "80x80") %></td>
+            <td width="22%" valign=top><b><%= link_to "Inventory", gears_path %></b><br>How much gear do you really have? How much is it weighing you down? How old is it? Target new gear with wishlists.</td>
+            <td width="22%" valign=top><b><%= link_to "Plan", packs_path %></b><br>Organize your gear in a Virtual Pack while you plan your trip. Streamline for optimal weight/utlity ratio.</td>
+            <td width="22%" valign=top><b><%= link_to "Coordinate", "#" %></b><br>What's in your companion's Virtual Pack? Coordinate shared items and identify complementary gear.</td>
+            <td width="22%" valign=top><b><%= link_to "Pack", "#" %></b><br>Finally, print a checklist of gear to ensure you pack everything. </td>
           </tr>
         </table>
-<!--
-      It's all about the Virtual Pack!
-      <ol>
-        <li>Create a <b><%#= link_to "Virtual Pack", packs_path %></b> to contain and organize your gear throughout the duration of your event. 
-        <li>Streamline the gear in your Virtual Pack to ensure the optimal weight/utlity ratio for your trip. 
-        <li><b><%#= link_to "Compare your gear", "#" %></b> across your companion's Virtual Packs to coordinate shared items and to identify complementary gear.
-        <li>Finally, print a checklist of gear to ensure you pack everything. 
--->
-      </ol>
     </td>
   </tr>
   <tr>
