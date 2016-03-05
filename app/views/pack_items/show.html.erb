@@ -7,7 +7,7 @@
       <button class="btn btn-primary" data-toggle="modal" data-target="#packEvent">Event Details</button>
       <!--<button class="btn btn-primary" onclick="javascript:alert('Choose Facebook/Twitter/Gear Goat (or enter emails) to share with friends/accomplices.')">Share Pack</button>-->
       <button class="btn btn-primary" data-toggle="modal" data-target="#share">Share Pack</button>
-      <%= link_to "<button class='btn btn-primary'>Compare</button>".html_safe, compare_path %>
+      <%= link_to "<button class='btn btn-primary'>Compare</button>".html_safe, compare_pack_path %>
       <button class="btn btn-primary" onclick="javascript:alert('Print picklist')">Print Picklist</button>
       <% if current_user.id == 1 then %><button class="btn btn-warning" data-toggle="modal" data-target="#packItem">Development tasks</button><% end %>
     </td>

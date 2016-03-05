@@ -1,0 +1,37 @@
+<% dbags = @packs.length %>
+  <table class="table">
+  <tr>
+	<% @packs.each do |pack| %>
+      <td width="<%=100/dbags %>%"><span style="font-weight:bold; font-size:16pt"><%= pack.name %></span></td>
+	<% end %>    
+  </tr>
+  <% reset_cycle %>
+  <tr>
+    <% @packs.each do |pack| %>
+      <td>Pack = <span style="color:red; font-weight:bold; font-size:16pt"><%= pack_weight_by_pack(pack.id) %></span></td>
+    <% end %>
+  </tr>
+  <% @categories.each do |category|%>
+    <tr class="tr btn-primary">
+      <td colspan=<%= dbags %>><span style="font-weight:bold"><%= category.category_name %></span></td>
+    </tr>
+    <tr>
+      <% @packs.each do |pack| %>
+      <td align=center>
+          <b><%#= pack_weight_by_category(category.id, pack.user_id) %>category_weight</b>
+         <table class="table">
+          <% reset_cycle %>
+          <% pack_items_by_category_and_event(category.id, pack.user_id, pack.event_id).each do |item| %>
+            <tr style="background-color:<%= cycle('#EEE', '#FFF') -%>">
+              <td valign=top><%= item.name %></td><td valign=top align=right><%= item.weight_oz %>oz</td>
+            </tr>
+          <% end %>
+        </table>
+      <% end %>
+      </td>
+    </tr>
+  <% end %>
+
+
+</table>
+

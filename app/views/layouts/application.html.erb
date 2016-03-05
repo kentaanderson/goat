@@ -67,7 +67,7 @@
 <!--        <li class="<%#= if current_page?(:controller => '/events') then "active" else "inactive" end %>"><%#= link_to "Events", events_path %></li> -->
         <li class="<%= if current_page?(:controller => '/wishlists') then "active" else "inactive" end %>"><%= link_to "Wishlist", wishlists_path %></li> 
         <li class="<%= if current_page?(:controller => '/packs') then "active" else "inactive" end %>"><%= link_to "Virtual Pack", packs_path %></li>
-        <li class="inactive"><%= link_to "Compare", "javascript:alert('Coming soon!')" %></li>
+        <li class="<%= if current_page?(:controller => '/comparators') then "active" else "inactive" end %>"><%= link_to "Comparator", comparators_path %></li>
 <!--        <li><a href="#about">About</a></li>
           <li><a href="#contact">Contact</a></li>
  -->     </ul>

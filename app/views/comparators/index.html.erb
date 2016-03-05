@@ -1,0 +1,89 @@
+<%= form_tag do  %>
+<table class="table">
+  <tr>
+  	<thead>
+	  <th class="col-md-4"><h3>Your previous packs:</h3></th>
+<!--	  <th class="col-md-4"><h3>Your friend's packs:</h3></th>-->
+	  <th class="col-md-4"><h3>Featured packs from other Goaters:</h3></th>
+    </thead>
+  </tr>
+  <tr>
+  	<tbody>
+		<td>
+			<table class="table">
+			  <thead>
+			    <tr>
+			      <th class="col-md-1"></th>
+			      <th class="col-md-6">Pack Name</th>
+			      <th class="col-md-5">Pack Summary</th>
+			    </tr>
+			  </thead>
+              <% reset_cycle %>
+			  <tbody>
+				<% @previous_packs.each do |pack|%>
+				  <% if pack.name.to_s.length > 0 then %>
+				  	<tr style="background-color:<%= cycle('#EEE', '#FFF') -%>">
+					    <td valign="top"><input type=checkbox name="packs[]" value=<%= pack.id %> /></td>
+				    	<td valign="top"><%= pack.name %></td>
+					    <td valign="top"><%= pack.summary %></td>
+				    </tr>
+				  <% end %>
+				<% end %>
+			  </tbody>
+			</table>
+		</td>
+<!--
+		<td>
+			<table class="table">
+			  <thead>
+			    <tr>
+			      <th class="col-md-1"></th>
+			      <th class="col-md-6">Event Title</th>
+			      <th class="col-md-5">Pack Name</th>
+			    </tr>
+			  </thead>
+              <%# reset_cycle %>			  
+			  <tbody>
+				<%# @events.each do |event| %>
+				  <tr style="background-color:<%#= cycle('#EEE', '#FFF') -%>"> 
+				    <td width="5%"><input type=checkbox /></td>
+				    <td width="20%" valign="top">
+				      <%#= link_to event.title, pack_item_path(event.id) %>
+				    </td>
+				    <td width="15%" valign="top"><%#= pack_name_event(event.id) %></td>
+				  </tr>
+				<%# end %>
+			  </tbody>
+			</table>
+		</td>
+	-->
+		<td>
+			<table class="table">
+			  <thead>
+			    <tr>
+			      <th class="col-md-1"></th>
+			      <th class="col-md-6">Pack Name</th>
+			      <th class="col-md-5">Pack Summary</th>
+			    </tr>
+			  </thead>
+              <% reset_cycle %>
+			  <tbody>
+				<% @packs.each do |pack|%>
+				  <% if pack.name.to_s.length > 0 then %>
+				  	<tr style="background-color:<%= cycle('#EEE', '#FFF') -%>">
+					    <td valign="top"><input type=checkbox name="packs[]" value=<%= pack.id %> /></td>
+				    	<td valign="top"><%= pack.name %></td>
+					    <td valign="top"><%= pack.summary %></td>
+				    </tr>
+				  <% end %>
+				<% end %>
+			  </tbody>
+			</table>
+		</td>	
+	</tbody>
+  </tr>
+</table>
+<%= submit_tag("Compare selected packs", :class => "btn btn-default") %>&nbsp;
+<%= link_to "Cancel", :back %>
+
+<% end %>

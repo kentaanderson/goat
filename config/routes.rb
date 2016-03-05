@@ -5,12 +5,19 @@ Rails.application.routes.draw do
 # need to make an "import" model and set resources for it
   get 'imports/import' => 'imports#import'
   get 'imports/import_pack' => 'imports#import_pack'
-  resources :gears, :events, :packs, :pack_items, :imports, :event_attendees, :wishlists
+  resources :gears, :events, :packs, :pack_items, :imports, :event_attendees, :wishlists, :balance, :comparators
+
+
+#resources :comparators do
+#  collection do
+#    get '/show', :as => :show
+#  end
+#end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   get 'home' => 'home#index'  
-  get 'compare' => 'pack_items#compare' 
+  get 'compare_pack' => 'pack_items#compare' 
   get 'virtual_pack' => 'virtual_packs#show' 
   # You can have the root of your site routed with "root"
   root 'home#index' 

@@ -24,26 +24,32 @@ class PackItemsController < ApplicationController
 
 	end
 	def show
-
+		# This is currently dependent on the event_id to make the page work. That should be pack_id
 	  @event = Event.find(params[:id])
 	  @categories = Category.all
 	  session[:current_event_id] = @event.id 										# MIGHT NOT NEED THIS IF PACK_ID APPROACH PANS OUT
-	  pack_where = Pack.where("event_id" => @event.id, "user_id" => current_user.id)# lookup pack_id 
 
 	  if params[:c] then		# if category_id is not nil, then put it in the session variable 
 	  	session[:current_category_id] = params[:c]
 	  end
 
+#	  @pack = Pack.find_or_initialize_by_current_event_id_and_user_id(session[:current_event_id], current_user.id)
+	# this means there is ALWAYS a Pack object for each Event once the user has viewed the pack_items event 
+
+
+	  pack_where = Pack.where("event_id" => @event.id, "user_id" => current_user.id)# lookup pack_id 
 	  if pack_where.exists? then													# This is where the @pack is created/accessed
 	  	@pack = Pack.find(pack_where.first.id)
 	  else
 	  	@pack = Pack.create("event_id" => @event.id, "user_id" => current_user.id, "name" => "")	# create new pack, then get newly created pack_id
+																					# do this as a default DB value
 	  end
 
 	end
 
 	def update 																		# update pack_item
 	  # THIS can probably be optimized with model associations and a :through reference, but the blunt-force method works, too
+	  # MAYBE USE get_or_create - or something like that?
 	  gear_id = 0																	# might need to review this line
 	  																				# set gear_params to the relevant form fields
       gear_params = {name: pack_item_params[:name], description: pack_item_params[:description], weight_oz: pack_item_params[:weight_oz], year_acquired: pack_item_params[:year_acquired], category_id: pack_item_params[:category_id], manufacturer: pack_item_params[:manufacturer], user_id: current_user.id}
