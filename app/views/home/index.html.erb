@@ -26,13 +26,15 @@
 <table class=table>
   <tr>
     <th>Gear Goat community open postings</th>
+    <th>Goater</th>
     <th>Summary</th>
   </tr>
 <% @packs.each do |pack|%>
   <% if pack.name.to_s.length > 0 then %>
   <tr style="background-color:<%= cycle('#EEE', '#FFF') -%>">
     <td align=left><li><%= link_to pack.name, request.base_url + virtual_pack_path + "?vp=" + pack.id.to_s %></td>
-    <td><%= pack.summary %></td>
+    <td align=left><%= pack_user(pack.user_id) %></td>
+    <td align=left><%= pack.summary %></td>
   </tr>
   <% end %>
 <% end %>
