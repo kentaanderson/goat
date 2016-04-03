@@ -31,6 +31,8 @@ class PackItemsController < ApplicationController
 
 	  if params[:c] then		# if category_id is not nil, then put it in the session variable 
 	  	session[:current_category_id] = params[:c]
+	  else
+	  	session[:current_category_id] = nil
 	  end
 
 #	  @pack = Pack.find_or_initialize_by_current_event_id_and_user_id(session[:current_event_id], current_user.id)
