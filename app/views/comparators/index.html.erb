@@ -14,8 +14,9 @@
 			  <thead>
 			    <tr>
 			      <th class="col-md-1"></th>
-			      <th class="col-md-6">Pack Name</th>
-			      <th class="col-md-5">Pack Summary</th>
+			      <th class="col-md-4">Pack Name</th>
+			      <th class="col-md-4">Event</th>
+			      <th class="col-md-3">Pack Summary</th>
 			    </tr>
 			  </thead>
               <% reset_cycle %>
@@ -25,6 +26,7 @@
 				  	<tr style="background-color:<%= cycle('#EEE', '#FFF') -%>">
 					    <td valign="top"><input type=checkbox name="packs[]" value=<%= pack.id %> /></td>
 				    	<td valign="top"><%= pack.name %></td>
+				    	<td valign="top"><%= event_title(pack.event_id) %></td>
 					    <td valign="top"><%= pack.summary %></td>
 				    </tr>
 				  <% end %>
