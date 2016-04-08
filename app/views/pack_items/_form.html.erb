@@ -35,12 +35,10 @@
     <div class="col-md-2"><%= f.label "How many of this item?" %></div>
     <div class="col-md-4"><%= f.text_field :item_count, :size => 10 %></div>
   </div>
-  <% if 1 == 2 then %>
   <div class="row">
-    <div class="col-md-2"><%= f.label :highlight %></div>
-    <div class="col-md-4"><%= f.color_field :highlight %></div>
+    <div class="col-md-2">Flag</div>
+    <div class="col-md-4"><%= f.select(:highlight, {" - None - " => "", "Red" => "flag-red-filled.png", "Orange" => "flag-orange-filled.png", "Yellow" => "flag-yellow-filled.png", "Green" => "flag-green-filled.png", "Light Blue" => "flag-light-blue-filled.png", "Blue" => "flag-blue-filled.png", "Pink" => "flag-grey-filled.png", "Black" => "flag-grey-filled.png", "Black" => "flag-black-filled.png"})%></div>
   </div>
-<% end %>
   <div class="row">
     <div class="col-md-2">&nbsp;</div>
     <div class="col-md-4"><%= f.check_box :inventory %> Save item in inventory?</div>
