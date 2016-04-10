@@ -1,36 +1,37 @@
 module ComparatorsHelper
 
-	def pack_weight_by_pack(pack_id)
-		@pack_items = Pack.find(pack_id).pack_items
-#		@pack_items = @pack.pack_items
-		p "begin------------------"
-		@pack_items.each do |item|
-	
-			p "x"
-		end
-		p "end------------------"
-    	@category_weight = 0
+	def pack_weight_by_pack(pack_id, wearing_flag, delivery_flag)
+		@pack = Pack.find(pack_id)
+	# connect to pack_items through event_id (oops - need to add pack_id as FK in pack_items, rather than event_id - MANY model changes there)
+	#	@local_event = Event.find(@pack.event_id)
+		@pack_items = PackItem.where("user_id" => @pack.user_id, "event_id" => @pack.event_id, "wearing" => wearing_flag, "delivery" => delivery_flag)
+		@total_weight = 0
 	    if @pack_items.length > 0 then
 	      @pack_items.each do |item|
-	        @category_weight += item.weight_oz.to_d
+	        @total_weight += item.weight_oz.to_d
 	      end
-	      @category_weight = @category_weight.to_s + " oz"
+	      ounces_to_lbs(@total_weight)
 	    end
+
 	end
+
   def pack_items_by_category_and_event(category_id, user_id, event_id)
 
      @pack_items = PackItem.where("category_id" => category_id, "user_id" => user_id, "event_id" => event_id).order("upper(name)") 
   end
 
-  def pack_weight_by_category(category_id, user_id)
-    @pack_items = PackItem.where("event_id" => @event.id, "category_id" => category_id, "user_id" => user_id)   # are we missing the user_id filter here, though?
-    @category_weight = 0
-    if @pack_items.length > 0 then
-      @pack_items.each do |item|
-        @category_weight += item.weight_oz.to_d
-      end
-      @category_weight = @category_weight.to_s + " oz"
-    end
+  def category_weight_by_pack(category_id, pack_id)
+		@pack = Pack.find(pack_id)
+	# connect to pack_items through event_id (oops - need to add pack_id as FK in pack_items, rather than event_id - MANY model changes there)
+	#	@local_event = Event.find(@pack.event_id)
+		@pack_items = PackItem.where("user_id" => @pack.user_id, "event_id" => @pack.event_id, "category_id" => category_id)
+		@total_weight = 0
+	    if @pack_items.length > 0 then
+	      @pack_items.each do |item|
+	        @total_weight += item.weight_oz.to_d
+	      end
+	      ounces_to_lbs(@total_weight)
+	    end
   end
 
 	def event_title(event_id)

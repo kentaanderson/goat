@@ -80,7 +80,8 @@ module PackItemsHelper
       @pack_items.each do |item|
         @category_weight += item.weight_oz.to_d
       end
-      @category_weight = @category_weight.to_s + " oz"
+#      @category_weight = @category_weight.to_s + " oz"
+      ounces_to_lbs(@category_weight)
     end
   end
 # end pack_items functions
@@ -103,7 +104,7 @@ module PackItemsHelper
       pack = Pack.find(pack_id)
       pack.name                                               # return the pack's name
     else
-      "n/a"                                                   # default value
+      "Pack"                                                   # default value
     end
   end
 

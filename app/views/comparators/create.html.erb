@@ -8,7 +8,11 @@
   <% reset_cycle %>
   <tr>
     <% @packs.each do |pack| %>
-      <td>Pack = <span style="color:red; font-weight:bold; font-size:16pt"><%= pack_weight_by_pack(pack.id) %></span></td>
+      <td>
+        Pack total: <span style="color:red; font-weight:bold; font-size:16pt"><%= pack_weight_by_pack(pack.id,0,0) %></span><br>
+        Wearing: <span style="color:black; font-weight:bold; font-size:12pt"><%= pack_weight_by_pack(pack.id,1,0) %></span><br>
+        Delivery: <span style="color:black; font-weight:bold; font-size:12pt"><%= pack_weight_by_pack(pack.id,0,1) %></span><br>
+      </td>
     <% end %>
   </tr>
   <% @categories.each do |category|%>
@@ -18,7 +22,7 @@
     <tr>
       <% @packs.each do |pack| %>
       <td align=center>
-          <b><%#= pack_weight_by_category(category.id, pack.user_id) %>category_weight</b>
+          <b><%= category_weight_by_pack(category.id,pack.id) %></b>
          <table class="table">
           <% reset_cycle %>
           <% pack_items_by_category_and_event(category.id, pack.user_id, pack.event_id).each do |item| %>

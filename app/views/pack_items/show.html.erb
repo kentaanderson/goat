@@ -13,11 +13,6 @@
     </td>
   </tr>
 </table>
-<table>
-  <tr>
-    <td><h3><%= pack_name(@pack.id) %> details</h3></td>
-  </tr>
-</table>
 
 <table class=table>
   <tr>
@@ -37,7 +32,7 @@
 </table>
 
 <!-- FORMERLY "_items.html.erb" PARTIAL -->
-<h3>Pack contents</h3>
+<h3><%= pack_name(@pack.id) %> contents</h3>
 <div class="bs-example">
   <div class="panel-group" id="accordion">
     <% @categories.each do |category| %>
