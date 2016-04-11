@@ -1,0 +1,54 @@
+<div id="printbutton"><%= link_to "PRINT", '#', onclick: "window.print()" %></div> 
+<table>
+  <tr>
+    <td><h3><%= open_pack_name(@pack) %> pack details</h3></td>
+  </tr>
+</table>
+
+<table class=table>
+  <tr>
+    <td align=center><b>Total pack weight</b></td>
+    <td align=center><b>Target pack weight</b></td>
+    <td align=center><b>Total worn weight</b></td>
+    <td align=center><b>Total delivery weight</b></td>
+  </tr>
+  <tr>
+    <td width="15%" align=center><span style="color:red; font-weight:bold; font-size:16pt"><%= total_pack_weight(@user_id) %></span></td>
+    <td width="15%" align=center><%= open_pack_target_weight(@pack) %></td>
+    <td width="15%" align=center><%= total_wearing_weight(@user_id) %></td>
+    <td width="15%" align=center><%= total_delivery_weight(@user_id) %></td>
+  </tr>
+</table>
+
+<!-- FORMERLY "_items.html.erb" PARTIAL -->
+<h3>Pack contents</h3>
+<% @categories.each do |category| %>
+  <table>
+    <tr>
+      <td><h4 class="panel-default"><%= category.category_name %></h4></td>
+      <td align=right><h4><%= pack_weight_by_category(category.id, @user_id) %></h4></td>
+    </tr>
+  </table>
+  <table class="table table-striped">
+  <% if pack_items_by_category(category.id, @user_id).length > 0 then %>
+    <th style="background-color:white"></th>
+    <th style="background-color:white">Name</th>
+    <th style="background-color:white">Description</th>
+    <th style="background-color:white">Manufacturer</th>
+    <th style="background-color:white">Weight&nbsp;(oz)</th>
+    <th style="background-color:white">Count</th>
+    <% reset_cycle %>
+  <% end %>
+  <% pack_items_by_category(category.id, @user_id).each do |item| %>
+    <tr style="background-color:<%= cycle('#EEE', '#FFF') -%>">           
+      <td width="5%"><%= image_tag(item.highlight, size: "20x20") %></td>
+      <td width="20%"><%= item.name %></td>
+      <td width="15%"><%= item.description %></td>
+      <td width="15%"><%= item.manufacturer %></td>
+      <td width="10%"><%= item.weight_oz %></td>
+      <td width="10%"><%= item.item_count %> </td>
+    </tr>
+    <% end %>
+  </table>
+<% end %>
+

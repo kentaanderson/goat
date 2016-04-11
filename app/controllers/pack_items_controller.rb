@@ -43,7 +43,7 @@ class PackItemsController < ApplicationController
 	  if pack_where.exists? then													# This is where the @pack is created/accessed
 	  	@pack = Pack.find(pack_where.first.id)
 	  else
-	  	@pack = Pack.create("event_id" => @event.id, "user_id" => current_user.id, "name" => "")	# create new pack, then get newly created pack_id
+	  	@pack = Pack.create("event_id" => @event.id, "user_id" => current_user.id, "name" => @event.title)	# create new pack, then get newly created pack_id
 																					# do this as a default DB value
 	  end
 

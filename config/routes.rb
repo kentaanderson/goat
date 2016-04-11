@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get 'home' => 'home#index'  
   get 'compare_pack' => 'pack_items#compare' 
   get 'virtual_pack' => 'virtual_packs#show' 
+  get 'picklist' => 'virtual_packs#picklist' 
   # You can have the root of your site routed with "root"
   root 'home#index' 
 
