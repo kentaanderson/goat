@@ -84,8 +84,13 @@
 		</td>	
 	</tbody>
   </tr>
+		<tr>
+			<td colspan=2 align=center>
+				<%= submit_tag("Compare selected packs", :class => "btn btn-primary") %>&nbsp;
+				<%= link_to "Cancel", :back %>
+	    	</td>
+	    </tr>
+
 </table>
-<%= submit_tag("Compare selected packs", :class => "btn btn-default") %>&nbsp;
-<%= link_to "Cancel", :back %>
 
 <% end %>
