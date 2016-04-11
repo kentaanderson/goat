@@ -1,4 +1,8 @@
-<div id="printbutton"><%= link_to "PRINT", '#', onclick: "window.print()" %></div> 
+<div id="printbutton">
+  <%= link_to "<button class='btn btn-primary'>Print</button>".html_safe, '#', :onclick => "window.print()" %>
+</div> 
+
+
 <table>
   <tr>
     <td><h3><%= open_pack_name(@pack) %> pack details</h3></td>
