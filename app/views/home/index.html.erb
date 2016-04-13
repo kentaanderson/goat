@@ -5,10 +5,10 @@
         <table class=table width="90%">
           <tr>
             <td width="12%" valign=top><%= image_tag("goat.jpg", size: "80x80") %></td>
-            <td width="22%" valign=top><b><%= link_to "Inventory", gears_path %></b><br>How much gear do you really have? How much is it weighing you down? How old is it? Target new gear with wishlists.</td>
-            <td width="22%" valign=top><b><%= link_to "Plan", packs_path %></b><br>Organize your gear in a Virtual Pack while you plan your trip. Streamline for optimal weight/utlity ratio.</td>
-            <td width="22%" valign=top><b><%= link_to "Coordinate", "#" %></b><br>What's in your companion's Virtual Pack? Coordinate shared items and identify complementary gear.</td>
-            <td width="22%" valign=top><b><%= link_to "Pack", "#" %></b><br>Finally, print a checklist of gear to ensure you pack everything. </td>
+            <td width="22%" valign=top><b><%= link_to "<button class='btn btn-primary'>Inventory your gear</button>".html_safe, gears_path %></b><br>How much gear do you really have? How much is it weighing you down? How old is it? Target new gear with wishlists.</td>
+            <td width="22%" valign=top><b><%= link_to "<button class='btn btn-primary'>Plan your pack</button>".html_safe, packs_path %></b><br>Organize your gear in a Virtual Pack while you plan your trip. Streamline for optimal weight/utlity ratio.</td>
+            <td width="22%" valign=top><b><%= link_to "<button class='btn btn-primary'>Coordinate with friends</button>".html_safe, comparators_path %></b><br>What's in your companion's Virtual Pack? Coordinate shared items and identify complementary gear to reduce reduncandy and save weight.</td>
+            <td width="22%" valign=top><b><%= link_to "<button class='btn btn-primary'>Share</button>".html_safe, "#" %></b><br>Ensure you pack everything. Share your successes. Warn others when gear fails. </td>
           </tr>
         </table>
     </td>

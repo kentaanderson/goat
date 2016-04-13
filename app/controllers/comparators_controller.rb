@@ -3,8 +3,8 @@ class ComparatorsController < ApplicationController
 	
 	def index
 #	  @events = current_user.events.all.order(start_date: :desc)			# list available events to select for adding
-      @previous_packs = Pack.where("user_id" => current_user.id).order(name: :desc)
-      @packs = Pack.where("sharing_status = 2 AND user_id <> ?", current_user.id).order(name: :desc)
+      @previous_packs = Pack.where("user_id" => current_user.id).order(name: :asc)
+      @packs = Pack.where("sharing_status = 2 AND user_id <> ?", current_user.id).order(name: :asc)
 
 #	  @packs = current_user.packs.all 										# packs?
 #  	  @packs = Pack.where("user_id" => current_user.id)						# option 3?
