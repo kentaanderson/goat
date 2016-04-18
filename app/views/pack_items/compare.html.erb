@@ -24,7 +24,7 @@
           <b><%= pack_weight_by_category(category.id, attendee.user.id) %></b>
          <table class="table">
           <% reset_cycle %>
-          <% pack_items_by_category(category.id, attendee.user.id).each do |item| %>
+          <% pack_items_by_category_filtered(category.id, attendee.user.id).each do |item| %>
             <tr style="background-color:<%= cycle('#EEE', '#FFF') -%>">
               <td valign=top><%= item.name %></td><td valign=top align=right><%= item.weight_oz %>oz</td>
             </tr>

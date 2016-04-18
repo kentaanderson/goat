@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160207194626) do
+ActiveRecord::Schema.define(version: 20160418042101) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "category_name"
@@ -66,8 +66,8 @@ ActiveRecord::Schema.define(version: 20160207194626) do
   end
 
   create_table "pack_items", force: :cascade do |t|
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.string   "name"
     t.string   "description"
     t.string   "post_summary"
@@ -81,11 +81,12 @@ ActiveRecord::Schema.define(version: 20160207194626) do
     t.string   "icon"
     t.integer  "user_id"
     t.integer  "gear_id"
-    t.integer  "wearing",       default: 0, null: false
-    t.integer  "delivery",      default: 0, null: false
-    t.integer  "inventory",     default: 0, null: false
+    t.integer  "wearing",        default: 0, null: false
+    t.integer  "delivery",       default: 0, null: false
+    t.integer  "inventory",      default: 0, null: false
     t.string   "year_acquired"
     t.integer  "pack_id"
+    t.integer  "sharing_status", default: 2, null: false
   end
 
   create_table "packs", force: :cascade do |t|

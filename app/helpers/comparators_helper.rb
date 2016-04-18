@@ -17,7 +17,7 @@ module ComparatorsHelper
 
   def pack_items_by_category_and_event(category_id, user_id, event_id)
 
-     @pack_items = PackItem.where("category_id" => category_id, "user_id" => user_id, "event_id" => event_id).order("upper(name)") 
+     @pack_items = PackItem.where("category_id" => category_id, "user_id" => user_id, "event_id" => event_id, "sharing_status" => 2).order("upper(name)") 
   end
 
   def category_weight_by_pack(category_id, pack_id)

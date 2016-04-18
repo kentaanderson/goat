@@ -89,7 +89,7 @@ end
 private
 
 def pack_item_params
-  params.require(:pack_item).permit(:name, :description, :weight_oz, :year_acquired, :category_id, :manufacturer, :user_id, :event_id, :gear_id, :post_summary, :highlight, :wearing, :delivery, :pack_id, :item_count, :inventory)
+  params.require(:pack_item).permit(:name, :description, :weight_oz, :year_acquired, :category_id, :manufacturer, :user_id, :event_id, :gear_id, :post_summary, :highlight, :wearing, :delivery, :pack_id, :item_count, :inventory, :sharing_status)
 end
 
 def check_category

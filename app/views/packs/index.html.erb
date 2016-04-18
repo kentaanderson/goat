@@ -30,25 +30,24 @@
           <div class="panel-body">
             <table class=table>
               <thead>
-                <th align=left></th>
-                <th align=left>Event Title</th>
+                <th align=left>Gear</th>
                 <th align=left>Description</th>
                 <th align=left>Pack Name</th>
                 <th align=left>Map</th>
-                <th align=left>Sharing?</th>
+                <th align=left>Type</th>
                 <th align=left>Attendees</th>
+                <th align=left>Action</th>
               </thead>
-              <tr style="background-color:'#FFF' %>"> 
-                <td><% if event.user_id == current_user.id then %><%= link_to image_tag("x_mark_red.png",size: "18x18"), event, method: :delete, alt: "DELETE", data: { confirm: 'Are you sure you want to delete this event? This action cannot be undone.' } %>&nbsp;
-                  <%= link_to image_tag("edit_icon.png",size: "20x20"), edit_event_path(event.id) %><% end %></td>
-                <td valign="top">
-                  <%= link_to event.title, pack_item_path(event.id) %>
+              <tr style="background-color:'#FFF'"> 
+                <td>
+                  <%= link_to "<button class='btn btn-primary'>Gear list</button>".html_safe, pack_item_path(event.id) %>
                 </td>
+
                 <td valign="top"><%= event.description %></td>
                 <td valign="top"><%= pack_name_event(event.id) %></td>
                 <td valign="top">
                   <% if event.map_url then %>
-                    <a href="javascript:window.open('<%= event.map_url %>')">Map</a>
+                    <a href="javascript:window.open('<%= event.map_url %>')">Link</a>
                   <% end %>
                 </td>
                 <td valign="top"><%= if event.sharing_status == 1 then "Private" else "Public" end %></td>
@@ -60,6 +59,14 @@
                   </ul>
                   <% if event.user_id == current_user.id then %>
                     <%= link_to "Edit attendees", edit_event_attendee_path(event.id) %>
+                  <% end %>
+                </td>
+                <td>
+                  <% if event.user_id == current_user.id then %>
+                    <%= link_to image_tag("edit_icon.png",size: "20x20"), edit_event_path(event.id) %>
+                    <%= link_to image_tag("x_mark_red.png",size: "18x18"), event, method: :delete, alt: "DELETE", data: { confirm: 'Are you sure you want to delete this event? This action cannot be undone.' } %>
+                    <%#= link_to "<button class='btn btn-danger'>Delete</button>".html_safe, event, method: :delete, alt: "DELETE", data: { confirm: 'Are you sure you want to delete this event? This action cannot be undone, and all associated gear will be disassociated.' } %>
+                    <%#= link_to "<button class='btn btn-warning'>Edit</button>".html_safe, edit_event_path(event.id) %>
                   <% end %>
                 </td>
               </tr>

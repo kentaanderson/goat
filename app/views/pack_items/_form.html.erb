@@ -24,14 +24,6 @@
     <div class="col-md-4"><%= f.text_field :year_acquired %></div>
   </div>
   <div class="row">
-    <div class="col-md-2"><%= f.label :wearing %></div>
-    <div class="col-md-4"><%= f.check_box :wearing %></div>
-  </div>
-  <div class="row">
-    <div class="col-md-2"><%= f.label :delivery %></div>
-    <div class="col-md-4"><%= f.check_box :delivery %></div>
-  </div>
-  <div class="row">
     <div class="col-md-2"><%= f.label "How many of this item?" %></div>
     <div class="col-md-4"><%= f.text_field :item_count, :size => 10 %></div>
   </div>
@@ -41,7 +33,19 @@
   </div>
   <div class="row">
     <div class="col-md-2">&nbsp;</div>
+    <div class="col-md-4"><%= f.check_box :wearing %> This item will be worn, and will not count for pack weight total</div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">&nbsp;</div>
+    <div class="col-md-4"><%= f.check_box :delivery %> Item will be delivered, or left behind, or otherwise does not count for pack weight total</div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">&nbsp;</div>
     <div class="col-md-4"><%= f.check_box :inventory %> Save item in inventory?</div>
+  </div>
+  <div class="row">
+    <div class="col-md-2"><%= f.label :sharing_status %></div>
+    <div class="col-md-4"><%= f.select(:sharing_status, {"Private" => 1, "Public" => 2}) %></div>
   </div>
   <div class="col-md-2">
     <%= f.hidden_field(:gear_id) %>

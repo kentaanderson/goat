@@ -37,7 +37,7 @@
         <div id="collapse<%= category.id %>" class="panel-collapse collapse in">
           <div class="panel-body">
             <table class="table table-striped">
-            <% if pack_items_by_category(category.id, @user_id).length > 0 then %>
+            <% if pack_items_by_category_filtered(category.id, @user_id).length > 0 then %>
               <th style="background-color:white">Name</th>
               <th style="background-color:white">Description</th>
               <th style="background-color:white">Manufacturer</th>
@@ -45,7 +45,7 @@
               <th style="background-color:white">Count</th>
               <% reset_cycle %>
             <% end %>
-            <% pack_items_by_category(category.id, @user_id).each do |item| %>
+            <% pack_items_by_category_filtered(category.id, @user_id).each do |item| %>
               <tr style="background-color:<%= cycle('#EEE', '#FFF') -%>">           
                 <td width="20%"><%= item.name %></td>
                 <td width="20%"><%= item.description %></td>

@@ -16,7 +16,7 @@
       { category_name: 'Sport' }, 
       { category_name: 'Amenities' }, 
       { category_name: 'Food' }, 
-   	{ category_name: 'Miscellaneous' }
+   	{ category_name: 'Emergency' }
    	])
 
 # Development encrypted password = $2a$10$A/JIT5ILzJSMvgcsfeZhTOwb1mMH4dc8VHKauSELPxnvpqj18OEQe
