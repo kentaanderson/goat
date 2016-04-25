@@ -14,9 +14,10 @@
 			  <thead>
 			    <tr>
 			      <th class="col-md-1"></th>
-			      <th class="col-md-4">Pack Name</th>
-			      <th class="col-md-4">Event</th>
-			      <th class="col-md-3">Pack Summary</th>
+			      <th class="col-md-3">Pack Name</th>
+			      <th class="col-md-3">Goater</th>
+			      <th class="col-md-3">Event</th>
+			      <!--<th class="col-md-4">Pack Summary</th>-->
 			    </tr>
 			  </thead>
               <% reset_cycle %>
@@ -26,8 +27,9 @@
 				  	<tr style="background-color:<%= cycle('#EEE', '#FFF') -%>">
 					    <td valign="top"><input type=checkbox name="packs[]" value=<%= pack.id %> /></td>
 				    	<td valign="top"><%= pack.name %></td>
+				    	<td valign="top"><%= pack_user(pack.user_id) %></td>
 				    	<td valign="top"><%= event_title(pack.event_id) %></td>
-					    <td valign="top"><%= pack.summary %></td>
+					    <!--<td valign="top"><%#= pack.summary %></td>-->
 				    </tr>
 				  <% end %>
 				<% end %>
@@ -64,8 +66,10 @@
 			  <thead>
 			    <tr>
 			      <th class="col-md-1"></th>
-			      <th class="col-md-6">Pack Name</th>
-			      <th class="col-md-5">Pack Summary</th>
+			      <th class="col-md-3">Pack Name</th>
+			      <th class="col-md-3">Goater</th>
+			      <th class="col-md-3">Event</th>
+				  <!--<th class="col-md-3">Pack Summary</th>-->
 			    </tr>
 			  </thead>
               <% reset_cycle %>
@@ -75,7 +79,9 @@
 				  	<tr style="background-color:<%= cycle('#EEE', '#FFF') -%>">
 					    <td valign="top"><input type=checkbox name="packs[]" value=<%= pack.id %> /></td>
 				    	<td valign="top"><%= pack.name %></td>
-					    <td valign="top"><%= pack.summary %></td>
+				    	<td valign="top"><%= pack_user(pack.user_id) %></td>
+				    	<td valign="top"><%= event_title(pack.event_id) %></td>
+					    <!--<td valign="top"><%#= pack.summary %></td>-->
 				    </tr>
 				  <% end %>
 				<% end %>
@@ -87,7 +93,9 @@
 		<tr>
 			<td colspan=2 align=center>
 				<%= submit_tag("Compare selected packs", :class => "btn btn-primary") %>&nbsp;
-				<%= link_to "Cancel", :back %>
+		        <%= link_to "Cancel".html_safe, :back %>
+		        <% # can't do a button here because Rails thinks it is a "Submit" for some dumbass reason %>
+		        <%#= link_to "<button class='btn btn-danger'>Cancel</button>".html_safe, :back %>
 	    	</td>
 	    </tr>
 

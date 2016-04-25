@@ -49,6 +49,12 @@ class PackItemsController < ApplicationController
 
 	end
 
+	def meals
+	  @event = Event.find(params[:id])
+	  @categories = Category.all
+	  # session[:current_event_id] = @event.id 										# MIGHT NOT NEED THIS IF PACK_ID APPROACH PANS OUT
+	end 
+
 	def update 																		# update pack_item
 	  # THIS can probably be optimized with model associations and a :through reference, but the blunt-force method works, too
 	  # MAYBE USE get_or_create - or something like that?

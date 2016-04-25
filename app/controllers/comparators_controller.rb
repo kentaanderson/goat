@@ -2,9 +2,10 @@ class ComparatorsController < ApplicationController
 	before_action :authenticate_user!
 	
 	def index
-#	  @events = current_user.events.all.order(start_date: :desc)			# list available events to select for adding
-      @previous_packs = Pack.where("user_id" => current_user.id).order(name: :asc)
-      @packs = Pack.where("sharing_status = 2 AND user_id <> ?", current_user.id).order(name: :asc)
+#	  @events = current_user.events.all.order(start_date: :desc)									# list available events to select for adding
+# 	  Need a better method of listing by "groups" here once more users come on board
+      @previous_packs = Pack.where("user_id" => current_user.id).order(name: :asc)					# No filter for your own packs
+      @packs = Pack.where("sharing_status = 2 AND user_id <> ?", current_user.id).order(name: :asc)	# filter only shared packs
 
 #	  @packs = current_user.packs.all 										# packs?
 #  	  @packs = Pack.where("user_id" => current_user.id)						# option 3?

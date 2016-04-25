@@ -44,7 +44,9 @@
 		<tr>
 			<td colspan=2 align=center>
 				<%= f.submit "Add/remove selected friends", :class => "btn btn-primary" %>&nbsp;&nbsp;
-	    		<%= link_to "Done", packs_path %>
+		        <%= link_to "Done".html_safe, :back %>
+		        <% # can't do a button here because Rails thinks it is a "Submit" for some dumbass reason %>
+		        <%#= link_to "<button class='btn btn-danger'>Cancel</button>".html_safe, :back %>
 	    	</td>
 	    </tr>
 	</table>

@@ -4,8 +4,8 @@
     <td><h3><%= image_tag("gears.png", size: "40x40")%> My Gear Inventory</h3></td>
     <td align=right>
       <%= link_to "<button class='btn btn-primary'>Add Gear to Inventory</button>".html_safe, new_gear_path, :id=>"add-gear-btn" %>
-      <%= link_to "<button class='btn btn-primary'>Add Item to Wishlist</button>".html_safe, new_wishlist_path, :id=>"add-gear-btn" %>
-      <% a = [1] # for kent, dusty, erik ... show developer tasks %>
+      <%#= link_to "<button class='btn btn-primary'>Add Item to Wishlist</button>".html_safe, new_wishlist_path, :id=>"add-gear-btn" %>
+      <% a = [0] # for kent, shawn ... show developer tasks %>
       <% if a.include?(current_user.id) then %><button class="btn btn-warning" data-toggle="modal" data-target="#gearModal">Development tasks</button><% end %>
     </td>
   </tr>

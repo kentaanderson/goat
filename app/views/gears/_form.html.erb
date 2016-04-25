@@ -1,4 +1,7 @@
 <%= form_for @gear do |f| %>
+
+<% # Shawn - this is where I need some Ajax magic %>
+
   <div class="row">
     <div class="col-md-2"><%= f.label :category_id %></div>
     <div class="col-md-4"><%= f.collection_select(:category_id, Category.all, :id, :category_name, include_blank: 'Select a category') %></div>
@@ -27,7 +30,7 @@
     <%= f.hidden_field(:user_id, :value => current_user.id) %>
         <%= f.submit "Submit", :class => "btn btn-primary" %>&nbsp;
         <%= link_to "Cancel".html_safe, :back %>
-
+        <% # can't do a button here because Rails thinks it is a "Submit" for some dumbass reason %>
         <%#= link_to "<button class='btn btn-danger'>Cancel</button>".html_safe, :back %>
   </div>
 <% end %>
