@@ -11,11 +11,19 @@
     </td>
   </tr>
 </table>
-
+<%# current_year = Time.now.strftime("%Y").to_s %>
+<% prev_year = "" %>
 <br>
 <div class="bs-example">
   <div class="panel-group" id="accordion">
     <% @events.each do |event| %>
+      <% if event.start_date.is_a?(Date) then %>
+        <% event_year = event.start_date.strftime("%Y").to_s %>
+        <% if prev_year != event_year then %>
+          <h4><%= event_year %></h4>
+          <% prev_year = event_year %>
+        <% end %>
+      <% end %>
       <div class="panel panel-default">
       <div class="panel-heading" data-toggle="collapse" data-target="#collapse<%= event.id %>" onclick="#collapse<%= event.id %> %>">
         <table>
