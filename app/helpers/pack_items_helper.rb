@@ -123,12 +123,14 @@ module PackItemsHelper
  def pack_event_range(event_start_date,event_return_date)  # returns a formatted string of the date range for an event_id 
 
       if event_start_date.is_a?(Date) then                 # If start_date is legit, then parse it
-        event_start_date = event_start_date.strftime("%m/%d/%Y").to_s + " - "
+      #  event_start_date = event_start_date.strftime("%m/%d/%Y").to_s + " - "
+        event_start_date = event_start_date.strftime("%B %e, %Y").to_s + " - "
+#        Date::DATE_FORMATS[:month_day_comma_year] = "%B %e, %Y"
       else
         event_start_date = "? - "                          # if not, return appropriate string "? - "
       end
       if event_return_date.is_a?(Date) then                # If return_date is legit, then parse it
-        event_return_date = event_return_date.strftime("%m/%d/%Y").to_s
+        event_return_date = event_return_date.strftime("%B %e, %Y").to_s
       else
         event_return_date = "?"                            # if not, return appropriate string "?"
       end
