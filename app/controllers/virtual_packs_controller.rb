@@ -1,4 +1,6 @@
 class VirtualPacksController < ApplicationController
+	before_action :kill_category
+
 # DO NOT ADD THIS LINE HERE: before_action :authenticate_user!
 
 # index to list Virtual Packs on the Home screen?
@@ -29,4 +31,12 @@ class VirtualPacksController < ApplicationController
   	  redirect_to home_path
 	end
   end
+
+
+
+private
+	def kill_category
+		session[:current_category_id] = nil
+	end
+
 end

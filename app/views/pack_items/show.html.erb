@@ -31,7 +31,6 @@
   </tr>
 </table>
 
-<!-- FORMERLY "_items.html.erb" PARTIAL -->
 <h3><%= pack_name(@pack.id) %> contents</h3>
 <div class="bs-example">
   <div class="panel-group" id="accordion">
@@ -40,9 +39,20 @@
         <div class="panel-heading" data-toggle="collapse" data-target="#collapse<%= category.id %>" onclick="#collapse<%= category.id %>">
           <table>
             <tr>
-              <td><h4 class="panel-default"><%= category.category_name %></h4>
+              <td width="20%"><h4 class="panel-default"><%= category.category_name %></h4></td>
+              <% # This REALLY needs to be refactored to a simpler approach %>
+              <td width="100"><% if has_flag(category.id, "red") then %><%= image_tag("flag-red-filled.png", size: "16x16") %><% end %>
+              <% if has_flag(category.id, "orange") then %><%= image_tag("flag-orange-filled.png", size: "16x16") %><% end %>
+              <% if has_flag(category.id, "green") then %><%= image_tag("flag-green-filled.png", size: "16x16") %><% end %>
+              <% if has_flag(category.id, "light-blue") then %><%= image_tag("flag-light-blue-filled.png", size: "16x16") %><% end %>
+              <% if has_flag(category.id, "blue") then %><%= image_tag("flag-blue-filled.png", size: "16x16") %><% end %>
+              <% if has_flag(category.id, "pink") then %><%= image_tag("flag-pink-filled.png", size: "16x16") %><% end %>
+              <% if has_flag(category.id, "black") then %><%= image_tag("flag-black-filled.png", size: "16x16") %><% end %>
               </td>
-              <td align=right><h4><%= pack_weight_by_category(category.id, current_user.id) %></h4></td>
+              <%# if category.category_name == "Food" then %>
+                <!--<td width="20%"><h4 class="panel-default"><%#= link_to "Meal grid", meals_path(@event) %></h4></td>-->
+              <%# end %>
+              <td align=right><h4><%= pack_weight_by_category(category.id, current_user.id) %><%#= image_tag("info.png", size: "16x16", onMouseover: "Weight does not include delivered or worn items") %></h4></td>
             </tr>
           </table>
         </div>
@@ -62,7 +72,7 @@
                 <% reset_cycle %>
               <% end %>
               <% pack_items_by_category(category.id, current_user.id).each do |item| %>
-                <tr style="background-color:<%= cycle('#EEE', '#FFF') -%>">           
+                <tr style="background-color:<%= cycle('#EEE', '#FFF') -%>">
                   <td width="20"><%= if item.wearing == 1 then image_tag("shirt.png", alt: "Wearing") end %> </td>
                   <td width="20"><%= if item.delivery == 1 then image_tag("package.png", alt: "Delivered, or 'Do not weigh'") end %> </td>
                   <td width="20"><%= if item.sharing_status == 1 then image_tag("private.png", alt: "Private") end %> </td>
@@ -90,4 +100,3 @@
     <% end %>
   </div>
 </div>
-

@@ -1,5 +1,6 @@
 module PackItemsHelper
-
+  require 'date'
+  require 'time'
 # start pack_items functions
 
   # THIS SHOULD TAKE IN A PARAMETER, NOT RELY ON THE @event ActiveRecord
@@ -88,7 +89,7 @@ module PackItemsHelper
     @category_weight = 0
     if @pack_items.length > 0 then
       @pack_items.each do |item|
-        if item.weight_oz then
+        if item.weight_oz and item.wearing == 0 and item.delivery == 0 then
           @category_weight += item.weight_oz.to_d
         end
       end
@@ -137,7 +138,31 @@ module PackItemsHelper
       event_start_date + event_return_date                # combine the two string responses and return
   end
 
-private
+def has_flag(category_id, color)
+
+  pack_items = PackItem.where("event_id" => @event.id, "category_id" => category_id, "user_id" => current_user.id).order("upper(name)") 
+
+  if pack_items.length > 0 then
+      response = false
+      pack_items.each do |item|
+        if item.highlight then
+          if item.highlight.length > 0 then
+            p item.highlight
+            if item.highlight == "flag-" + color + "-filled.png"  then
+              response = true
+            end
+          end
+        end
+      end 
+      response
+  end 
+
+
+  # this is not even close to DRY - fix in subsequent versions
+  # check for flags in query?
+  # or check in controller? 
+end
+
   def ounces_to_lbs(total_oz)                                        # this doesn't really need to be private, but I need to test out some Ruby/Rails features
       @ounces_weight = total_oz % 16                                 # get ounces as decimal
       @pounds_weight = ( total_oz - @ounces_weight ) / 16            # get pounds

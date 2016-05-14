@@ -1,52 +1,58 @@
 <%= form_for @pack_item do |f| %>
+<br>
   <div class="row">
     <div class="col-md-2"><%= f.label :category_id %></div>
     <div class="col-md-4"><%= f.collection_select(:category_id, Category.all, :id, :category_name,  {:selected => @category_id}, include_blank: 'Select a category') %></div>
   </div>
+<br>
   <div class="row">
     <div class="col-md-2"><%= f.label :name %></div>
     <div class="col-md-4"><%= f.text_field :name,  autocomplete: 'on' %></div>
   </div>
+<br>
   <div class="row">
     <div class="col-md-2"><%= f.label :description %></div>
     <div class="col-md-4"><%= f.text_area :description, size: '60x4',  autocomplete: 'on' %></div>
   </div>
+<br>
   <div class="row">
     <div class="col-md-2"><%= f.label :weight_oz %></div>
     <div class="col-md-4"><%= f.text_field :weight_oz,  autocomplete: 'off' %></div>
   </div>
+<br>
   <div class="row">
     <div class="col-md-2"><%= f.label :manufacturer %> (combo list later)</div>
     <div class="col-md-4"><%= f.text_field :manufacturer,  autocomplete: 'on' %></div>
   </div>
+<br>
   <div class="row">
     <div class="col-md-2"><%= f.label :year_acquired %></div>
     <div class="col-md-4"><%= f.text_field :year_acquired %></div>
   </div>
-  <div class="row">
-    <div class="col-md-2"><%= f.label "How many of this item?" %></div>
-    <div class="col-md-4"><%= f.text_field :item_count, :size => 10 %></div>
+<br>
+<!--  <div class="row">
+    <div class="col-md-2"><%#= f.label "How many of this item?" %></div>
+    <div class="col-md-4"><%#= f.text_field :item_count, :size => 10 %></div>
   </div>
-  <div class="row">
-    <div class="col-md-2">Flag</div>
-    <div class="col-md-4"><%= f.select(:highlight, {" - None - " => "", "Red" => "flag-red-filled.png", "Orange" => "flag-orange-filled.png", "Yellow" => "flag-yellow-filled.png", "Green" => "flag-green-filled.png", "Light Blue" => "flag-light-blue-filled.png", "Blue" => "flag-blue-filled.png", "Pink" => "flag-grey-filled.png", "Black" => "flag-grey-filled.png", "Black" => "flag-black-filled.png"})%></div>
+-->  <div class="row">
+    <div class="col-md-2"><b>Flag</b></div>
+    <div class="col-md-4"><%= f.select(:highlight, {" - None - " => "", "Red" => "flag-red-filled.png", "Orange" => "flag-orange-filled.png", "Green" => "flag-green-filled.png", "Light Blue" => "flag-light-blue-filled.png", "Blue" => "flag-blue-filled.png", "Pink" => "flag-grey-filled.png", "Black" => "flag-grey-filled.png", "Black" => "flag-black-filled.png"})%></div>
   </div>
-  <div class="row">
-    <div class="col-md-2">&nbsp;</div>
-    <div class="col-md-4"><%= f.check_box :wearing %> This item will be worn, and will not count for pack weight total</div>
-  </div>
-  <div class="row">
-    <div class="col-md-2">&nbsp;</div>
-    <div class="col-md-4"><%= f.check_box :delivery %> Item will be delivered, or left behind, or otherwise does not count for pack weight total</div>
-  </div>
-  <div class="row">
-    <div class="col-md-2">&nbsp;</div>
-    <div class="col-md-4"><%= f.check_box :inventory %> Save item in inventory?</div>
-  </div>
+<br>
   <div class="row">
     <div class="col-md-2"><%= f.label :sharing_status %></div>
     <div class="col-md-4"><%= f.select(:sharing_status, {"Private" => 1, "Public" => 2}) %></div>
   </div>
+<br>
+  <div class="row">
+    <div class="col-md-1"><%= f.check_box :wearing %></div>
+    <div class="col-md-3">This item will be worn, and will not count for pack weight total</div>
+    <div class="col-md-1"><%= f.check_box :delivery %></div>
+    <div class="col-md-3">Item will be delivered, or left behind, or otherwise does not count for pack weight total</div>
+    <div class="col-md-1"><%= f.check_box :inventory %></div>
+    <div class="col-md-3">Save item in inventory?</div>
+  </div>
+<br>
   <div class="col-md-2">
     <%= f.hidden_field(:gear_id) %>
     <%= f.hidden_field(:user_id, :value => current_user.id) %>

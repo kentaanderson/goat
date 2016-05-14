@@ -20,7 +20,7 @@ class PackItemsController < ApplicationController
 	def import
 		@gears = Gear.where("user_id" => current_user.id) 
 	  	@pack_item = PackItem.find(params[:id])										# not sure what this is for, anymore
-    	flash[:notice] = "Selected item(s) imported!"
+		flash[:notice] = "Selected item(s) imported!"
 
 	end
 	def show
@@ -29,11 +29,11 @@ class PackItemsController < ApplicationController
 	  @categories = Category.all.order("id")
 	  session[:current_event_id] = @event.id 										# MIGHT NOT NEED THIS IF PACK_ID APPROACH PANS OUT
 
-	  if params[:c] then		# if category_id is not nil, then put it in the session variable 
-	  	session[:current_category_id] = params[:c]
-	  else
-	  	session[:current_category_id] = nil
-	  end
+#	  if params[:c] then		# if category_id is not nil, then put it in the session variable 
+#	  	session[:current_category_id] = params[:c]
+#	  else
+#	  	session[:current_category_id] = nil
+#	  end
 
 #	  @pack = Pack.find_or_initialize_by_current_event_id_and_user_id(session[:current_event_id], current_user.id)
 	# this means there is ALWAYS a Pack object for each Event once the user has viewed the pack_items event 
@@ -49,11 +49,11 @@ class PackItemsController < ApplicationController
 
 	end
 
-	def meals
-	  @event = Event.find(params[:id])
-	  @categories = Category.all
+#	def meals
+#	  @event = Event.find(params[:id])
+#	  @categories = Category.all
 	  # session[:current_event_id] = @event.id 										# MIGHT NOT NEED THIS IF PACK_ID APPROACH PANS OUT
-	end 
+#	end 
 
 	def update 																		# update pack_item
 	  # THIS can probably be optimized with model associations and a :through reference, but the blunt-force method works, too

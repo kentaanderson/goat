@@ -1,6 +1,7 @@
 class ComparatorsController < ApplicationController
 	before_action :authenticate_user!
-	
+	before_action :kill_category
+
 	def index
 #	  @events = current_user.events.all.order(start_date: :desc)									# list available events to select for adding
 # 	  Need a better method of listing by "groups" here once more users come on board
@@ -44,5 +45,9 @@ class ComparatorsController < ApplicationController
 
 	end
 
+private
+	def kill_category
+		session[:current_category_id] = nil
+	end
 
 end

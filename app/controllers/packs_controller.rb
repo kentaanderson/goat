@@ -1,5 +1,7 @@
 class PacksController < ApplicationController
 	before_action :authenticate_user!
+	before_action :kill_category
+
 	def index
 	  @events = current_user.events.all.order(start_date: :desc)
 	  session[:current_pack_id] = nil
@@ -28,8 +30,13 @@ class PacksController < ApplicationController
 	end
 
 end
+
 private
 
-def pack_params
-  params.require(:pack).permit(:name, :summary, :event_id, :gear_id, :user_id, :target_weight, :sharing_status)
-end
+	def kill_category
+		session[:current_category_id] = nil
+	end
+
+	def pack_params
+	  params.require(:pack).permit(:name, :summary, :event_id, :gear_id, :user_id, :target_weight, :sharing_status)
+	end
