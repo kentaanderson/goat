@@ -55,7 +55,8 @@
                 <td valign="top"><%= pack_name_event(event.id) %></td>
                 <td valign="top">
                   <% if event.map_url then %>
-                    <a href="javascript:window.open('<%= event.map_url %>')">Link</a>
+                    <%#= link_to "<button class='btn btn-primary'> Map </button>".html_safe, event.map_url, :target => "_blank" %>
+                    <button class="btn btn-primary" onclick="javascript:window.open('<%= event.map_url %>')"> Map </button>
                   <% end %>
                 </td>
                 <td valign="top"><%= if event.sharing_status == 1 then "Private" else "Public" end %></td>

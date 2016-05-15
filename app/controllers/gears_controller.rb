@@ -3,7 +3,7 @@ class GearsController < ApplicationController
 	before_action :check_category
 
 	def index
-		@categories = Category.all
+		@categories = Category.all.order(item_order: :asc)
 	end
 	def new
 	  @gear = Gear.new

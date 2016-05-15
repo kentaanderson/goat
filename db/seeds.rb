@@ -7,16 +7,18 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
   categories = Category.create([
-      { category_name: 'Shelter' }, 
-      { category_name: 'Sleeping' },
-      { category_name: 'Clothing' }, 
-      { category_name: 'Cooking' }, 
-      { category_name: 'Hiking' }, 
-      { category_name: 'Medical' }, 
-      { category_name: 'Sport' }, 
-      { category_name: 'Amenities' }, 
-      { category_name: 'Food' }, 
-   	{ category_name: 'Emergency' }
+      { category_name: 'Shelter', item_order: 2 }, 
+      { category_name: 'Sleeping', item_order: 3 },
+      { category_name: 'Clothing', item_order: 4 }, 
+      { category_name: 'Cooking', item_order: 5 }, 
+      { category_name: 'Trail & Camp', item_order: 7 }, 
+      { category_name: 'Toiletries & Medical', item_order: 8 }, 
+      { category_name: 'Sport', item_order: 9 }, 
+      { category_name: 'Amenities & Luxury', item_order: 11 }, 
+      { category_name: 'Food', item_order: 10 }, 
+      { category_name: 'Water Purification & Storage', item_order: 6 }, 
+      { category_name: 'Pack(s)', item_order: 1 }, 
+   	{ category_name: 'Emergency', item_order: 12 }
    	])
 
 # Development encrypted password = $2a$10$A/JIT5ILzJSMvgcsfeZhTOwb1mMH4dc8VHKauSELPxnvpqj18OEQe

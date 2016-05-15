@@ -26,7 +26,7 @@ class PackItemsController < ApplicationController
 	def show
 		# This is currently dependent on the event_id to make the page work. That should be pack_id
 	  @event = Event.find(params[:id])
-	  @categories = Category.all.order("id")
+	  @categories = Category.all.order(item_order: :asc)
 	  session[:current_event_id] = @event.id 										# MIGHT NOT NEED THIS IF PACK_ID APPROACH PANS OUT
 
 #	  if params[:c] then		# if category_id is not nil, then put it in the session variable 
@@ -83,7 +83,7 @@ class PackItemsController < ApplicationController
 	def compare
 		@event = Event.find(session[:current_event_id])
  	  	@event_attendees = EventAttendee.where("event_id" => @event.id)
-	  	@categories = Category.all
+	  	@categories = Category.all.order(item_order: :asc)
 	end
 
 	def destroy

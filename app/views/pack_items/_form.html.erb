@@ -2,7 +2,7 @@
 <br>
   <div class="row">
     <div class="col-md-2"><%= f.label :category_id %></div>
-    <div class="col-md-4"><%= f.collection_select(:category_id, Category.all, :id, :category_name,  {:selected => @category_id}, include_blank: 'Select a category') %></div>
+    <div class="col-md-4"><%= f.collection_select(:category_id, Category.all.order(item_order: :asc), :id, :category_name,  {:selected => @category_id}, include_blank: 'Select a category') %></div>
   </div>
 <br>
   <div class="row">

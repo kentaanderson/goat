@@ -13,7 +13,7 @@ class VirtualPacksController < ApplicationController
 	  # make this automatic with model associations then you can call "@pack.event..."
 	  @user_id = @pack.user_id
 	  @event = Event.find(@pack.event_id)
-	  @categories = Category.all
+	  @categories = Category.all.order(item_order: :asc)
 #	else
 # 	  redirect_to home_path
 #	end
@@ -26,7 +26,7 @@ class VirtualPacksController < ApplicationController
 	  # make this automatic with model associations then you can call "@pack.event..."
 	  @user_id = @pack.user_id
 	  @event = Event.find(@pack.event_id)
-	  @categories = Category.all
+	  @categories = Category.all.order(item_order: :asc)
 	else
   	  redirect_to home_path
 	end

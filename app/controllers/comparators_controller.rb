@@ -5,8 +5,8 @@ class ComparatorsController < ApplicationController
 	def index
 #	  @events = current_user.events.all.order(start_date: :desc)									# list available events to select for adding
 # 	  Need a better method of listing by "groups" here once more users come on board
-      @previous_packs = Pack.where("user_id" => current_user.id).order(name: :asc)					# No filter for your own packs
-      @packs = Pack.where("sharing_status = 2 AND user_id <> ?", current_user.id).order(name: :asc)	# filter only shared packs
+      @previous_packs = Pack.where("user_id" => current_user.id).order(updated_at: :desc)					# No filter for your own packs
+      @packs = Pack.where("sharing_status = 2 AND user_id <> ?", current_user.id).order(updated_at: :desc)	# filter only shared packs
 
 #	  @packs = current_user.packs.all 										# packs?
 #  	  @packs = Pack.where("user_id" => current_user.id)						# option 3?
@@ -19,7 +19,7 @@ class ComparatorsController < ApplicationController
 	end
 
 	def create
-	  	@categories = Category.all
+	  	@categories = Category.all.order(item_order: :asc)
 	  	pack_ids = params["packs"]
 	  	@packs = []
 	  	# add in other pack categories here

@@ -9,7 +9,7 @@ class EventAttendeesController < ApplicationController
 		session[:current_event_id] = params[:id]	# to remember which event		# set selected event_id as session
 		@event = Event.find(params[:id])			# get the event
 		@event_attendee = EventAttendee.new			# for the form					# this is weird, but if I do the "find" method, it routes to "edit", not "create"
-		@attendees = @event.users					# for removal
+		@attendees = @event.users.order(last_name: :asc)					# for removal
 		attendees = []								# don't need this in the form
 		@attendees.each do |user|
 			attendees << user.id

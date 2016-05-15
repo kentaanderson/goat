@@ -39,7 +39,7 @@
         <div class="panel-heading" data-toggle="collapse" data-target="#collapse<%= category.id %>" onclick="#collapse<%= category.id %>">
           <table>
             <tr>
-              <td width="20%"><h4 class="panel-default"><%= category.category_name %></h4></td>
+              <td width="30%"><h4 class="panel-default"><%= category.category_name %></h4></td>
               <% # This REALLY needs to be refactored to a simpler approach %>
               <td width="100"><% if has_flag(category.id, "red") then %><%= image_tag("flag-red-filled.png", size: "16x16") %><% end %>
               <% if has_flag(category.id, "orange") then %><%= image_tag("flag-orange-filled.png", size: "16x16") %><% end %>
