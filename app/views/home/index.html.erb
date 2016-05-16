@@ -26,17 +26,36 @@
     <th>OZ/Day</th>
     <th>Summary</th>
   </tr>
-<% @packs.each do |pack|%>
-  <% if pack.name.to_s.length > 0 then %>
-    <tr style="background-color:<%= cycle('#EEE', '#FFF') -%>">
-      <td align=left><li><%= link_to pack.name, request.base_url + virtual_pack_path + "?vp=" + pack.id.to_s %></td>
-      <td align=left><%= pack_user(pack.user_id) %></td>
-      <td align=left><%= trip_length(pack.event_id) %> <% if trip_length(pack.event_id) == 1 then %> day <% else %> days <% end %></td>
-      <td align=left><%= ounces_to_lbs(total_pack_weight_oz(pack.id)) %></td>
-      <td align=left><%= oz_day(pack.id) %></td>
-      <td align=left><%= pack.summary %></td>
-    </tr>
+  <% @packs.each do |pack|%>
+    <% if pack.name.to_s.length > 0 then %>
+      <tr style="background-color:<%= cycle('#EEE', '#FFF') -%>">
+        <td align=left><li><%= link_to pack.name, request.base_url + virtual_pack_path + "?vp=" + pack.id.to_s %></td>
+        <td align=left><%= pack_user(pack.user_id) %></td>
+        <td align=left><%= trip_length(pack.event_id) %> <% if trip_length(pack.event_id) == 1 then %> day <% else %> days <% end %></td>
+        <td align=left><%= ounces_to_lbs(total_pack_weight_oz(pack.id)) %></td>
+        <td align=left><%= oz_day(pack.id) %></td>
+        <td align=left><%= pack.summary %></td>
+      </tr>
+    <% end %>
   <% end %>
-<% end %>
 </table>
 
+<% if current_user then %> 
+  <% if current_user.id == 1 then %>
+    <h3>Recent Use:</h3>
+    <table class=table>
+      <tr>
+        <th>Goater</th>
+        <th>Last login</th>
+        <th>Total sign-ins</th>
+      </tr>
+      <% @users.each do |user|%>
+        <tr style="background-color:<%= cycle('#EEE', '#FFF') -%>">
+          <td align=left><%= user.last_name %>, <%= user.first_name %></td>
+          <td align=left><%= get_local(user.current_sign_in_at) %></td>
+          <td align=left><%= user.sign_in_count %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+<% end %>

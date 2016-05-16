@@ -42,6 +42,13 @@ module HomeHelper
     end
   end
 
+  def get_local(utc_date)
+    if utc_date then
+      (utc_date - 7.hour).to_formatted_s(:long)  
+    else
+      "n/a"
+    end
+  end
 #class AmazonSync
  # def test
  #   @request = Vacuum.new

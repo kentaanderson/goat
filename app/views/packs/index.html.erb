@@ -55,7 +55,8 @@
                 <td valign="top"><%= pack_name_event(event.id) %></td>
                 <td valign="top">
                   <% if event.map_url then %>
-                    <%#= link_to "<button class='btn btn-primary'> Map </button>".html_safe, event.map_url, :target => "_blank" %>
+                    <%#= link_to "<button class='btn btn-primary'> Map </button>".html_safe, event.map_url %>
+                    <!--<a href="javascript:window.open('<%= event.map_url %>')">Link</a>-->
                     <button class="btn btn-primary" onclick="javascript:window.open('<%= event.map_url %>')"> Map </button>
                   <% end %>
                 </td>
