@@ -52,7 +52,7 @@
               <%# if category.category_name == "Food" then %>
                 <!--<td width="20%"><h4 class="panel-default"><%#= link_to "Meal grid", meals_path(@event) %></h4></td>-->
               <%# end %>
-              <td align=right><h4><%= pack_weight_by_category(category.id, current_user.id) %><%#= image_tag("info.png", size: "16x16", onMouseover: "Weight does not include delivered or worn items") %></h4></td>
+              <td align=right><h4><%= category_weight_by_pack(category.id, @pack.id) %><%#= image_tag("info.png", size: "16x16", onMouseover: "Weight does not include delivered or worn items") %></h4></td>
             </tr>
           </table>
         </div>

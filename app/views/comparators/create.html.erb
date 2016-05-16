@@ -27,7 +27,12 @@
           <% reset_cycle %>
           <% pack_items_by_category_and_event(category.id, pack.user_id, pack.event_id).each do |item| %>
             <tr style="background-color:<%= cycle('#EEE', '#FFF') -%>">
-              <td valign=top><%= item.name %></td><td valign=top align=right><%= item.weight_oz %>oz</td>
+              <td valign=top width="20">
+                <%= if item.wearing == 1 then image_tag("shirt.png", alt: "Wearing") end %>
+                <%= if item.delivery == 1 then image_tag("package.png", alt: "Delivered, or 'Do not weigh'") end %> 
+              </td>
+              <td valign=top><%= item.name %></td>
+              <td valign=top align=right><%= item.weight_oz %>oz</td>
             </tr>
           <% end %>
         </table>
