@@ -13,11 +13,22 @@
 </table>
 <%# current_year = Time.now.strftime("%Y").to_s %>
 <% prev_year = "" %>
+<% x = true %>
 <br>
 <div class="bs-example">
   <div class="panel-group" id="accordion">
     <% @events.each do |event| %>
       <% if event.start_date.is_a?(Date) then %>
+
+        <% if x then %>
+          <% if event.start_date > Time.now then %>
+            <% #do nothing %>
+          <% else %>
+            <% x = false %>
+            <hr style="border-width: 1px;border-color: red;"> 
+          <% end %>
+        <% end %>
+
         <% event_year = event.start_date.strftime("%Y").to_s %>
         <% if prev_year != event_year then %>
           <h4><%= event_year %></h4>
