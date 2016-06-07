@@ -31,7 +31,7 @@
       <tr style="background-color:<%= cycle('#EEE', '#FFF') -%>">
         <td align=left><li><%= link_to pack.name, request.base_url + virtual_pack_path + "?vp=" + pack.id.to_s %></td>
         <td align=left><%= pack_user(pack.user_id) %></td>
-        <td align=left><%= trip_length(pack.event_id) %> <% if trip_length(pack.event_id) == 1 then %> day <% else %> days <% end %></td>
+        <td align=left><%= trip_length(pack.event_id) %> <% if trip_length(pack.event_id) == 1 then %> night <% else %> nights <% end %></td>
         <td align=left><%= ounces_to_lbs(total_pack_weight_oz(pack.id)) %></td>
         <td align=left><%= oz_day(pack.id) %></td>
         <td align=left><%= pack.summary %></td>
