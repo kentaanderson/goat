@@ -1,12 +1,11 @@
+<!--<form action="/home" method="get">-->
+<% form_tag home_path, :method => 'get' do %>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+<% end %>
+<!--</form>-->
+
 <h3>Get started with Gear Goat! <%= image_tag("beta-stamp.png", size: "60x40") %></h3>
-
-
-<form action="/home" method="get">
-<%# form_tag home_path, :method => 'get' do %>
-    <%#= text_field_tag :search, params[:search] %>
-    <%#= submit_tag "Search", :name => nil %>
-<form>
-<%# end %>
 
 <div class="row">
   <div class="col-md-2" align=middle><%= image_tag("goat.jpg", size: "100x100") %></div>
@@ -26,17 +25,21 @@
     <th>OZ/Day</th>
     <th>Summary</th>
   </tr>
-  <% @packs.each do |pack|%>
-    <% if pack.name.to_s.length > 0 then %>
-      <tr style="background-color:<%= cycle('#EEE', '#FFF') -%>">
-        <td align=left><li><%= link_to pack.name, request.base_url + virtual_pack_path + "?vp=" + pack.id.to_s %></td>
-        <td align=left><%= pack_user(pack.user_id) %></td>
-        <td align=left><%= trip_length(pack.event_id) %> <% if trip_length(pack.event_id) == 1 then %> night <% else %> nights <% end %></td>
-        <td align=left><%= ounces_to_lbs(total_pack_weight_oz(pack.id)) %></td>
-        <td align=left><%= oz_day(pack.id) %></td>
-        <td align=left><%= pack.summary %></td>
-      </tr>
+  <% limit = 0 %>
+  <% @packs.each do |pack| %>
+    <% if limit < 12 then %>
+      <% if pack.name.to_s.length > 0 then %>
+        <tr style="background-color:<%= cycle('#EEE', '#FFF') -%>">
+          <td align=left><li><%= link_to pack.name, request.base_url + virtual_pack_path + "?vp=" + pack.id.to_s %></td>
+          <td align=left><%= pack_user(pack.user_id) %></td>
+          <td align=left><%= trip_length(pack.event_id) %> <% if trip_length(pack.event_id) == 1 then %> night <% else %> nights <% end %></td>
+          <td align=left><%= ounces_to_lbs(total_pack_weight_oz(pack.id)) %></td>
+          <td align=left><%= oz_day(pack.id) %></td>
+          <td align=left><%= pack.summary %></td>
+        </tr>
+      <% end %>
     <% end %>
+    <% limit += 1  %>
   <% end %>
 </table>
 
@@ -57,5 +60,9 @@
         </tr>
       <% end %>
     </table>
+
+
+
+
   <% end %>
 <% end %>
