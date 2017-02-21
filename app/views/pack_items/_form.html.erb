@@ -21,7 +21,7 @@
   </div>
 <br>
   <div class="row">
-    <div class="col-md-2"><%= f.label :manufacturer %> (combo list later)</div>
+    <div class="col-md-2"><%= f.label :manufacturer %></div>
     <div class="col-md-4"><%= f.text_field :manufacturer,  autocomplete: 'on' %></div>
   </div>
 <br>
@@ -34,10 +34,13 @@
     <div class="col-md-2"><%#= f.label "How many of this item?" %></div>
     <div class="col-md-4"><%#= f.text_field :item_count, :size => 10 %></div>
   </div>
--->  <div class="row">
+-->  
+<!-- TURN THESE INTO LIVE LINKS ON THE LIST PAGE -->
+  <div class="row">
     <div class="col-md-2"><b>Flag</b></div>
     <div class="col-md-4"><%= f.select(:highlight, {" - None - " => "", "Red" => "flag-red-filled.png", "Orange" => "flag-orange-filled.png", "Green" => "flag-green-filled.png", "Light Blue" => "flag-light-blue-filled.png", "Blue" => "flag-blue-filled.png", "Pink" => "flag-pink-filled.png", "Black" => "flag-black-filled.png", "Black" => "flag-black-filled.png"})%></div>
   </div>
+<!-- TURN THIS INTO A CHECKBOX -->
 <br>
   <div class="row">
     <div class="col-md-2"><%= f.label :sharing_status %></div>
@@ -45,12 +48,24 @@
   </div>
 <br>
   <div class="row">
-    <div class="col-md-1"><%= f.check_box :wearing %></div>
-    <div class="col-md-3">This item will be worn, and will not count for pack weight total</div>
-    <div class="col-md-1"><%= f.check_box :delivery %></div>
-    <div class="col-md-3">Item will be delivered, or left behind, or otherwise should not count for pack weight total</div>
-    <div class="col-md-1"><%= f.check_box :inventory %></div>
-    <div class="col-md-3">Save item in inventory?</div>
+    <div class="lightbox">
+      <a onclick="toggle_check('pack_item_wearing')">
+        <div class="col-md-1" align="right"><%= f.check_box :wearing %></div>
+        <div class="col-md-3">This item will be worn, and will not count for pack weight total</div>
+      </a>
+    </div>
+    <div class="lightbox">
+      <a onclick="toggle_check('pack_item_delivery')">
+        <div class="col-md-1" align="right"><%= f.check_box :delivery %></div>
+        <div class="col-md-3">Item will be delivered, or left behind, or otherwise should not count for pack weight total</div>
+      </a>
+    </div>
+    <div class="lightbox">
+      <a onclick="toggle_check('pack_item_inventory')">
+        <div class="col-md-1" align="right"><%= f.check_box :inventory %></div>
+        <div class="col-md-3">Save item in inventory?</div>
+      </a>
+    </div>
   </div>
 <br>
   <div class="col-md-2">
