@@ -10,6 +10,9 @@ class PackItemsController < ApplicationController
 	end	
 	def create
 	  pack_item = PackItem.create(pack_item_params)
+
+	  gear_id = inventory_add_update(pack_item_params)								# do the inventory thing
+
   	  redirect_to pack_item_path(session[:current_event_id])						# event_id in session
   	  flash[:notice] = "Item created!"
 	end
@@ -58,19 +61,8 @@ class PackItemsController < ApplicationController
 	def update 																		# update pack_item
 	  # THIS can probably be optimized with model associations and a :through reference, but the blunt-force method works, too
 	  # MAYBE USE get_or_create - or something like that?
-	  gear_id = 0																	# might need to review this line
-	  																				# set gear_params to the relevant form fields
-      gear_params = {name: pack_item_params[:name], description: pack_item_params[:description], weight_oz: pack_item_params[:weight_oz], year_acquired: pack_item_params[:year_acquired], category_id: pack_item_params[:category_id], manufacturer: pack_item_params[:manufacturer], user_id: current_user.id}
-	  if pack_item_params[:inventory] == "1" then									# if saving checked, do save and grab gear_id
-		if Gear.exists?(pack_item_params[:gear_id].to_i) then						# if this has been saved to inventory before...			
-		  	gear_id = pack_item_params[:gear_id].to_i								# gear_id exists, so grab gear_id from params
-		 	@gear = Gear.find(gear_id)												# get the gear object
-		 	@gear.update_attributes(gear_params)									# update the gear inventory record
-      	else
-	  		@gear = Gear.create(gear_params)										# create a gear record
-		  	gear_id = @gear.id 														# grab the new gear_id
-		end
-	  end
+#	  gear_id = 0																	# might need to review this line
+	  gear_id = inventory_add_update(pack_item_params)								# do the inventory thing
 
       # NO MATTER WHAT: UPDATE PACK_ITEM
  	  @pack_item = PackItem.find(params[:id])										# get the pack_item record to be updated
@@ -93,6 +85,24 @@ class PackItemsController < ApplicationController
 	end
 end
 private
+
+def inventory_add_update(pack_item_params)
+  # set gear_params to the relevant form fields
+  gear_params = {name: pack_item_params[:name], description: pack_item_params[:description], weight_oz: pack_item_params[:weight_oz], year_acquired: pack_item_params[:year_acquired], category_id: pack_item_params[:category_id], manufacturer: pack_item_params[:manufacturer], user_id: current_user.id}
+  if pack_item_params[:inventory] == "1" then									# if saving checked, do save and grab gear_id
+	if Gear.exists?(pack_item_params[:gear_id].to_i) then						# if this has been saved to inventory before...			
+	  	gear_id = pack_item_params[:gear_id].to_i								# gear_id exists, so grab gear_id from params
+	 	@gear = Gear.find(gear_id)												# get the gear object
+	 	@gear.update_attributes(gear_params)									# update the gear inventory record
+  	else
+  		@gear = Gear.create(gear_params)										# create a gear record
+	  	gear_id = @gear.id 														# grab the new gear_id
+	end
+  else
+  	# do not delete inventory items for now
+  end
+  gear_id
+end
 
 def pack_item_params
   params.require(:pack_item).permit(:name, :description, :weight_oz, :year_acquired, :category_id, :manufacturer, :user_id, :event_id, :gear_id, :post_summary, :highlight, :wearing, :delivery, :pack_id, :item_count, :inventory, :sharing_status)

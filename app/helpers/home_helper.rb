@@ -15,20 +15,18 @@ module HomeHelper
 	end
 
   def oz_day(pack_id)
-
-	pack = Pack.find(pack_id)
+	  pack = Pack.find(pack_id)
   	total_pack_weight_oz(pack_id).to_i / trip_length(pack.event_id).to_i
-
   end
 
   def total_pack_weight_oz(pack_id)
     # this requires event_id and user_id because I can't figure out how to use pack_id in this instance. It's not adequately tied back to pack_items yet
     # used this query format because apparently you can't retrieve NULL values without explicitly asking for them
-	pack = Pack.find(pack_id)
-	event = Event.find(pack.event_id)
-    pack_items = PackItem.where("event_id = ? AND (wearing != 1) AND (delivery != 1) AND user_id = ?", pack.event_id, pack.user_id)
-    total_weight = 0
-    total_weight_oz = 0
+	   pack = Pack.find(pack_id)
+	   event = Event.find(pack.event_id)
+     pack_items = PackItem.where("event_id = ? AND (wearing != 1) AND (delivery != 1) AND user_id = ?", pack.event_id, pack.user_id)
+     total_weight = 0
+     total_weight_oz = 0
 
     if pack_items.length > 0 then
       pack_items.each do |item|
@@ -49,26 +47,24 @@ module HomeHelper
       "n/a"
     end
   end
+
 #class AmazonSync
- # def test
- #   @request = Vacuum.new
- #   @request.configure(
- #       aws_access_key_id: "AKIAJIPQJQ6K36TYPVGA",
- #       aws_secret_access_key: "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",
- #       associate_tag: "geargoat-20"
- #   )
- 
- #   puts "im working!"
- #   response = @request.item_lookup(
- #     query: {
- #       'ItemId' => 'B00GSNFG84',
- #       'ResponseGroup' => 'Large'
- #     }
- #   )
- #   puts "Parsing response.."
- 
- #   response = response.to_h
- 
+# def test
+#   @request = Vacuum.new
+#   @request.configure(
+#       aws_access_key_id: "AKIAJIPQJQ6K36TYPVGA",
+#       aws_secret_access_key: "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",
+#       associate_tag: "geargoat-20"
+#   )
+#   puts "im working!"
+#   response = @request.item_lookup(
+#     query: {
+#       'ItemId' => 'B00GSNFG84',
+#       'ResponseGroup' => 'Large'
+#     }
+#   )
+#   puts "Parsing response.."
+#   response = response.to_h
 #    puts "*** Item title ***\n"
 #    print response['ItemLookupResponse']['Items']['Item']['ItemAttributes']['Title']
 #    puts "\n*** Item image url ***"
@@ -80,5 +76,6 @@ module HomeHelper
 #    puts "\n\n ---"
 #    print response['ItemLookupResponse']['Items']['Item']['EditorialReviews']['EditorialReview']['Content']
 #  end
+#end
 
 end
