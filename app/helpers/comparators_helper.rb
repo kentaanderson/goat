@@ -35,6 +35,22 @@ module ComparatorsHelper
 	      ounces_to_lbs(@total_weight)
 	    end
   end
+  def category_weight_by_pack_raw(category_id, pack_id)
+		@pack = Pack.find(pack_id)
+	# connect to pack_items through event_id (oops - need to add pack_id as FK in pack_items, rather than event_id - MANY model changes there)
+	#	@local_event = Event.find(@pack.event_id)
+		@pack_items = PackItem.where("user_id" => @pack.user_id, "event_id" => @pack.event_id, "category_id" => category_id)
+	#    @pack_items = PackItem.where("event_id" => @event.id, "category_id" => category_id, "user_id" => user_id)   # are we missing the user_id filter here, though?
+		@total_weight = 0
+	    if @pack_items.length > 0 then
+	      @pack_items.each do |item|
+	        if item.weight_oz and item.wearing == 0 and item.delivery == 0 then
+	        	@total_weight += item.weight_oz.to_d
+			end
+	      end
+	    end
+	    @total_weight
+  end
 
 	def event_title(event_id)
 	  Event.find(event_id).title
