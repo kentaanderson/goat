@@ -2,7 +2,7 @@
 
 <table>
   <tr>
-    <td><h1><%= @event.title %></h1> </td>
+    <td><h3><%= @event.title %></h3> </td>
     <td align=right>
       <button class="btn btn-primary" data-toggle="modal" data-target="#packEvent">Event Details</button>
       <!--<button class="btn btn-primary" onclick="javascript:alert('Choose Facebook/Twitter/Gear Goat (or enter emails) to share with friends/accomplices.')">Share Pack</button>-->
@@ -20,10 +20,11 @@
 $(function () {
     Highcharts.chart('container', {
         chart: {
-                type: 'pie',
-                options3d: {
-                enabled: true,
-                alpha: 45            }
+          type: 'pie',
+          options3d: {
+            enabled: true,
+            alpha: 45            
+          }
         },
         title: {
             text: 'Gear Breakdown for <%= @event.title %>'
@@ -38,8 +39,7 @@ $(function () {
                 dataLabels: {
                   enabled: false
                 },
-//                colors: ['#D35400', '#E67E22', '#F39C12', '#F1C40F', '#2ECC71', '#27AE60', '#16A085', '#1ABC9C',  '#3498DB', '#2980B9', '#8E44AD', '#C0392B']
-                colors: ['#D35400', '#8E44AD', '#2980B9', '#3498DB', '#1ABC9C', '#16A085', '#27AE60', '#2ECC71',  '#F1C40F', '#F39C12', '#E67E22', '#C0392B']
+                colors: ['#8E44AD', '#1F618D', '#2980B9', '#3498DB', '#16A085', '#1ABC9C', '#27AE60', '#F7DC6F',  '#F1C40F', '#F39C12', '#E67E22', '#C0392B']
             }
         },
         series: [{
@@ -58,23 +58,26 @@ $(function () {
 <script src="https://code.highcharts.com/highcharts-3d.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 
+<%#  if @pack_items.length > 0 then %>
 <div id="container" style="height: 300px"></div>
+<%# end %>
 <!-- end highcharts example -->
 
 <table class=table>
   <tr>
-    <td align=center><b>Total pack weight</b></td>
-    <td align=center><b>Target pack weight</b></td>
-    <td align=center><b>Total worn weight</b></td>
-    <td align=center><b>Total delivery weight</b></td>
-    <td align=left></td>
+    <td align=center width="22%"><b>Total pack weight</b></td>
+    <td align=center width="22%"><b>Target pack weight</b></td>
+    <td align=center width="22%"><b>Total worn weight</b></td>
+    <td align=center width="22%"><b>Total delivery weight</b></td>
+    <td align=right width="8%"></td>
   </tr>
   <tr>
-    <td width="15%" align=center><span style="color:red; font-weight:bold; font-size:16pt"><%= total_pack_weight(current_user.id) %></span></td>
-    <td width="15%" align=center><%= target_weight(@pack.id) %></td>
-    <td width="15%" align=center><%= total_wearing_weight(current_user.id) %></td>
-    <td width="15%" align=center><%= total_delivery_weight(current_user.id) %></td>
-    <td width="10%"><%= link_to "<button class='btn btn-primary'>Edit pack details</button>".html_safe, edit_pack_path(@pack.id) %></td>
+    <td align=center><span style="color:red; font-weight:bold; font-size:16pt"><%= total_pack_weight(current_user.id) %></span></td>
+    <td align=center><%= target_weight(@pack.id) %></td>
+    <td align=center><%= total_wearing_weight(current_user.id) %></td>
+    <td align=center><%= total_delivery_weight(current_user.id) %></td>
+    <td align=right><%= link_to image_tag("edit_icon.png",size: "20x20"), edit_pack_path(@pack.id) %></td>
+<!--    <td width="10%"><%#= link_to "<button class='btn btn-primary'>Edit pack details</button>".html_safe, edit_pack_path(@pack.id) %></td>-->
   </tr>
 </table>
 
