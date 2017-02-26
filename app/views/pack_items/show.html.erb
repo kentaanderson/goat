@@ -13,8 +13,8 @@
     <% if current_user.id == 1 then %><button class="btn btn-warning" data-toggle="modal" data-target="#packItem">Development tasks</button><% end %>
   </div>
 </div>
-<!-- highcharts example -->
 
+<!-- highcharts -->
 <script type="text/javascript">
 $(function () {
     Highcharts.chart('container', {
@@ -38,7 +38,7 @@ $(function () {
                 dataLabels: {
                   enabled: false
                 },
-                //            1,          2,        3,          4,        5,          6,        7,          8,          9,        10,         11,       12
+                //           1,         2,        3,          4,        5,         6,        7,          8,          9,        10,         11,       12
                 colors: ['#8E44AD', '#A569BD', '#1F618D', '#2980B9', '#3498DB', '#27AE60', '#7DCEA0', '#F7DC6F',  '#F1C40F', '#F39C12', '#E67E22', '#C0392B']
             }
         },
@@ -56,15 +56,17 @@ $(function () {
 
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/highcharts-3d.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<!--<script src="https://code.highcharts.com/modules/exporting.js"></script>-->
+<!-- end highcharts -->
 
-<!-- end highcharts example -->
 <div class="row">
   <div class="col-md-6">
     <table class=table>
       <tr>
         <td width="50%" height="50"><b>Pack name</b></td>
-        <td valign="center"><h3><%= pack_name(@pack.id) %>&nbsp;<%= link_to image_tag("edit_icon.png",size: "20x20"), edit_pack_path(@pack.id) %></h3></td>
+        <td valign="center">
+          <table><tr><td width="90%"><h4><%= pack_name(@pack.id) %></h4></td><td width="10%" align="right"><%= link_to image_tag("edit_icon.png",size: "20x20"), edit_pack_path(@pack.id) %></td></tr></table>
+        </td>
       </tr>
       <tr>
         <td width="50%" height="50"><b>Total pack weight</b></td>
