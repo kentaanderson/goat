@@ -1,19 +1,18 @@
 <%= render "modals" %>
 
-<table>
-  <tr>
-    <td><h3><%= @event.title %></h3> </td>
-    <td align=right>
-      <button class="btn btn-primary" data-toggle="modal" data-target="#packEvent">Event Details</button>
-      <!--<button class="btn btn-primary" onclick="javascript:alert('Choose Facebook/Twitter/Gear Goat (or enter emails) to share with friends/accomplices.')">Share Pack</button>-->
-      <button class="btn btn-primary" data-toggle="modal" data-target="#share">Share Pack</button>
-      <%= link_to "<button class='btn btn-primary'>Compare</button>".html_safe, compare_pack_path %>
-      <%= link_to "<button class='btn btn-primary'>Print Picklist</button>".html_safe, picklist_path(:pack_id => @pack.id) %>
-      <% if current_user.id == 1 then %><button class="btn btn-warning" data-toggle="modal" data-target="#packItem">Development tasks</button><% end %>
-    </td>
-  </tr>
-</table>
-
+<div class="row">
+  <div class="col-md-6">
+    <h3><%= @event.title %></h3>
+  </div>
+  <div class="col-md-6" align="right">
+    <button class="btn btn-primary" data-toggle="modal" data-target="#packEvent">Event Details</button>
+    <!--<button class="btn btn-primary" onclick="javascript:alert('Choose Facebook/Twitter/Gear Goat (or enter emails) to share with friends/accomplices.')">Share Pack</button>-->
+    <button class="btn btn-primary" data-toggle="modal" data-target="#share">Share Pack</button>
+    <%= link_to "<button class='btn btn-primary'>Compare</button>".html_safe, compare_pack_path %>
+    <%= link_to "<button class='btn btn-primary'>Print Picklist</button>".html_safe, picklist_path(:pack_id => @pack.id) %>
+    <% if current_user.id == 1 then %><button class="btn btn-warning" data-toggle="modal" data-target="#packItem">Development tasks</button><% end %>
+  </div>
+</div>
 <!-- highcharts example -->
 
 <script type="text/javascript">
@@ -40,7 +39,7 @@ $(function () {
                   enabled: false
                 },
                 //            1,          2,        3,          4,        5,          6,        7,          8,          9,        10,         11,       12
-                colors: ['#8E44AD', '#A569BD', '#1F618D', '#2980B9', '#3498DB', '#27AE60', '#1ABC9C', '#F7DC6F',  '#F1C40F', '#F39C12', '#E67E22', '#C0392B']
+                colors: ['#8E44AD', '#A569BD', '#1F618D', '#2980B9', '#3498DB', '#27AE60', '#7DCEA0', '#F7DC6F',  '#F1C40F', '#F39C12', '#E67E22', '#C0392B']
             }
         },
         series: [{
@@ -59,28 +58,34 @@ $(function () {
 <script src="https://code.highcharts.com/highcharts-3d.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 
-<%#  if @pack_items.length > 0 then %>
-<div id="container" style="height: 300px"></div>
-<%# end %>
 <!-- end highcharts example -->
-
-<table class=table>
-  <tr>
-    <td align=center width="22%"><b>Total pack weight</b></td>
-    <td align=center width="22%"><b>Target pack weight</b></td>
-    <td align=center width="22%"><b>Total worn weight</b></td>
-    <td align=center width="22%"><b>Total delivery weight</b></td>
-    <td align=right width="8%"></td>
-  </tr>
-  <tr>
-    <td align=center><span style="color:red; font-weight:bold; font-size:16pt"><%= total_pack_weight(current_user.id) %></span></td>
-    <td align=center><%= target_weight(@pack.id) %></td>
-    <td align=center><%= total_wearing_weight(current_user.id) %></td>
-    <td align=center><%= total_delivery_weight(current_user.id) %></td>
-    <td align=right><%= link_to image_tag("edit_icon.png",size: "20x20"), edit_pack_path(@pack.id) %></td>
-<!--    <td width="10%"><%#= link_to "<button class='btn btn-primary'>Edit pack details</button>".html_safe, edit_pack_path(@pack.id) %></td>-->
-  </tr>
-</table>
+<div class="row">
+  <div class="col-md-6">
+    <table class=table>
+      <tr>
+        <td width="50%" height="50"><b>Pack name</b></td>
+        <td valign="center"><h3><%= pack_name(@pack.id) %>&nbsp;<%= link_to image_tag("edit_icon.png",size: "20x20"), edit_pack_path(@pack.id) %></h3></td>
+      </tr>
+      <tr>
+        <td width="50%" height="50"><b>Total pack weight</b></td>
+        <td width="50%"><span style="color:red; font-weight:bold; font-size:16pt"><%= total_pack_weight(current_user.id) %></span></td>
+      </tr>
+      <tr>
+        <td height="50"><b>Target pack weight</b></td>
+        <td><%= target_weight(@pack.id) %></td>
+      </tr>
+      <tr>
+        <td height="50"><b>Total worn weight</b></td>
+        <td><%= total_wearing_weight(current_user.id) %></td>
+      </tr>
+      <tr>
+        <td height="50"><b>Total delivery weight</b></td>
+        <td><%= total_delivery_weight(current_user.id) %></td>
+      </tr>
+    </table>
+  </div>
+  <div class="col-md-6" id="container" style="height: 300px"></div>
+</div>
 
 <h3><%= pack_name(@pack.id) %> contents</h3>
 <div class="bs-example">
