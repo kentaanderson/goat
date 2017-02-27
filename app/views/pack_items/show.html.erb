@@ -1,11 +1,11 @@
 <%= render "modals" %>
 
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-6" style="height: 70px">
     <h3><%= @event.title %></h3>
   </div>
-  <div class="col-md-6" align="right">
-    <button class="btn btn-primary" data-toggle="modal" data-target="#packEvent">Event Details</button>
+  <div class="col-md-6" align="right" style="height: 70px">
+    <br><button class="btn btn-primary" data-toggle="modal" data-target="#packEvent">Event Details</button>
     <!--<button class="btn btn-primary" onclick="javascript:alert('Choose Facebook/Twitter/Gear Goat (or enter emails) to share with friends/accomplices.')">Share Pack</button>-->
     <button class="btn btn-primary" data-toggle="modal" data-target="#share">Share Pack</button>
     <%= link_to "<button class='btn btn-primary'>Compare</button>".html_safe, compare_pack_path %>
@@ -26,7 +26,9 @@ $(function () {
           }
         },
         title: {
-            text: 'Gear Breakdown for <%= @event.title %>'
+//          text: 'Gear Breakdown for <%= @event.title %>',
+          text: '',
+          floating: true
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -38,6 +40,7 @@ $(function () {
                 dataLabels: {
                   enabled: false
                 },
+                //         purple,  lt purple,  dk blue,     blue,    lt blue,    green,    lt green,   yellow,   dk yellow,  orange,   dk orange,   red
                 //           1,         2,        3,          4,        5,         6,        7,          8,          9,        10,         11,       12
                 colors: ['#8E44AD', '#A569BD', '#1F618D', '#2980B9', '#3498DB', '#27AE60', '#7DCEA0', '#F7DC6F',  '#F1C40F', '#F39C12', '#E67E22', '#C0392B']
             }
@@ -58,9 +61,8 @@ $(function () {
 <script src="https://code.highcharts.com/highcharts-3d.js"></script>
 <!--<script src="https://code.highcharts.com/modules/exporting.js"></script>-->
 <!-- end highcharts -->
-
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-6" style="height: 300px">
     <table class=table>
       <tr>
         <td width="50%" height="50"><b>Pack name</b></td>
