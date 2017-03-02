@@ -1,3 +1,81 @@
+<!-- highcharts -->
+<script type="text/javascript">
+$(function () {
+    Highcharts.chart('container', {
+        chart: {
+          type: 'pie',
+          options3d: {
+            enabled: true,
+            alpha: 45            
+          }
+        },
+        title: {
+//          text: 'Gear Breakdown for <%= @event.title %>',
+          text: '',
+          floating: true
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                innerSize: 75,
+                depth: 45,
+                dataLabels: {
+                  enabled: false
+                },
+                //         purple,  lt purple,  dk blue,     blue,    lt blue,    green,    lt green,   yellow,  dk yellow,  orange,   dk orange,   red
+                //           1,         2,        3,          4,        5,         6,        7,          8,          9,        10,         11,       12
+                colors: ['#8E44AD', '#A569BD', '#1F618D', '#2980B9', '#3498DB', '#27AE60', '#7DCEA0', '#F7DC6F', '#F1C40F', '#F39C12', '#E67E22', '#C0392B']
+            }
+        },
+        series: [{
+            name: 'Proportion',
+            data: [
+              <% @categories.each do |category| %>
+                ['<%=category.category_name.html_safe%><br>' + '<%= category_weight_by_pack(category.id, @pack.id) %>', <%= category_weight_by_pack_raw(category.id, @pack.id) %>],
+              <% end %>
+            ]
+        }]
+    });
+});
+</script>
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-3d.js"></script>
+<!--<script src="https://code.highcharts.com/modules/exporting.js"></script>-->
+<!-- end highcharts -->
+<div class="row">
+  <div class="col-md-6" style="height: 300px">
+    <table class=table>
+      <tr>
+        <td width="50%" height="50"><b>Pack name</b></td>
+        <td valign="center">
+          <table><tr><td width="90%"><h4><%= pack_name(@pack.id) %></h4></td></tr></table>
+        </td>
+      </tr>
+      <tr>
+        <td width="50%" height="50"><b>Total pack weight</b></td>
+        <td width="50%"><span style="color:red; font-weight:bold; font-size:16pt"><%= total_pack_weight(@user_id) %></span></td>
+      </tr>
+      <tr>
+        <td height="50"><b>Target pack weight</b></td>
+        <td><%= target_weight(@pack.id) %></td>
+      </tr>
+      <tr>
+        <td height="50"><b>Total worn weight</b></td>
+        <td><%= total_wearing_weight(@user_id) %></td>
+      </tr>
+      <tr>
+        <td height="50"><b>Total delivery weight</b></td>
+        <td><%= total_delivery_weight(@user_id) %></td>
+      </tr>
+    </table>
+  </div>
+  <div class="col-md-6" id="container" style="height: 300px"></div>
+</div>
+
+
 <table>
   <tr>
     <td><h3><%= open_pack_name(@pack) %> pack details</h3><%= @pack.event.title  %>
