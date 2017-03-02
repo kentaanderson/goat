@@ -76,28 +76,6 @@ $(function () {
 </div>
 
 
-<table>
-  <tr>
-    <td><h3><%= open_pack_name(@pack) %> pack details</h3><%= @pack.event.title  %>
-</td>
-  </tr>
-</table>
-
-<table class=table>
-  <tr>
-    <td align=center><b>Total pack weight</b></td>
-    <td align=center><b>Target pack weight</b></td>
-    <td align=center><b>Total worn weight</b></td>
-    <td align=center><b>Total delivery weight</b></td>
-  </tr>
-  <tr>
-    <td width="15%" align=center><span style="color:red; font-weight:bold; font-size:16pt"><%= total_pack_weight(@user_id) %></span></td>
-    <td width="15%" align=center><%= open_pack_target_weight(@pack) %></td>
-    <td width="15%" align=center><%= total_wearing_weight(@user_id) %></td>
-    <td width="15%" align=center><%= total_delivery_weight(@user_id) %></td>
-  </tr>
-</table>
-
 <!-- FORMERLY "_items.html.erb" PARTIAL -->
 <h3>Pack contents</h3>
 <div class="bs-example">
