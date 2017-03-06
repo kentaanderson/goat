@@ -1,4 +1,25 @@
 
+<!-- highcharts -->
+
+<script type="text/javascript">
+$(function () {
+    Highcharts.chart('container', {chart: {type: 'pie', options3d: {enabled: true, alpha: 45}}, title: {text: '', floating: true},
+        tooltip: {pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'},
+        plotOptions: {pie: {innerSize: 15, depth: 45, dataLabels: {enabled: false}, colors: ['#8E44AD', '#A569BD', '#1F618D', '#2980B9', '#3498DB', '#27AE60', '#7DCEA0', '#F7DC6F', '#F1C40F', '#F39C12', '#E67E22', '#C0392B']}},
+        series: [{name: 'Proportion', 
+        data: [<%# @categories.each do |category| %> 
+          ['<%#=category.category_name.html_safe%><br>' + '<%#= category_weight_by_pack(category.id, @pack.id) %>', <%#= category_weight_by_pack_raw(category.id, @pack.id) %>],
+              <%# end %>
+        ]
+        }]
+    });
+});
+</script>
+<!--
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-3d.js"></script>
+-->
+<!-- end highcharts -->
 
 <!-- pack details for each attendee -->
 <% dbags = @event_attendees.length %>
@@ -23,6 +44,13 @@
       <td align=center>
           <b><%= pack_weight_by_category(category.id, attendee.user.id) %></b>
          <table class="table">
+<!--
+            <tr style="background-color:<%#= cycle('#EEE', '#FFF') -%>">
+              <td valign=top align=center colspan=2>
+                <div id="container" style="height: 100px"></div>
+             </td>
+            </tr>
+--> 
           <% reset_cycle %>
           <% pack_items_by_category_filtered(category.id, attendee.user.id).each do |item| %>
             <tr style="background-color:<%= cycle('#EEE', '#FFF') -%>">

@@ -2,7 +2,6 @@ class HomeController < ApplicationController
 	before_action :kill_category
 	def index
 
-
 	# 	@events = Event.all	#where("sharing_status" => 2)
 	#	p @events.first
 		@packs = Pack.where("sharing_status" => 2).order(updated_at: :desc)
