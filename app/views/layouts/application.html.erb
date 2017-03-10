@@ -22,12 +22,14 @@
 
 <!--  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
 <script language=javascript>
+// for selecting in bulk
   function toggle(source) {
     checkboxes = document.getElementsByName('gear_id[]');
     for(var i=0, n=checkboxes.length;i<n;i++) {
       checkboxes[i].checked = source.checked;
     }
   }
+// for gear select option
   function toggle_check(checkbox_id) {
     checkbox = document.getElementById(checkbox_id);
   if (checkbox.checked == true) {
@@ -36,6 +38,7 @@
       checkbox.checked = true;
     }
   }
+
 </script>
 
 <style type="text/css">

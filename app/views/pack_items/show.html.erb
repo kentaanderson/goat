@@ -148,8 +148,11 @@ $(function () {
               <% end %>
               <tr style="background-color:white">
                 <td colspan=9>
-                  <%= link_to "Add New Item", new_pack_item_path(category_id: category.id) %>&nbsp;|&nbsp;
-                  <%= link_to "Add " + category.category_name + " Items From Inventory", imports_import_path(category_id: category.id) %>
+                  <% btn_text = "<button class='btn btn-primary'>Add " + category.category_name + " Gear from Inventory</button>" %>
+                  <%= link_to "<button class='btn btn-primary'>Add New Gear</button>".html_safe, new_pack_item_path(category_id: category.id), :id=>"add-itm-btn" %>
+                  <%= link_to btn_text.html_safe, imports_import_path(category_id: category.id), :id=>"add-inv-itm-btn" %>
+                  <%#= link_to "Add New Item", new_pack_item_path(category_id: category.id) %>
+                  <%#= link_to "Add " + category.category_name + " Items From Inventory", imports_import_path(category_id: category.id) %>
                   <%#= link_to "Add " + category.category_name + " Items From Another Pack", imports_import_pack_path(category_id: category.id) %>
                 </td>
               </tr>

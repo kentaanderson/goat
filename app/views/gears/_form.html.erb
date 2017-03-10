@@ -2,34 +2,37 @@
 
 <% # Shawn - this is where I need some Ajax magic %>
 
+<br>
   <div class="row">
     <div class="col-md-2"><%= f.label :category_id %></div>
     <div class="col-md-4"><%= f.collection_select(:category_id, Category.all.order(item_order: :asc), :id, :category_name) %></div>
   </div>
+<br>
   <div class="row">
     <div class="col-md-2"><%= f.label :name %></div>
     <div class="col-md-4"><%= f.text_field :name %></div>
   </div>
+<br>
   <div class="row">
     <div class="col-md-2"><%= f.label :description %></div>
     <div class="col-md-4"><%= f.text_area :description, size: '60x4' %></div>
   </div>
+<br>
   <div class="row">
     <div class="col-md-2"><%= f.label :weight_oz %></div>
     <div class="col-md-4"><%= f.text_field :weight_oz %></div>
   </div>
+<br>
   <div class="row">
-    <div class="col-md-2"><%= f.label :manufacturer %>(combo list later)</div>
+    <div class="col-md-2"><%= f.label :manufacturer %></div>
     <div class="col-md-4"><%= f.text_field :manufacturer %></div>
   </div>
+<br>
   <div class="row">
     <div class="col-md-2"><%= f.label :year_acquired %></div>
     <div class="col-md-4"><%= f.text_field :year_acquired %></div>
   </div>
-  <div class="row">
-    <div class="col-md-2"><%= f.label :year_acquired %></div>
-    <div class="col-md-4"><%= f.text_field :year_acquired %></div>
-  </div>
+<br>
   <div class="col-md-2">
     <%= f.hidden_field(:user_id, :value => current_user.id) %>
         <%= f.submit "Submit", :class => "btn btn-primary" %>&nbsp;

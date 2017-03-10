@@ -44,7 +44,6 @@
       </div>
     <%# end %>
   </div>
-	<%= f.hidden_field(:user_id, :value => current_user.id) %>
     <%= f.submit "Add selected items", :class => "btn btn-primary" %>
     <%= link_to "Cancel".html_safe, :back %>
     <% # can't do a button here because Rails thinks it is a "Submit" for some dumbass reason %>
