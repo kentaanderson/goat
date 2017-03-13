@@ -6,7 +6,9 @@ class HomeController < ApplicationController
 	#	p @events.first
 		@packs = Pack.where("sharing_status" => 2).order(updated_at: :desc)
 		@users = User.all.order(current_sign_in_at: :desc)
-		@events = current_user.events.all.order(start_date: :desc)
+		if current_user then
+			@events = current_user.events.all.order(start_date: :desc)
+		end
 		# IMPORTANT: why doesn't "Event.Pack...."" work? Figure this out for max use of model associations.
 		# is a rake db:action needed?
 
