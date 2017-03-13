@@ -15,6 +15,29 @@
   <div class="col-md-2"><%#= link_to "<button class='btn btn-primary'>Share your work</button>".html_safe, "#" %><h4>Share your work</h4>Ensure you pack everything. Share your successes. Warn others when gear fails. Show off your packing genius.</div>
   <div class="col-md-2"><div class="fb-like" data-href="http://www.geargoat.net" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div></div>
 </div>
+
+<h3>Upcoming Events:</h3>
+<table class=table>
+  <tr>
+    <td ><b>Event</b></td>
+    <td align=right><b>Dates</b></td>
+<!--    <th>Trip Length</th>
+    <th>Pack Weight</th>
+    <th>OZ/Day</th>
+    <th>Summary</th>-->
+  </tr>
+<% @events.each do |event| %>
+  <% if event.start_date.is_a?(Date) then %>
+    <% if event.start_date > Time.now then %>
+        <tr style="background-color:<%= cycle('#EEE', '#FFF') -%>">
+          <td align=left><h4 class="panel-default"><%= link_to event.title, pack_item_path(event.id) %></h4></td>
+          <td align=right><h4><%= pack_event_range(event.start_date,event.return_date) %></h4></td>
+        </tr>
+    <% end %>
+  <% end %>
+<% end %>
+</table>
+
 <h3>Featured Packs:</h3>
 <table class=table>
   <tr>
@@ -27,7 +50,7 @@
   </tr>
   <% limit = 0 %>
   <% @packs.each do |pack| %>
-    <% if limit < 12 then %>
+    <% if limit < 8 then %>
       <% if pack.name.to_s.length > 0 then %>
         <tr style="background-color:<%= cycle('#EEE', '#FFF') -%>">
           <td align=left><li><%= link_to pack.name, request.base_url + virtual_pack_path + "?vp=" + pack.id.to_s %></td>
