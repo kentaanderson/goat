@@ -26,16 +26,19 @@
     <th>OZ/Day</th>
     <th>Summary</th>-->
   </tr>
-<% @events.each do |event| %>
-  <% if event.start_date.is_a?(Date) then %>
-    <% if event.start_date > Time.now then %>
-        <tr style="background-color:<%= cycle('#EEE', '#FFF') -%>">
-          <td align=left><h4 class="panel-default"><%= link_to event.title, pack_item_path(event.id) %></h4></td>
-          <td align=right><h4><%= pack_event_range(event.start_date,event.return_date) %></h4></td>
-        </tr>
+  <% @events.each do |event| %>
+    <% if event.start_date.is_a?(Date) then %>
+      <% if event.start_date > Time.now then %>
+          <tr style="background-color:<%= cycle('#EEE', '#FFF') -%>">
+            <td align=left><h4 class="panel-default"><%= link_to event.title, pack_item_path(event.id) %></h4></td>
+            <td align=right><h4><%= pack_event_range(event.start_date,event.return_date) %></h4></td>
+          </tr>
+      <% end %>
     <% end %>
   <% end %>
-<% end %>
+  <tr>
+    <td colspan=2><%= link_to "<button class='btn btn-primary'>Add Upcoming Event</button>".html_safe, new_event_path, :id=>"add-event-btn" %></td>
+  </tr>
 </table>
 
 <h3>Featured Packs:</h3>
