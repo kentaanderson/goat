@@ -16,17 +16,17 @@
   <div class="col-md-2"><div class="fb-like" data-href="http://www.geargoat.net" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div></div>
 </div>
 
-<h3>Upcoming Events:</h3>
-<table class=table>
-  <tr>
-    <td ><b>Event</b></td>
-    <td align=right><b>Dates</b></td>
-<!--    <th>Trip Length</th>
-    <th>Pack Weight</th>
-    <th>OZ/Day</th>
-    <th>Summary</th>-->
-  </tr>
-  <% if @events then %>
+<% if @events then %>
+  <h3>Upcoming Events:</h3>
+  <table class=table>
+    <tr>
+      <td ><b>Event</b></td>
+      <td align=right><b>Dates</b></td>
+  <!--    <th>Trip Length</th>
+      <th>Pack Weight</th>
+      <th>OZ/Day</th>
+      <th>Summary</th>-->
+    </tr>
     <% @events.each do |event| %>
       <% if event.start_date.is_a?(Date) then %>
         <% if event.start_date > Time.now then %>
@@ -37,11 +37,11 @@
         <% end %>
       <% end %>
     <% end %>
-  <% end %>
-  <tr>
-    <td colspan=2><%= link_to "<button class='btn btn-primary'>Add Upcoming Event</button>".html_safe, new_event_path, :id=>"add-event-btn" %></td>
-  </tr>
-</table>
+    <tr>
+      <td colspan=2><%= link_to "<button class='btn btn-primary'>Add Upcoming Event</button>".html_safe, new_event_path, :id=>"add-event-btn" %></td>
+    </tr>
+  </table>
+<% end %>
 
 <h3>Featured Packs:</h3>
 <table class=table>
