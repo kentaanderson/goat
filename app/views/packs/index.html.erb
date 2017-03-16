@@ -7,7 +7,7 @@
     </td>
     <td align=right valign=middle>
       <%= link_to "<button class='btn btn-primary'>Add Upcoming Event</button>".html_safe, new_event_path, :id=>"add-event-btn" %>
-      <% if current_user.id == 1 then %><button class="btn btn-warning" data-toggle="modal" data-target="#eventModal">Development tasks</button><% end %>
+      <% if current_user.id == 0 then %><button class="btn btn-warning" data-toggle="modal" data-target="#eventModal">Development tasks</button><% end %>
     </td>
   </tr>
 </table>

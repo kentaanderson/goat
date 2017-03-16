@@ -10,7 +10,7 @@
     <button class="btn btn-primary" data-toggle="modal" data-target="#share">Share Pack</button>
     <%= link_to "<button class='btn btn-primary'>Compare</button>".html_safe, compare_pack_path %>
     <%= link_to "<button class='btn btn-primary'>Print Picklist</button>".html_safe, picklist_path(:pack_id => @pack.id) %>
-    <% if current_user.id == 1 then %><button class="btn btn-warning" data-toggle="modal" data-target="#packItem">Development tasks</button><% end %>
+    <% if current_user.id == 0 then %><button class="btn btn-warning" data-toggle="modal" data-target="#packItem">Development tasks</button><% end %>
   </div>
 </div>
 
