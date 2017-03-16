@@ -6,18 +6,48 @@
 <!--</form>-->
 
 <div class="row" valign="center"> <%# style="border:solid" %>
-  <div class="col-md-10" align=left><h3>Get started with Gear Goat! <%= image_tag("beta-stamp.png", size: "60x40") %>&nbsp;<div class="fb-like" data-href="http://www.geargoat.net" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div></h3></div>
+  <div class="col-md-1" align=middle><%= image_tag("goat.jpg", size: "69x70") %></div>
+  <div class="col-md-10" align=left><h2>Welcome to Gear Goat, the essential backcountry trip planner!<%= image_tag("beta-stamp.png", size: "70x40") %></h2></div>
+  <div class="col-md-1" align=right><div class="fb-like" data-href="http://www.geargoat.net" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div></div>
 </div>
 
 <div class="row">
-  <div class="col-md-2" align=middle><%= image_tag("goat.jpg", size: "100x100") %></div>
-  <div class="col-md-2"><%#= link_to "<button class='btn btn-primary'>Inventory your gear</button>".html_safe, gears_path %><h4>Inventory</h4>How much gear do you really have? How much is it weighing you down? How old is it?</div>
-  <div class="col-md-2"><%#= link_to "<button class='btn btn-primary'>Plan your event</button>".html_safe, packs_path %><h4>Plan</h4>Organize your gear in a Virtual Pack while you plan your trip. Streamline for optimal weight/utlity ratio.</div>
-  <div class="col-md-2"><%#= link_to "<button class='btn btn-primary'>Coordinate packs</button>".html_safe, comparators_path %><h4>Coordinate</h4>Coordinate shared items and identify complementary gear to reduce carried weight.</div>
-  <div class="col-md-2"><%#= link_to "<button class='btn btn-primary'>Share your work</button>".html_safe, "#" %><h4>Share</h4>Ensure you pack everything. Share your successes. Warn others when gear fails. Show off your packing genius.</div>
+  <div class="col-md-3">
+    <div height=20><h3>Inventory</h3></div>
+    <div style="height:80px;">How much gear do you really have? How much is it weighing you down? How old is it?</div>
+    <div height=20><%= link_to "<button class='btn btn-primary'>Manage gear inventory</button>".html_safe, gears_path %></div>
+  </div>
+  <div class="col-md-3">
+    <div><h3>Plan</h3></div>
+    <div style="height:80px;">Organize your gear in a Virtual Pack while you plan your trip. Streamline for optimal weight/utlity ratio.</div>
+    <div><%= link_to "<button class='btn btn-primary'>Add upcoming event</button>".html_safe, packs_path %></div>
+  </div>
+  <div class="col-md-3">
+    <div><h3>Coordinate</h3></div>
+    <div style="height:80px;">Coordinate shared items and identify complementary gear to reduce carried weight.</div>
+    <div><%= link_to "<button class='btn btn-primary'>Compare packs</button>".html_safe, comparators_path %></div>
+  </div>
+  <div class="col-md-3">
+    <div><h3>Share</h3></div>
+    <div style="height:80px;">Ensure you pack everything. Share your successes. Show off your packing genius.<br></div>
+    <div><%= link_to "<button class='btn btn-primary'>Share your work</button>".html_safe, "#" %></div>
+  </div>
 </div>
+<%# this is lame, but if the events query is fixed, it can be removed %>
 
+<% events_exist = false %>
 <% if @events then %>
+  <% @events.each do |event| %>
+    <% if event.start_date.is_a?(Date) then %>
+      <% if event.start_date > Time.now then %>
+        <% events_exist = true %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
+<%# end lameness %>
+<%# if @events then %>
+<% if events_exist then %>
   <h3>Upcoming Events:</h3>
   <table class=table>
     <tr>
@@ -38,9 +68,6 @@
         <% end %>
       <% end %>
     <% end %>
-    <tr>
-      <td colspan=2><%= link_to "<button class='btn btn-primary'>Add Upcoming Event</button>".html_safe, new_event_path, :id=>"add-event-btn" %></td>
-    </tr>
   </table>
 <% end %>
 
