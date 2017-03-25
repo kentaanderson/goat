@@ -6,35 +6,29 @@
 <!--</form>-->
 
 <div class="row" valign="center"> <%# style="border:solid" %>
-  <div class="col-md-1" align=middle><%= image_tag("goat.jpg", size: "69x70") %></div>
-  <div class="col-md-10" align=left><h2>Welcome to Gear Goat, the essential backcountry trip planner!<%= image_tag("beta-stamp.png", size: "70x40") %></h2></div>
-  <div class="col-md-1" align=right><div class="fb-like" data-href="http://www.geargoat.net" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div></div>
+  <div class="col-md-10" align=left><h2>Gear Goat, the essential backcountry trip planner!<%= image_tag("beta-stamp.png", size: "70x40") %></h2></div>
+  <div class="col-md-2" align=right><div class="fb-like" data-href="http://www.geargoat.net" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div></div>
 </div>
-
+<br>
 <div class="row">
   <div class="col-md-3">
-    <div height=20><h3>Inventory</h3></div>
-    <div style="height:80px;">How much gear do you really have? How much is it weighing you down? How old is it?</div>
-    <div height=20><%= link_to "<button class='btn btn-primary'>Manage gear inventory</button>".html_safe, gears_path %></div>
+    <div style='height:40px'><%= link_to "<button class='btn btn-primary' style='width:150px'>Manage inventory</button>".html_safe, gears_path %></div>
+    <div>How much gear do you really have? How much is it weighing you down? How old is it?</div>
   </div>
   <div class="col-md-3">
-    <div><h3>Plan</h3></div>
-    <div style="height:80px;">Organize your gear in a Virtual Pack while you plan your trip. Streamline for optimal weight/utlity ratio.</div>
-    <div><%= link_to "<button class='btn btn-primary'>Add upcoming event</button>".html_safe, packs_path %></div>
+    <div style='height:40px'><%= link_to "<button class='btn btn-primary' style='width:150px'>Pack Virtually</button>".html_safe, packs_path %></div>
+    <div>Organize your gear in a Virtual Pack while you plan your trip. Streamline gear for optimal weight/utlity ratio.</div>
   </div>
   <div class="col-md-3">
-    <div><h3>Coordinate</h3></div>
-    <div style="height:80px;">Coordinate shared items and identify complementary gear to reduce carried weight.</div>
-    <div><%= link_to "<button class='btn btn-primary'>Compare packs</button>".html_safe, comparators_path %></div>
+    <div style='height:40px'><%= link_to "<button class='btn btn-primary' style='width:150px'>Coordinate</button>".html_safe, comparators_path %></div>
+    <div>Coordinate shared items and identify complementary gear to reduce carried weight.</div>
   </div>
-  <div class="col-md-3">
-    <div><h3>Share</h3></div>
-    <div style="height:80px;">Ensure you pack everything. Share your successes. Show off your packing genius.<br></div>
-    <div><%= link_to "<button class='btn btn-primary'>Share your work</button>".html_safe, "#" %></div>
+  <div class="col-md-3"><%#  style="height:80px;"%>
+    <div style='height:40px'><%= link_to "<button class='btn btn-primary' style='width:150px'>Share</button>".html_safe, "#" %></div>
+    <div>Ensure you pack everything. Share your successes. Show off your packing genius.<br></div>
   </div>
 </div>
 <%# this is lame, but if the events query is fixed, it can be removed %>
-
 <% events_exist = false %>
 <% if @events then %>
   <% @events.each do |event| %>
@@ -48,30 +42,31 @@
 <%# end lameness %>
 <%# if @events then %>
 <% if events_exist then %>
-  <h3>Upcoming Events:</h3>
-  <table class=table>
-    <tr>
-      <td ><b>Event</b></td>
-      <td align=right><b>Dates</b></td>
-  <!--    <th>Trip Length</th>
-      <th>Pack Weight</th>
-      <th>OZ/Day</th>
-      <th>Summary</th>-->
-    </tr>
-    <% @events.each do |event| %>
-      <% if event.start_date.is_a?(Date) then %>
-        <% if event.start_date > Time.now then %>
-            <tr style="background-color:<%= cycle('#EEE', '#FFF') -%>">
-              <td align=left><h4 class="panel-default"><%= link_to event.title, pack_item_path(event.id) %></h4></td>
-              <td align=right><h4><%= pack_event_range(event.start_date,event.return_date) %></h4></td>
-            </tr>
+  <div>
+    <h3>Your planned events:</h3>
+    <table class=table>
+      <tr>
+        <td><b>Event</b></td>
+        <td><b>Trip Length</b></td>
+        <td><b>Dates</b></td>
+      </tr>
+      <% @events.each do |event| %>
+        <% if event.start_date.is_a?(Date) then %>
+          <% if event.start_date > Time.now then %>
+              <tr style="background-color:<%= cycle('#EEE', '#FFF') -%>">
+                <td align=left><%= link_to event.title, pack_item_path(event.id) %></td>
+                <td align=left><%= trip_length(event.id) %> <% if trip_length(event.id) == 1 then %> night <% else %> nights <% end %></td>
+                <td align=left><%= pack_event_range(event.start_date,event.return_date) %></td>
+              </tr>
+          <% end %>
         <% end %>
       <% end %>
-    <% end %>
-  </table>
+    </table>
+  </div>
 <% end %>
 
-<h3>Featured Packs:</h3>
+<div>
+<h3>Featured packs:</h3>
 <table class=table>
   <tr>
     <th>Gear Goat community open postings</th>
@@ -112,9 +107,5 @@
         </tr>
       <% end %>
     </table>
-
-
-
-
   <% end %>
 <% end %>
