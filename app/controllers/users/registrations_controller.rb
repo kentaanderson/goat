@@ -41,15 +41,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # If you have extra params to permit, append them to the sanitizer.
   # GOAT added these to capture names as users sign up
    def configure_sign_up_params
-     devise_parameter_sanitizer.for(:sign_up) << :first_name
-     devise_parameter_sanitizer.for(:sign_up) << :last_name
+     devise_parameter_sanitizer.permit(:sign_up) << :first_name
+     devise_parameter_sanitizer.permit(:sign_up) << :last_name
    end
 
   # If you have extra params to permit, append them to the sanitizer.
   # GOAT added these to capture names as users edit names
    def configure_account_update_params
-     devise_parameter_sanitizer.for(:account_update) << :first_name
-     devise_parameter_sanitizer.for(:account_update) << :last_name
+     devise_parameter_sanitizer.permit(:account_update) << :first_name
+     devise_parameter_sanitizer.permit(:account_update) << :last_name
    end
 
   # The path used after sign up.

@@ -65,23 +65,23 @@ Rails.application.configure do
 
 
 
-#config.action_mailer.default_url_options = { :host => 'mighty-everglades-9687.herokuapp.com' }
-#config.action_mailer.delivery_method = :smtp
-#config.action_mailer.perform_deliveries = true
-##config.action_mailer.raise_delivery_errors = false
-#config.action_mailer.raise_delivery_errors = true # for now, at least
-#config.action_mailer.default :charset => "utf-8"
-#config.action_mailer.smtp_settings = {
-#  address: "smtp.gmail.com",
-#  port: 587,
-#  domain: "mighty-everglades-9687.herokuapp.com",
-#  authentication: "plain",
-#  enable_starttls_auto: true,
-##   :user_name            => ENV['gmail_username'],
-##   :password             => ENV['gmail_password']
-#  user_name: ENV["GMAIL_USERNAME"],  # currently set in heroku ENVT as "gear.goat.email@gmail.com"
-#  password: ENV["GMAIL_PASSWORD"]    # not set in heroku
-#}
+config.action_mailer.default_url_options = { :host => 'mighty-everglades-9687.herokuapp.com' }
+config.action_mailer.delivery_method = :smtp
+config.action_mailer.perform_deliveries = true
+#config.action_mailer.raise_delivery_errors = false
+config.action_mailer.raise_delivery_errors = true # for now, at least
+config.action_mailer.default :charset => "utf-8"
+config.action_mailer.smtp_settings = {
+  address: "smtp.gmail.com",
+  port: 587,
+  domain: "mighty-everglades-9687.herokuapp.com",
+  authentication: "plain",
+  enable_starttls_auto: true,
+#   :user_name            => ENV['gmail_username'],
+#   :password             => ENV['gmail_password']
+  user_name: ENV["GMAIL_USERNAME"],  # currently set in heroku ENVT as "gear.goat.email@gmail.com"
+  password: ENV["GMAIL_PASSWORD"]    # not set in heroku
+}
   
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
