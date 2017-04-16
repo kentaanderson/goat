@@ -1,7 +1,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
- before_filter :configure_sign_up_params, only: [:create]
+# before_filter :configure_sign_up_params, only: [:create]
  before_filter :configure_account_update_params, only: [:update]
-
+ before_action :devise_parameter_sanitizer, if: :devise_controller?
   # GET /resource/sign_up
   # def new
   #   super
@@ -41,13 +41,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # If you have extra params to permit, append them to the sanitizer.
   # GOAT added these to capture names as users sign up
    def configure_sign_up_params
-     devise_parameter_sanitizer.for(:sign_up) << :first_name
-     devise_parameter_sanitizer.for(:sign_up) << :last_name
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:last_name])
+#     devise_parameter_sanitizer.for(:sign_up) << :first_name
+#     devise_parameter_sanitizer.for(:sign_up) << :last_name
    end
 
   # If you have extra params to permit, append them to the sanitizer.
   # GOAT added these to capture names as users edit names
    def configure_account_update_params
+# Should ADD "permit" lines here as well
      devise_parameter_sanitizer.for(:account_update) << :first_name
      devise_parameter_sanitizer.for(:account_update) << :last_name
    end
