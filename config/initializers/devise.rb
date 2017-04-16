@@ -16,7 +16,8 @@ Devise.setup do |config|
 
   # Configure the class responsible to send e-mails.
   # KAA uncommented this line for mailings
-   config.mailer = 'Devise::Mailer'
+  # KAA then re-commented this line for debugging 4/16/17
+    # config.mailer = 'Devise::Mailer'
 
   # ==> ORM configuration
   # Load and configure the ORM. Supports :active_record (default) and
