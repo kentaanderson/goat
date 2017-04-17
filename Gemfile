@@ -54,7 +54,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'quiet_assets'
 
-gem 'devise'
+#gem 'devise'
+gem 'devise', '~> 3.2'
 
 # gem 'omniauth-facebook'
 
