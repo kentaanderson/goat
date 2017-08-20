@@ -130,12 +130,19 @@ $(function () {
                 <th style="background-color:white">&nbsp;</th>
                 <% reset_cycle %>
               <% end %>
+              <% @eeefff = "flag-grey-empty.png" %>
               <% pack_items_by_category(category.id, current_user.id).each do |item| %>
+                <% if @eeefff == "flag-grey-empty.png" then 
+                    @eeefff = "flag-white-empty.png"
+                   else
+                    @eeefff = "flag-grey-empty.png"
+                   end
+                %>
                 <tr style="background-color:<%= cycle('#EEE', '#FFF') -%>">
                   <td width="20"><%= if item.wearing == 1 then image_tag("shirt.png", alt: "Wearing") end %> </td>
                   <td width="20"><%= if item.delivery == 1 then image_tag("package.png", alt: "Delivered, or 'Do not weigh'") end %> </td>
                   <td width="20"><%= if item.sharing_status == 1 then image_tag("private.png", alt: "Private") end %> </td>
-                  <td width="20"><%= link_to image_tag(item.highlight, size: "16x16"), edit_pack_item_path(item.id) + "?category_id=" + category.id.to_s  %></td>
+                  <td width="20"><%= if (item.highlight == nil or item.highlight == "") then image_tag(@eeefff, size: "16x16") else image_tag(item.highlight, size: "16x16") end %></td>
                   <td><%= link_to item.name, edit_pack_item_path(item.id) + "?category_id=" + category.id.to_s %></td>
                   <td><%= item.description %></td>
                   <td><%= item.manufacturer %></td>
