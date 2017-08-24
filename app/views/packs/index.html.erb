@@ -59,7 +59,7 @@
               </thead>
               <tr style="background-color:'#FFF'"> 
                 <td>
-                  <%= link_to "<button class='btn btn-primary'>Gear list</button>".html_safe, pack_item_path(event.id) %>
+                  <%= link_to "<button class='btn btn-primary'>Manage your gear list</button>".html_safe, pack_item_path(event.id) %>
                 </td>
 
                 <td valign="top"><%= event.description %></td>
@@ -68,7 +68,7 @@
                   <% if event.map_url then %>
                     <%#= link_to "<button class='btn btn-primary'> Map </button>".html_safe, event.map_url %>
                     <!--<a href="javascript:window.open('<%= event.map_url %>')">Link</a>-->
-                    <button class="btn btn-primary" onclick="javascript:window.open('<%= event.map_url %>')"> Map </button>
+                    <button class="btn btn-warning" onclick="javascript:window.open('<%= event.map_url %>')"> Map </button>
                   <% end %>
                 </td>
                 <td valign="top"><%= if event.sharing_status == 1 then "Private" else "Public" end %></td>
