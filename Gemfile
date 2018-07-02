@@ -8,7 +8,8 @@ group :development, :test do
   gem 'sqlite3'
 end
 group :production do
-  gem 'pg'
+#  gem 'pg'
+  gem 'pg', '~> 0.18'
   gem 'rails_12factor'
 end
 # Use SCSS for stylesheets
@@ -57,4 +58,4 @@ gem 'quiet_assets'
 #gem 'devise'
 gem 'devise', '~> 3.2'
 
-gem 'vacuum'
+gem 'vacuum', '~> 2.0.2'
