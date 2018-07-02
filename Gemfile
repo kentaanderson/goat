@@ -1,5 +1,5 @@
-source 'https://rubygems.org'
-#ruby "2.2.4"
+source 'http://rubygems.org'
+#ruby "2.3.3p222"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
@@ -56,9 +56,5 @@ gem 'quiet_assets'
 
 #gem 'devise'
 gem 'devise', '~> 3.2'
-
-# gem 'omniauth-facebook'
-
-gem 'figaro'
 
 gem 'vacuum'
