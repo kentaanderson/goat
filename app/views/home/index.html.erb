@@ -76,14 +76,16 @@
   </tr>
   <% limit = 0 %>
   <% @packs.each do |pack| %>
-    <% if limit < 8 then %>
-      <% if pack.name.to_s.length > 0 then %>
-        <tr style="background-color:<%= cycle('#EEE', '#FFF') -%>">
-          <td align=left><li><%= link_to pack.name, request.base_url + virtual_pack_path + "?vp=" + pack.id.to_s %></td>
-          <td align=left><%= pack_user(pack.user_id) %></td>
-          <td align=left><%= trip_length(pack.event_id) %> <% if trip_length(pack.event_id) == 1 then %> night <% else %> nights <% end %></td>
-          <td align=left><%= ounces_to_lbs(total_pack_weight_oz(pack.id)) %></td>
-        </tr>
+    <% if limit < 16 then %>
+      <% if pack.name.to_s.length > 0 then # if pack name isn't blank %>
+        <% if total_pack_weight_oz(pack.id).to_s != "0".to_s then # if pack weight isn't 0 %>
+          <tr style="background-color:<%= cycle('#EEE', '#FFF') -%>">
+            <td align=left><li><%= link_to pack.name, request.base_url + virtual_pack_path + "?vp=" + pack.id.to_s %></td>
+            <td align=left><%= pack_user(pack.user_id) %></td>
+            <td align=left><%= trip_length(pack.event_id) %> <% if trip_length(pack.event_id) == 1 then %> night <% else %> nights <% end %></td>
+            <td align=left><%= ounces_to_lbs(total_pack_weight_oz(pack.id)) %></td>
+          </tr>
+        <% end %>
       <% end %>
     <% end %>
     <% limit += 1  %>
