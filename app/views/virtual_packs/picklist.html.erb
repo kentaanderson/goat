@@ -40,7 +40,6 @@
     <th style="background-color:white">Description</th>
     <th style="background-color:white">Manufacturer</th>
     <th style="background-color:white">Weight&nbsp;(oz)</th>
-    <th style="background-color:white">Count</th>
     <% reset_cycle %>
   <% end %>
   <% pack_items_by_category(category.id, @user_id).each do |item| %>
@@ -50,7 +49,6 @@
       <td width="15%"><%= item.description %></td>
       <td width="15%"><%= item.manufacturer %></td>
       <td width="10%"><%= item.weight_oz %></td>
-      <td width="10%"><%= item.item_count %> </td>
     </tr>
     <% end %>
   </table>
