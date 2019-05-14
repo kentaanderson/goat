@@ -14,7 +14,7 @@ class EventAttendeesController < ApplicationController
 		@attendees.each do |user|
 			attendees << user.id
 		end
-		@users = User.all.where('id NOT IN (?)',attendees) 	# for adding			# where not in @attendees, list available users
+		@users = User.all.where('id NOT IN (?)',attendees).order(last_name: :asc) 	# for adding			# where not in @attendees, list available users
 	end
 
 	def create 
